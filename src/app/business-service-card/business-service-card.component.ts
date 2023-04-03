@@ -7,5 +7,5 @@ import { BusinessService } from '../_models/business_service';
   styleUrls: ['./business-service-card.component.scss'],
 })
 export class BusinessServiceCardComponent {
-  @Input() serviceData!: BusinessService;
+  @Input() businessServiceData!: BusinessService;
 }

@@ -10,8 +10,15 @@ import { LoginComponent } from './login/login.component';
 import { PasswordModule } from 'primeng/password';
 import { Button, ButtonModule } from 'primeng/button';
 import { BusinessServiceCardComponent } from './business-service-card/business-service-card.component';
+import { BusinessServiceListPageComponent } from './business-service-list-page/business-service-list-page.component';
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, LoginComponent, BusinessServiceCardComponent],
+  declarations: [
+    AppComponent,
+    LoginPageComponent,
+    LoginComponent,
+    BusinessServiceCardComponent,
+    BusinessServiceListPageComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
