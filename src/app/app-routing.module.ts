@@ -4,8 +4,8 @@ import { BusinessServiceListPageComponent } from './business-service-list-page/b
 import { LoginPageComponent } from './_pages/login-page/login-page.component';
 
 const routes: Routes = [
+  { path: '', component: BusinessServiceListPageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'services', component: BusinessServiceListPageComponent },
 ];
 
 @NgModule({

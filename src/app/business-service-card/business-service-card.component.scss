@@ -9,7 +9,6 @@ img {
   padding: 1rem;
 }
 
-
 @media (min-width: 40rem) {
   .cards_item {
     width: 50%;
@@ -33,7 +32,7 @@ img {
 
 .card_content {
   padding: 1rem;
-  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
+  background: linear-gradient(to bottom left, #8dc0ef 40%, #3d65eb 100%);
 }
 
 .card_title {
@@ -49,6 +48,6 @@ img {
   color: #ffffff;
   font-size: 0.875rem;
   line-height: 1.5;
-  margin-bottom: 1.25rem;    
+  margin-bottom: 1.25rem;
   font-weight: 400;
 }

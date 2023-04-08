@@ -15,10 +15,16 @@
   .cards_item {
     width: 50%;
   }
+  .search {
+    font-size: 1.6rem;
+  }
 }
 
 @media (min-width: 56rem) {
   .cards_item {
     width: 33.3333%;
+  }
+  .search {
+    font-size: 1.8rem;
   }
 }

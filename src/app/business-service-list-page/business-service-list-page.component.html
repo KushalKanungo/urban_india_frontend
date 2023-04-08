@@ -1,9 +1,11 @@
-<p>business-service-list-page works!</p>
 <div class="container">
-  <input class="search p-1" type="text" placeholder="Search">
-  <ul class="cards"  >
-    <ng-template ngIf="true" *ngFor="let item of [1,1,1,1,1,1,1,1,1,1]">
-      <app-business-service-card class="cards_item"  ></app-business-service-card>
+  <app-search-bar></app-search-bar>
+  <ul class="cards">
+    <ng-template
+      ngIf="true"
+      *ngFor="let item of [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]"
+    >
+      <app-business-service-card class="cards_item"></app-business-service-card>
     </ng-template>
   </ul>
 </div>
