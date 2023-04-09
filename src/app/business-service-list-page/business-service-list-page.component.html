@@ -1,11 +1,11 @@
 <div class="container">
   <app-search-bar></app-search-bar>
   <ul class="cards">
-    <ng-template
-      ngIf="true"
-      *ngFor="let item of [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]"
-    >
-      <app-business-service-card class="cards_item"></app-business-service-card>
+    <ng-template ngIf="true" *ngFor="let item of businessServices">
+      <app-business-service-card
+        class="cards_item"
+        [businessServiceData]="item"
+      ></app-business-service-card>
     </ng-template>
   </ul>
 </div>

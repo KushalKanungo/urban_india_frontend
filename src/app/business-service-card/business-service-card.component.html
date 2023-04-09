@@ -1,14 +1,31 @@
 <!-- <li class="cards_item"> -->
 <div class="card">
   <div class="card_image">
-    <img src="https://picsum.photos/500/300/?image=10" />
+    <img
+      src="https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTd8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80"
+    />
   </div>
   <div class="card_content">
-    <h2 class="card_title">Card Grid Layout</h2>
+    <h3 class="card_title">{{ this.businessServiceData.title }}</h3>
+    <span class="card_company">
+      {{ this.businessServiceData.business_name }}
+    </span>
     <p class="card_text">
-      Demo of pixel perfect pure CSS simple responsive card grid layout
+      {{ this.businessServiceData.description }}
     </p>
-    <button class="btn card_btn">Read More</button>
+    <div class="d-flex justify-content-between">
+      <div>
+        <p-rating
+          [(ngModel)]="this.businessServiceData.rating"
+          [readonly]="true"
+          [cancel]="false"
+        ></p-rating>
+        <span class="price">
+          {{ this.businessServiceData.price | currency : "INR" : "symbol" }}
+        </span>
+      </div>
+      <p-button label="More" styleClass="p-button-sm"></p-button>
+    </div>
   </div>
 </div>
 <!-- </li -->

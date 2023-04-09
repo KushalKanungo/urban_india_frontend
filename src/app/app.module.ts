@@ -6,12 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './_pages/login-page/login-page.component';
 import { LoginComponent } from './login/login.component';
-
+import { FormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { Button, ButtonModule } from 'primeng/button';
 import { BusinessServiceCardComponent } from './business-service-card/business-service-card.component';
 import { BusinessServiceListPageComponent } from './business-service-list-page/business-service-list-page.component';
 import { DialogModule } from 'primeng/dialog';
+import { RatingModule } from 'primeng/rating';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 @NgModule({
   declarations: [
@@ -24,12 +25,14 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     InputTextModule,
     PasswordModule,
     ButtonModule,
     DialogModule,
+    RatingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

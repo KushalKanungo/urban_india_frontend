@@ -2,6 +2,7 @@ export interface BusinessService {
   id: number;
   title: string;
   description: string;
+  business_name: string;
   price: number;
   mode: number;
   image: string;
