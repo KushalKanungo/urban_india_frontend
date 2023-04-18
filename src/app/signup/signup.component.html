@@ -1,0 +1,52 @@
+<form class="p-3">
+  <div>
+    <input type="text" class="same-width" placeholder="First Name" pInputText />
+    <input
+      type="text"
+      class="same-width mt-2 ms-s-2 ms-md-2"
+      placeholder="Last Name"
+      pInputText
+    />
+    <input
+      type="text"
+      class="same-width mt-2"
+      placeholder="Username"
+      pInputText
+    />
+    <input
+      type="email"
+      class="same-width mt-2 ms-s-2 ms-md-2"
+      placeholder="Email"
+      pInputText
+    />
+    <input
+      type="text"
+      class="same-width mt-2"
+      placeholder="Mobile Number"
+      pInputText
+    />
+    <p-dropdown
+      styleClass="same-width ms-2"
+      placeholder="Select a City"
+      [options]="genders"
+      optionLabel="name"
+    ></p-dropdown>
+  </div>
+  <div>
+    <label class="d-block mt-2" for="">Password</label>
+    <p-password
+      [toggleMask]="true"
+      placeholder="Password"
+      [inputStyle]="{ width: '12rem' }"
+    ></p-password>
+    <p-password
+      [toggleMask]="true"
+      styleClass="mt-2 ms-2"
+      placeholder="Confirm  Password"
+      [inputStyle]="{ width: '12rem' }"
+    ></p-password>
+  </div>
+  <p-button styleClass="p-button mt-2 " type="submit">
+    Signup <i class="pi pi-sign-in px-2 pt-1"></i
+  ></p-button>
+</form>

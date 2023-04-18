@@ -20,4 +20,8 @@ export class AuthService {
       signinDetails
     );
   }
+
+  signup(signupDetails: FormData) {
+    return this.http.post<unknown>(`${this.BASE_URL}/signup`, signupDetails);
+  }
 }

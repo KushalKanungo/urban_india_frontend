@@ -15,6 +15,9 @@ import { BusinessServiceListPageComponent } from './business-service-list-page/b
 import { DialogModule } from 'primeng/dialog';
 import { RatingModule } from 'primeng/rating';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { SignupComponent } from './signup/signup.component';
+import { SignupPageComponent } from './_pages/signup-page/signup-page.component';
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     BusinessServiceCardComponent,
     BusinessServiceListPageComponent,
     SearchBarComponent,
+    SignupComponent,
+    SignupPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +41,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     RatingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    DropdownModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
