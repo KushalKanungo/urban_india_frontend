@@ -18,6 +18,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SignupComponent } from './signup/signup.component';
 import { SignupPageComponent } from './_pages/signup-page/signup-page.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { FileUploadModule } from 'primeng/fileupload';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { DropdownModule } from 'primeng/dropdown';
     HttpClientModule,
     ReactiveFormsModule,
     DropdownModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent],

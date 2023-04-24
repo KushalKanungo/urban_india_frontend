@@ -1,35 +1,49 @@
-<form class="p-3">
+<form class="p-3" [formGroup]="signupForm"  (submit)="signupButtonHandeler()">
   <div>
-    <input type="text" class="same-width" placeholder="First Name" pInputText />
+
+    <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" accept="image/*"  (onSelect)="onSelect($event)">
+
+    <ng-template pTemplate="content">
+        <ul *ngIf="uploadedFile.length">
+            <li *ngFor="let file of uploadedFile">{{ file.name }} - {{ file.size }} bytes</li>
+        </ul>
+    </ng-template>
+    </p-fileUpload>
+    <input type="text" class="same-width" placeholder="First Name" pInputText formControlName="firstName" />
     <input
       type="text"
       class="same-width mt-2 ms-s-2 ms-md-2"
       placeholder="Last Name"
       pInputText
+      formControlName="lastName"
     />
     <input
       type="text"
       class="same-width mt-2"
       placeholder="Username"
       pInputText
+      formControlName="username"
     />
     <input
       type="email"
       class="same-width mt-2 ms-s-2 ms-md-2"
       placeholder="Email"
       pInputText
+      formControlName="email"
     />
     <input
       type="text"
       class="same-width mt-2"
       placeholder="Mobile Number"
       pInputText
+      formControlName="phone_number"
     />
     <p-dropdown
       styleClass="same-width ms-2"
-      placeholder="Select a City"
+      placeholder="Gender"
       [options]="genders"
       optionLabel="name"
+      formControlName="gender"
     ></p-dropdown>
   </div>
   <div>
@@ -38,6 +52,7 @@
       [toggleMask]="true"
       placeholder="Password"
       [inputStyle]="{ width: '12rem' }"
+      formControlName="password"
     ></p-password>
     <p-password
       [toggleMask]="true"
@@ -46,7 +61,7 @@
       [inputStyle]="{ width: '12rem' }"
     ></p-password>
   </div>
-  <p-button styleClass="p-button mt-2 " type="submit">
+  <p-button styleClass="p-button mt-2 " type="submit" [disabled]="!signupForm.valid">
     Signup <i class="pi pi-sign-in px-2 pt-1"></i
   ></p-button>
 </form>
