@@ -22,8 +22,8 @@ export class LoginComponent {
     };
     this.authService.login(signInDetails).subscribe({
       next: (res: SignInResponse) => {
+        // TODO: After sigIn in code
         console.log('SignedInSuccessfully');
-        localStorage.setItem('jwt_token', res.accessToken);
       },
     });
   }
