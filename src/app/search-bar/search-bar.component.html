@@ -15,19 +15,50 @@
   header="Header"
   [(visible)]="visible"
   [modal]="true"
-  [style]="{ width: '50vw' }"
+  [style]="{
+    width: '400px',
+    height: '50vh',
+    minHeight: '400px'
+  }"
   [draggable]="false"
   [resizable]="false"
-  [breakpoints]="{ '960px': '75vw' }"
-  [style]="{ width: '50vw' }"
+  [breakpoints]="{ '960px': '75vw', '500px': '92vw' }"
 >
-  <h2>Filter Options Will Be Here</h2>
-  <p class="m-0">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-  </p>
+  <p-multiSelect
+    [options]="businesses"
+    [(ngModel)]="selectedBusiness"
+    defaultLabel="Select a seller"
+    optionLabel="title"
+    styleClass="mt-4"
+    [style]="{ width: '20rem' }"
+    [panelStyle]="{ width: '20rem' }"
+  >
+    ></p-multiSelect
+  >
+  <div class="mt-4">
+    <p-slider
+      styleClass="mt-2"
+      [(ngModel)]="rangeValues"
+      [range]="true"
+    ></p-slider>
+    <div class="d-flex justify-content-between mt-2">
+      <span class="">
+        {{ rangeValues[0] * 100 | currency : "INR" : "symbol" : "1.0-0" }}</span
+      >
+      <span class="">
+        {{ rangeValues[1] * 100 | currency : "INR" : "symbol" : "1.0-0" }}</span
+      >
+    </div>
+  </div>
+  <p-multiSelect
+    [options]="businesses"
+    [(ngModel)]="selectedBusiness"
+    defaultLabel="Select a seller"
+    optionLabel="title"
+    styleClass="mt-4"
+    [style]="{ width: '20rem' }"
+    [panelStyle]="{ width: '20rem' }"
+  >
+    ></p-multiSelect
+  >
 </p-dialog>

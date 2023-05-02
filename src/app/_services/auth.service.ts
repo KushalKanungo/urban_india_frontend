@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
-import { SignInResponse } from '../_types/SignInResponse';
 import { Router } from '@angular/router';
+
+export type SignInResponse = {
+  accessToken: string;
+  tokenType: string;
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private ACCESS_TOKEN_KEY_NAME = 'accessToken';
-  private AUTH_FAILED_REDIRECT_URL = 'http://localhost:3000/login';
+  private AUTH_FAILED_REDIRECT_URL = 'http://localhost:4200/login';
   private BASE_URL = 'http://localhost:8080/api/auth';
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -42,6 +45,10 @@ export class AuthService {
 
   clearAccessToken() {
     localStorage.removeItem(this.ACCESS_TOKEN_KEY_NAME);
+  }
+
+  isAuthorized?(): boolean {
+    return this.loadAccessToken() ? true : false;
   }
 
   fallBack() {

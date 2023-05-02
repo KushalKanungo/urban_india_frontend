@@ -5,8 +5,8 @@ import { LoginPageComponent } from './_pages/login-page/login-page.component';
 import { SignupPageComponent } from './_pages/signup-page/signup-page.component';
 
 const routes: Routes = [
-  { path: '', component: BusinessServiceListPageComponent },
-  { path: 'login', component: LoginPageComponent },
+  { path: '', component: LoginPageComponent },
+  { path: 'services', component: BusinessServiceListPageComponent },
   { path: 'signup', component: SignupPageComponent },
 ];
 

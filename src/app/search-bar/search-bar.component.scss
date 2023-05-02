@@ -45,3 +45,8 @@
     font-size: 1.8rem;
   }
 }
+
+:host ::ng-deep .p-slider {
+  width: 20rem;
+  // height: 20px;
+}

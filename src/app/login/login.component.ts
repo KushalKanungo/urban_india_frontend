@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../_services/auth.service';
-import { SignInResponse } from '../_types/SignInResponse';
+import { Route, Router } from '@angular/router';
+import { AuthService, SignInResponse } from '../_services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,8 @@ import { SignInResponse } from '../_types/SignInResponse';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
+  private REDIRECT_URI = 'services';
   signInForm: FormGroup = new FormGroup({
     usernameOrEmail: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
@@ -22,7 +23,7 @@ export class LoginComponent {
     };
     this.authService.login(signInDetails).subscribe({
       next: (res: SignInResponse) => {
-        // TODO: After sigIn in code
+        this.router.navigate([this.REDIRECT_URI]);
         console.log('SignedInSuccessfully');
       },
     });

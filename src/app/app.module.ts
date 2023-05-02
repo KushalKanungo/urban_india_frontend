@@ -19,6 +19,9 @@ import { SignupComponent } from './signup/signup.component';
 import { SignupPageComponent } from './_pages/signup-page/signup-page.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
+import { SliderModule } from 'primeng/slider';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,9 @@ import { FileUploadModule } from 'primeng/fileupload';
     HttpClientModule,
     ReactiveFormsModule,
     DropdownModule,
-    FileUploadModule
+    FileUploadModule,
+    SliderModule,
+    MultiSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

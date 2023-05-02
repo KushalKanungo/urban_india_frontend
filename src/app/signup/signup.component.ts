@@ -8,19 +8,18 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
-  
   constructor(private authService: AuthService) {}
 
   genders = [{ name: 'Male' }, { name: 'Female' }, { name: 'Other' }];
-  uploadedFile!: File | any 
-  
-  onSelect($event: any){
-    for(let file of $event.files) {
-      this.uploadedFile = file 
-  }
+  uploadedFile!: File | any;
+
+  onSelect($event: any) {
+    for (let file of $event.files) {
+      this.uploadedFile = file;
+    }
   }
 
-  signupForm : FormGroup = new FormGroup({
+  signupForm: FormGroup = new FormGroup({
     firstName: new FormControl('Kushal', [Validators.required]),
     lastName: new FormControl('Kanungo', [Validators.required]),
     username: new FormControl('k4shal', [Validators.required]),
@@ -30,16 +29,17 @@ export class SignupComponent {
     password: new FormControl('12345', [Validators.required]),
   });
 
-  signupButtonHandeler(){
-    let signupDetails = new FormData()
-    let data = this.signupForm.value
-    
-    data['gender'] = data['gender'].name
-    signupDetails.set('data', data)
-    signupDetails.set('file', this.uploadedFile)
-    this.authService.signup(signupDetails).subscribe({next: ()=>{
-      console.log('Signed up successfully');
-    }})    
-    
+  signupButtonHandeler() {
+    let signupDetails = new FormData();
+    let data = this.signupForm.value;
+
+    data['gender'] = data['gender'].name;
+    signupDetails.set('data', data);
+    signupDetails.set('file', this.uploadedFile);
+    this.authService.signup(signupDetails).subscribe({
+      next: () => {
+        console.log('Signed up successfully');
+      },
+    });
   }
 }
