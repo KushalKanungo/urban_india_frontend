@@ -21,6 +21,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SliderModule } from 'primeng/slider';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     SearchBarComponent,
     SignupComponent,
     SignupPageComponent,
+    BusinessRegisterFormComponent,
   ],
   imports: [
     BrowserModule,

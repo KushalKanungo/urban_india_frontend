@@ -1,0 +1,70 @@
+<!-- avatar-upload.component.html -->
+
+<div class="row full-form">
+  <div
+    class="d-none d-xl-flex justify-content-center align-items-center col-xl-6"
+  >
+    <img class="side-img" src="../../assets/business.jpg" alt="" />
+  </div>
+  <div class="col-12 col-xl-6">
+    <form class="" action="">
+      <div
+        class="avatar-upload d-flex justify-content-center align-items-center"
+      >
+        <div class="text-center upload"><i class="bi bi-upload"></i></div>
+        <img
+          [src]="imageUrl"
+          alt="Avatar Preview"
+          class="avatar-image"
+          *ngIf="imageUrl"
+        />
+        <input type="file" (change)="onFileSelect($event)" *ngIf="!imageUrl" />
+      </div>
+      <div class="row row-cols-2">
+        <div class="col">
+          <input
+            class="mt-2"
+            type="text"
+            pInputText
+            placeholder="Business Name"
+          />
+        </div>
+        <div class="col">
+          <input class="mt-2" type="text" pInputText placeholder="Tagline" />
+        </div>
+        <div class="col">
+          <input
+            class="mt-2"
+            type="text"
+            pInputText
+            placeholder="GSIN Number"
+          />
+        </div>
+        <div class="col">
+          <input class="mt-2" type="text" pInputText placeholder="Address " />
+        </div>
+        <div class="col">
+          <p-dropdown
+            styleClass="same-width mt-2"
+            placeholder="State"
+            optionLabel="name"
+          ></p-dropdown>
+        </div>
+        <div class="col">
+          <p-dropdown
+            styleClass="same-width mt-2"
+            placeholder="State"
+            optionLabel="City"
+          ></p-dropdown>
+        </div>
+        <div class="col">
+          <input class="mt-2" type="text" pInputText placeholder="Pincode " />
+        </div>
+      </div>
+
+      <p-button styleClass="p-button mt-2 w-fluid" type="submit">
+        Add Business<i class="pi pi-sign-in px-2 pt-1"></i
+      ></p-button>
+    </form>
+  </div>
+</div>

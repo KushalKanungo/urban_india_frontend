@@ -1,15 +1,27 @@
-<form class="p-3" [formGroup]="signupForm"  (submit)="signupButtonHandeler()">
+<form class="p-3" [formGroup]="signupForm" (submit)="signupButtonHandeler()">
   <div>
-
-    <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" accept="image/*"  (onSelect)="onSelect($event)">
-
-    <ng-template pTemplate="content">
+    <p-fileUpload
+      mode="basic"
+      chooseLabel="Choose"
+      name="demo[]"
+      accept="image/*"
+      (onSelect)="onSelect($event)"
+    >
+      <ng-template pTemplate="content">
         <ul *ngIf="uploadedFile.length">
-            <li *ngFor="let file of uploadedFile">{{ file.name }} - {{ file.size }} bytes</li>
+          <li *ngFor="let file of uploadedFile">
+            {{ file.name }} - {{ file.size }} bytes
+          </li>
         </ul>
-    </ng-template>
+      </ng-template>
     </p-fileUpload>
-    <input type="text" class="same-width" placeholder="First Name" pInputText formControlName="firstName" />
+    <input
+      type="text"
+      class="same-width"
+      placeholder="First Name"
+      pInputText
+      formControlName="firstName"
+    />
     <input
       type="text"
       class="same-width mt-2 ms-s-2 ms-md-2"
@@ -61,7 +73,11 @@
       [inputStyle]="{ width: '12rem' }"
     ></p-password>
   </div>
-  <p-button styleClass="p-button mt-2 " type="submit" [disabled]="!signupForm.valid">
+  <p-button
+    styleClass="p-button mt-2 "
+    type="submit"
+    [disabled]="!signupForm.valid"
+  >
     Signup <i class="pi pi-sign-in px-2 pt-1"></i
   ></p-button>
 </form>
