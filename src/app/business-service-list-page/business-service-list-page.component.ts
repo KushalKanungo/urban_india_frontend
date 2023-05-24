@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { BusinessService } from '../_models/business_service';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BusinessRegisterFormComponent } from '../business-register-form/business-register-form.component';
 
 @Component({
   selector: 'app-business-service-list-page',
@@ -7,6 +9,8 @@ import { BusinessService } from '../_models/business_service';
   styleUrls: ['./business-service-list-page.component.scss'],
 })
 export class BusinessServiceListPageComponent {
+  constructor(private dialogService: DialogService) {}
+  ref!: DynamicDialogRef;
   businessServices: BusinessService[] = [
     {
       id: 1,
@@ -214,4 +218,18 @@ export class BusinessServiceListPageComponent {
       service_type: 'Technology',
     },
   ];
+
+  show() {
+    this.ref = this.dialogService.open(BusinessRegisterFormComponent, {
+      header: 'Add a business',
+      // width: '70%',
+      height: '540px ',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+    });
+
+    this.ref.onClose.subscribe(() => {});
+
+    this.ref.onMaximize.subscribe((value) => {});
+  }
 }

@@ -1,5 +1,5 @@
 <form class="p-3" [formGroup]="signupForm" (submit)="signupButtonHandeler()">
-  <div>
+  <div class="row row-col-1">
     <p-fileUpload
       mode="basic"
       chooseLabel="Choose"
@@ -15,6 +15,7 @@
         </ul>
       </ng-template>
     </p-fileUpload>
+
     <input
       type="text"
       class="same-width"

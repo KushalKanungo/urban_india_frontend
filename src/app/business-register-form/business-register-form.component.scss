@@ -15,11 +15,11 @@ input {
 }
 
 ::ng-deep .same-width {
-  width: 12rem !important;
+  width: 100% !important;
 }
 
 ::ng-deep .p-inputtext {
-  width: 12rem !important;
+  width: 100% !important;
 }
 
 ::ng-deep .p-datepicker table td {
@@ -38,6 +38,17 @@ input {
 
 ::ng-deep .p-datepicker .p-datepicker-header {
   padding: 0.2rem;
+}
+
+::ng-deep .p-dropdown {
+  border: none !important;
+}
+
+::ng-deep .p-dropdown:active,
+.p-dropdown:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .avatar-upload {

@@ -21,6 +21,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SliderModule } from 'primeng/slider';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
 
 @NgModule({
@@ -51,8 +52,9 @@ import { BusinessRegisterFormComponent } from './business-register-form/business
     FileUploadModule,
     SliderModule,
     MultiSelectModule,
+    DynamicDialogModule,
   ],
-  providers: [],
+  providers: [DialogService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
