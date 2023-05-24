@@ -33,6 +33,28 @@ textarea:active .p-inputtext:active {
   box-shadow: none !important;
 }
 
+
+.p-dropdown-panel .p-dropdown-items-wrapper {
+  max-height: 140px !important; /* Adjust the height as per your requirement */
+}
+
+.p-dropdown {
+  border: none !important;
+}
+.p-dropdown .p-focus{
+  box-shadow: none !important;
+}
+
+.p-dropdown:active,
+.p-dropdown:focus {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+
 textarea {
   border-radius: 6px;
 }
+
+
