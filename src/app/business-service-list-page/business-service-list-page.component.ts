@@ -223,7 +223,6 @@ export class BusinessServiceListPageComponent {
     this.ref = this.dialogService.open(BusinessRegisterFormComponent, {
       header: 'Add a business',
       // width: '70%',
-      height: '540px ',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });

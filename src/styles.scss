@@ -9,6 +9,10 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+.p-password {
+  width: 100%;
+}
+
 .p-inputtext,
 .p-dropdown-label,
 .p-dropdown-trigger,
@@ -33,7 +37,6 @@ textarea:active .p-inputtext:active {
   box-shadow: none !important;
 }
 
-
 .p-dropdown-panel .p-dropdown-items-wrapper {
   max-height: 140px !important; /* Adjust the height as per your requirement */
 }
@@ -41,7 +44,7 @@ textarea:active .p-inputtext:active {
 .p-dropdown {
   border: none !important;
 }
-.p-dropdown .p-focus{
+.p-dropdown .p-focus {
   box-shadow: none !important;
 }
 
@@ -52,9 +55,6 @@ textarea:active .p-inputtext:active {
   outline: none !important;
 }
 
-
 textarea {
   border-radius: 6px;
 }
-
-

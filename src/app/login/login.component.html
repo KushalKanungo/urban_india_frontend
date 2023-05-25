@@ -1,23 +1,27 @@
 <form class="p-3" [formGroup]="signInForm" (submit)="signInButtonHandeler()">
-  <div>
-    <label for="" class="d-block">Email</label>
-    <input
-      type="text"
-      class="same-width"
-      placeholder="Username or Email"
-      formControlName="usernameOrEmail"
-      pInputText
-    />
+  <div class="row row-cols-1">
+    <div class="col">
+      <label for="" class="d-block">Email</label>
+      <input
+        type="text"
+        class="same-width"
+        placeholder="Username or Email"
+        formControlName="usernameOrEmail"
+        pInputText
+      />
+    </div>
+    <div class="col">
+      <label class="d-block mt-2" for="">Password</label>
+      <p-password
+        [toggleMask]="true"
+        [feedback]="false"
+        placeholder="Password"
+        formControlName="password"
+        [inputStyle]="{ width: '100%' }"
+      ></p-password>
+    </div>
   </div>
-  <div>
-    <label class="d-block mt-2" for="">Password</label>
-    <p-password
-      [toggleMask]="true"
-      placeholder="Password"
-      formControlName="password"
-      [inputStyle]="{ width: '100%' }"
-    ></p-password>
-  </div>
+
   <p-button styleClass="p-button mt-2 " type="submit">
     Login <i class="pi pi-sign-in px-2 pt-1"></i
   ></p-button>

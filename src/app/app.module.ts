@@ -23,6 +23,7 @@ import { SliderModule } from 'primeng/slider';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { BusinessRegisterFormComponent } from './business-register-form/business
     SignupComponent,
     SignupPageComponent,
     BusinessRegisterFormComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
