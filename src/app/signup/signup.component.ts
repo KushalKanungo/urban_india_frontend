@@ -35,6 +35,8 @@ export class SignupComponent {
 
     data['gender'] = data['gender'].name;
     signupDetails.set('data', data);
+    console.log(signupDetails.get('data'));
+
     signupDetails.set('file', this.uploadedFile);
     this.authService.signup(signupDetails).subscribe({
       next: () => {

@@ -47,7 +47,7 @@ export class AuthService {
     localStorage.removeItem(this.ACCESS_TOKEN_KEY_NAME);
   }
 
-  isAuthorized?(): boolean {
+  isAuthorized(): boolean {
     return this.loadAccessToken() ? true : false;
   }
 

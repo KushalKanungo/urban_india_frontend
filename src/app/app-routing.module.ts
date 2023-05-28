@@ -4,12 +4,22 @@ import { BusinessServiceListPageComponent } from './business-service-list-page/b
 import { LoginPageComponent } from './_pages/login-page/login-page.component';
 import { SignupPageComponent } from './_pages/signup-page/signup-page.component';
 import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LoginPageComponent },
-  { path: 'services', component: BusinessServiceListPageComponent },
-  { path: 'signup', component: SignupPageComponent },
-  { path: 'add-business', component: BusinessRegisterFormComponent },
+  { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'services',
+    component: BusinessServiceListPageComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'signup', component: SignupPageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'add-business',
+    component: BusinessRegisterFormComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
