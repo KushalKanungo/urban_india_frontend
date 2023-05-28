@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -8,7 +9,7 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   genders = [{ name: 'Male' }, { name: 'Female' }, { name: 'Other' }];
   uploadedFile!: File | any;
@@ -34,12 +35,13 @@ export class SignupComponent {
     let data = this.signupForm.value;
 
     data['gender'] = data['gender'].name;
-    signupDetails.set('data', data);
+    signupDetails.set('data', JSON.stringify(data));
     console.log(signupDetails.get('data'));
 
     signupDetails.set('file', this.uploadedFile);
     this.authService.signup(signupDetails).subscribe({
       next: () => {
+        this.router.navigate(['/login']);
         console.log('Signed up successfully');
       },
     });
