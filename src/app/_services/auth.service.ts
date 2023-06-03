@@ -13,7 +13,7 @@ export type SignInResponse = {
 })
 export class AuthService {
   private ACCESS_TOKEN_KEY_NAME = 'accessToken';
-  private AUTH_FAILED_REDIRECT_URL = 'http://localhost:4200/login';
+  private AUTH_FAILED_REDIRECT_URL = '/';
   private BASE_URL = 'http://localhost:8080/api/auth';
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -35,6 +35,10 @@ export class AuthService {
     return this.http.post<unknown>(`${this.BASE_URL}/signup`, signupDetails);
   }
 
+  googleAuth(idToken: string): Observable<any> {
+    return this.http.post<any>(`${this.BASE_URL}/api/auth/google`, { idToken });
+  }
+
   saveAccessToken(accessToken: string): void {
     localStorage.setItem(this.ACCESS_TOKEN_KEY_NAME, accessToken);
   }
@@ -53,6 +57,10 @@ export class AuthService {
 
   fallBack() {
     this.clearAccessToken();
-    this.router.navigateByUrl(this.AUTH_FAILED_REDIRECT_URL);
+    this.router.navigate([this.AUTH_FAILED_REDIRECT_URL]);
+  }
+
+  logOut() {
+    this.clearAccessToken();
   }
 }

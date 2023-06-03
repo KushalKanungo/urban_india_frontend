@@ -7,7 +7,12 @@
     <img class="side-img" src="../../assets/business.jpg" alt="" />
   </div>
   <div class="col-12 col-md-6">
-    <form class="" action="" [formGroup]="businessForm">
+    <form
+      class=""
+      action=""
+      [formGroup]="businessForm"
+      (ngSubmit)="addBusinessButton(businessForm.value)"
+    >
       <div
         class="avatar-upload d-flex justify-content-center align-items-center"
       >
@@ -87,7 +92,11 @@
           />
         </div>
         <div class="col mt-2">
-          <p-button styleClass="p-button  " type="submit">
+          <p-button
+            styleClass="p-button  "
+            type="submit"
+            [disabled]="!businessForm.valid"
+          >
             Add Business<i class="pi pi-sign-in px-2 pt-1"></i
           ></p-button>
         </div>

@@ -891,17 +891,18 @@ export class BusinessRegisterFormComponent {
     },
   ];
   districts: string[] = [];
+  file: any;
 
   onFileSelect(event: any): void {
     if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
+      this.file = event.target.files[0];
       const reader = new FileReader();
 
       reader.onload = (e) => {
         this.imageUrl = e.target?.result;
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(this.file);
     }
   }
 
@@ -916,9 +917,16 @@ export class BusinessRegisterFormComponent {
     business_name: new FormControl('Test Business', [Validators.required]),
     tagline: new FormControl('Happy to serve you', [Validators.required]),
     gstin_number: new FormControl('12345', [Validators.required]),
-    address: new FormControl('Flat 23 Prime', [Validators.email]),
+    address: new FormControl('Flat 23 Prime', [Validators.required]),
     state: new FormControl('', [Validators.required]),
-    district: new FormControl('', [Validators.maxLength(10)]),
+    district: new FormControl('', [Validators.required]),
     pin: new FormControl('302021', [Validators.required]),
   });
+
+  addBusinessButton(formDetails: any) {
+    let businessDetails = new FormData();
+    businessDetails.set('data', JSON.stringify(formDetails));
+    if (this.file) businessDetails.set('file', this.file);
+    // TODO: send the business details form data to backend
+  }
 }

@@ -9,8 +9,7 @@ import { BusinessRegisterFormComponent } from '../business-register-form/busines
   styleUrls: ['./business-service-list-page.component.scss'],
 })
 export class BusinessServiceListPageComponent {
-  constructor(private dialogService: DialogService) {}
-  ref!: DynamicDialogRef;
+  constructor() {}
   businessServices: BusinessService[] = [
     {
       id: 1,
@@ -218,17 +217,4 @@ export class BusinessServiceListPageComponent {
       service_type: 'Technology',
     },
   ];
-
-  show() {
-    this.ref = this.dialogService.open(BusinessRegisterFormComponent, {
-      header: 'Add a business',
-      // width: '70%',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-    });
-
-    this.ref.onClose.subscribe(() => {});
-
-    this.ref.onMaximize.subscribe((value) => {});
-  }
 }

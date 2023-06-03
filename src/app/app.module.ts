@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { Button, ButtonModule } from 'primeng/button';
+import { AvatarModule } from 'primeng/avatar';
 import { BusinessServiceCardComponent } from './business-service-card/business-service-card.component';
 import { BusinessServiceListPageComponent } from './business-service-list-page/business-service-list-page.component';
 import { DialogModule } from 'primeng/dialog';
@@ -24,6 +25,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     SliderModule,
     MultiSelectModule,
     DynamicDialogModule,
+    AvatarModule,
+    MenuModule,
   ],
   providers: [DialogService],
   bootstrap: [AppComponent],

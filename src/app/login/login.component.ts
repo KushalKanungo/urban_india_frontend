@@ -61,6 +61,10 @@ export class LoginComponent {
 
   handleCredentialResponse(response: any) {
     console.log(response.credential);
+
+    this.authService
+      .googleAuth(response.credential)
+      .subscribe({ next: () => {} });
   }
 
   signInButtonHandeler() {
