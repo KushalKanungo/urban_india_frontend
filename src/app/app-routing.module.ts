@@ -5,6 +5,7 @@ import { LoginPageComponent } from './_pages/login-page/login-page.component';
 import { SignupPageComponent } from './_pages/signup-page/signup-page.component';
 import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { BusinessPageComponent } from './_pages/business-page/business-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
@@ -14,6 +15,8 @@ const routes: Routes = [
     component: BusinessServiceListPageComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'business/:id', component: BusinessPageComponent },
+
   { path: 'signup', component: SignupPageComponent, canActivate: [AuthGuard] },
   {
     path: 'add-business',
