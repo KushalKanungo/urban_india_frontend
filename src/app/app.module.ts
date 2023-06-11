@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +26,7 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MenuModule } from 'primeng/menu';
+import { AuthInterceptor } from './_interceptors/auth_interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,10 @@ import { MenuModule } from 'primeng/menu';
     AvatarModule,
     MenuModule,
   ],
-  providers: [DialogService],
+  providers: [
+    DialogService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
