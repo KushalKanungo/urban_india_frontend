@@ -15,6 +15,7 @@ import { BusinessServiceCardComponent } from './business-service-card/business-s
 import { BusinessServiceListPageComponent } from './business-service-list-page/business-service-list-page.component';
 import { DialogModule } from 'primeng/dialog';
 import { RatingModule } from 'primeng/rating';
+import { CarouselModule } from 'primeng/carousel';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SignupComponent } from './signup/signup.component';
 import { SignupPageComponent } from './_pages/signup-page/signup-page.component';
@@ -26,7 +27,12 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MenuModule } from 'primeng/menu';
+import { BusinessPageComponent } from './_pages/business-page/business-page.component';
+import { ReviewCardComponent } from './review-card/review-card.component';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ReviewPageComponent } from './_pages/review-page/review-page.component';
 import { AuthInterceptor } from './_interceptors/auth_interceptor';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +46,9 @@ import { AuthInterceptor } from './_interceptors/auth_interceptor';
     SignupPageComponent,
     BusinessRegisterFormComponent,
     NavbarComponent,
+    BusinessPageComponent,
+    ReviewCardComponent,
+    ReviewPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +69,8 @@ import { AuthInterceptor } from './_interceptors/auth_interceptor';
     DynamicDialogModule,
     AvatarModule,
     MenuModule,
+    CarouselModule,
+    ProgressBarModule,
   ],
   providers: [
     DialogService,

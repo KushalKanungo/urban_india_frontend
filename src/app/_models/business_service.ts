@@ -3,6 +3,7 @@ export interface BusinessService {
   title: string;
   description: string;
   business_name: string;
+  business_id?: number;
   price: number;
   mode: number;
   image: string;

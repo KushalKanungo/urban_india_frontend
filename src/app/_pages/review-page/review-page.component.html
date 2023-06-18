@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row col-lg-6 mb-2">
+    <span>5 Ratings</span
+    ><p-progressBar
+      mode="determinate"
+      [style]="{ height: '6px' }"
+      [showValue]="false"
+      [value]="50"
+    ></p-progressBar>
+    <span>4 Ratings</span
+    ><p-progressBar
+      [style]="{ height: '6px' }"
+      [showValue]="false"
+      [value]="30"
+    ></p-progressBar>
+    <span>3 Ratings</span
+    ><p-progressBar
+      [style]="{ height: '6px' }"
+      [showValue]="false"
+      [value]="10"
+    ></p-progressBar>
+    <span>2 Ratings</span
+    ><p-progressBar
+      [style]="{ height: '6px' }"
+      [showValue]="false"
+      [value]="6"
+    ></p-progressBar>
+    <span>1 Ratings</span
+    ><p-progressBar
+      [style]="{ height: '6px' }"
+      [showValue]="false"
+      [value]="4"
+    ></p-progressBar>
+  </div>
+
+  <div class="row row-cols-1 row-cols-lg-2">
+    <app-review-card
+      *ngFor="let review of reviews"
+      [review]="review"
+      class="col"
+    ></app-review-card>
+  </div>
+</div>
