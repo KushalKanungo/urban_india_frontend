@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { InputTextModule } from 'primeng/inputtext';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -31,6 +31,8 @@ import { BusinessPageComponent } from './_pages/business-page/business-page.comp
 import { ReviewCardComponent } from './review-card/review-card.component';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReviewPageComponent } from './_pages/review-page/review-page.component';
+import { AuthInterceptor } from './_interceptors/auth_interceptor';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +72,10 @@ import { ReviewPageComponent } from './_pages/review-page/review-page.component'
     CarouselModule,
     ProgressBarModule,
   ],
-  providers: [DialogService],
+  providers: [
+    DialogService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
