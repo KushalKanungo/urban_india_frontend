@@ -3,25 +3,26 @@
 
   <hr />
   <section>
-    <div class="row col-6 px-5 mb-2">
-      <span>5 Ratings</span><p-progressBar [value]="50"></p-progressBar>
-      <span>4 Ratings</span><p-progressBar [value]="30"></p-progressBar>
-      <span>3 Ratings</span><p-progressBar [value]="10"></p-progressBar>
-      <span>2 Ratings</span><p-progressBar [value]="6"></p-progressBar>
-      <span>1 Ratings</span><p-progressBar [value]="4"></p-progressBar>
-    </div>
-    z
+    <h4 class="my-4 ms-3">
+      Reviews
+      <p-button
+        label="Read More"
+        styleClass="p-button-text"
+        (click)="openReviewsDialog()"
+      ></p-button>
+    </h4>
+
     <p-carousel
       [value]="reviews"
       [numVisible]="3"
       [numScroll]="3"
-      [circular]="false"
+      [circular]="true"
       [responsiveOptions]="responsiveOptions"
       [showIndicators]="false"
     >
       <ng-template let-review pTemplate="item">
         <div
-          class="review-card border-1 surface-border border-round m-2 py-5 px-3"
+          class="review-card border-1 surface-border border-round m-2 py-4 px-3"
         >
           <h5>{{ review.title }}</h5>
 
@@ -39,10 +40,10 @@
   </section>
   <h4 class="my-4 ms-3">Services</h4>
   <section>
-    <ul class="cards">
+    <ul class="cards row row-cols-1 row-cols-md-2 row-cols-xl-3">
       <ng-template ngIf="true" *ngFor="let item of businessServices">
         <app-business-service-card
-          class="cards_item"
+          class="cards_item col"
           [businessServiceData]="item"
         ></app-business-service-card>
       </ng-template>

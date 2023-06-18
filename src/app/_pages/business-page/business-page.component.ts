@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
 import { BusinessService } from 'src/app/_models/business_service';
 import { Reviews } from 'src/app/_models/reviews';
+import { ReviewPageComponent } from '../review-page/review-page.component';
 
 @Component({
   selector: 'app-business-page',
@@ -329,10 +331,21 @@ export class BusinessPageComponent {
       numScroll: 1,
     },
   ];
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private dialogService: DialogService
+  ) {}
 
   ngOnInit() {
     this.id = parseInt(this.route.snapshot.paramMap.get('id') || '1');
     console.log(this.id);
+  }
+
+  openReviewsDialog() {
+    let ref = this.dialogService.open(ReviewPageComponent, {
+      maximizable: true,
+      width: '90vw',
+      height: '80vh',
+    });
   }
 }

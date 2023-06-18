@@ -30,6 +30,7 @@ import { MenuModule } from 'primeng/menu';
 import { BusinessPageComponent } from './_pages/business-page/business-page.component';
 import { ReviewCardComponent } from './review-card/review-card.component';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ReviewPageComponent } from './_pages/review-page/review-page.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
     NavbarComponent,
     BusinessPageComponent,
     ReviewCardComponent,
+    ReviewPageComponent,
   ],
   imports: [
     BrowserModule,
