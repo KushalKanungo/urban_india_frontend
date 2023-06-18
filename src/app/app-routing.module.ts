@@ -6,6 +6,7 @@ import { SignupPageComponent } from './_pages/signup-page/signup-page.component'
 import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { BusinessPageComponent } from './_pages/business-page/business-page.component';
+import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-page.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'add-business',
     component: BusinessRegisterFormComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'my-business',
+    component: MyBusinessPageComponent,
   },
 ];
 

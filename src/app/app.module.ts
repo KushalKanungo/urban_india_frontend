@@ -32,6 +32,8 @@ import { ReviewCardComponent } from './review-card/review-card.component';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReviewPageComponent } from './_pages/review-page/review-page.component';
 import { AuthInterceptor } from './_interceptors/auth_interceptor';
+import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-page.component';
+import { AddBusinessServiceFormComponent } from './add-business-service-form/add-business-service-form.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { AuthInterceptor } from './_interceptors/auth_interceptor';
     BusinessPageComponent,
     ReviewCardComponent,
     ReviewPageComponent,
+    MyBusinessPageComponent,
+    AddBusinessServiceFormComponent,
   ],
   imports: [
     BrowserModule,

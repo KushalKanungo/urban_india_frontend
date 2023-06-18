@@ -1,0 +1,80 @@
+<!-- avatar-upload.component.html -->
+
+<div class="row full-form justify-content-center p-4">
+  <div
+    class="d-none d-md-flex justify-content-center align-items-center col-md-6"
+  >
+    <img class="side-img" src="../../assets/business_service.jpg" alt="" />
+  </div>
+  <div class="col-12 col-md-6">
+    <form
+      class=""
+      action=""
+      [formGroup]="addServiceForm"
+      (ngSubmit)="submitHandeler(addServiceForm.value)"
+    >
+      >
+      <div
+        class="avatar-upload d-flex justify-content-center align-items-center"
+      >
+        <div class="text-center upload" *ngIf="!imageUrl">
+          <i class="bi bi-upload"></i> Cover Image
+        </div>
+        <img
+          [src]="imageUrl"
+          alt="Avatar Preview"
+          class="avatar-image"
+          *ngIf="imageUrl"
+        />
+        <input type="file" (change)="onFileSelect($event)" *ngIf="!imageUrl" />
+      </div>
+      <div class="row row-cols-1 justify-content-center">
+        <div class="col mt-2">
+          <input
+            class=""
+            type="text"
+            pInputText
+            placeholder="Business Name"
+            formControlName="business_service_name"
+          />
+        </div>
+        <div class="col mt-2">
+          <textarea
+            class=""
+            type="text"
+            pInputText
+            placeholder="Add description"
+            formControlName="description"
+          ></textarea>
+        </div>
+        <div class="col mt-2">
+          <p-dropdown
+            styleClass="same-width "
+            [options]="service_types"
+            placeholder="Service"
+            formControlName="service_type_id"
+          ></p-dropdown>
+        </div>
+        <div class="col mt-2">
+          <input
+            class=""
+            type="number"
+            pInputText
+            placeholder="Price"
+            formControlName="price"
+          />
+        </div>
+
+        <div class="col mt-2">
+          <p-button
+            styleClass="p-button  "
+            type="submit"
+            [disabled]="!addServiceForm.valid"
+          >
+            Add Service<i class="pi pi-sign-in px-2 pt-1"></i
+          ></p-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
