@@ -5,11 +5,11 @@ export interface BusinessService {
   business_name: string;
   business_id?: number;
   price: number;
-  mode: number;
+  mode?: number;
   image: string;
   rating: number;
   service_type: string;
-  address: {
+  address?: {
     flat_no: string;
     city: string;
     state: string;
