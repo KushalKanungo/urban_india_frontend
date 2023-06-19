@@ -34,8 +34,6 @@ import { ReviewPageComponent } from './_pages/review-page/review-page.component'
 import { AuthInterceptor } from './_interceptors/auth_interceptor';
 import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-page.component';
 import { AddBusinessServiceFormComponent } from './add-business-service-form/add-business-service-form.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,

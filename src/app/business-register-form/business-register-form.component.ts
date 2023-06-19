@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { BusinessService } from '../_services/business.service';
 
 @Component({
   selector: 'app-business-register-form',
@@ -893,6 +894,9 @@ export class BusinessRegisterFormComponent {
   districts: string[] = [];
   file: any;
 
+  constructor(private businessService:BusinessService){
+
+  }
   onFileSelect(event: any): void {
     if (event.target.files && event.target.files.length > 0) {
       this.file = event.target.files[0];
@@ -909,7 +913,8 @@ export class BusinessRegisterFormComponent {
   // REVIEW: Very bad way
   onStateSelect(event: any) {
     this.states.forEach(({ state, districts }) => {
-      state == event.value ? (this.districts = districts) : null;
+      if(state==event.value)
+      this.districts = districts;
     });
   }
 
@@ -924,9 +929,36 @@ export class BusinessRegisterFormComponent {
   });
 
   addBusinessButton(formDetails: any) {
+
+    const address = {
+      plotNo:formDetails.address,
+      state:formDetails.state,
+      city:formDetails.district,
+      pin:formDetails.pin
+    }
+
+    const documents = {
+      gstinNumber:formDetails.gstin_number
+    }
+    const businessDetailsModel={
+        name:formDetails.business_name,
+        tagline:formDetails.tagline,
+        documentsModel:documents,
+        addressModel:address
+    }
+
     let businessDetails = new FormData();
-    businessDetails.set('data', JSON.stringify(formDetails));
+    businessDetails.set('data', JSON.stringify(businessDetailsModel));
     if (this.file) businessDetails.set('file', this.file);
+//     {"documents":"xdadwfwfsadfsadfaefef  vdfsdfsfv vf",
+// "address":{"google_location_code":"xcsfvsd wssw","state":"raj","city":"jaipur","pin":"313131","plotNo":"13/12"},"name":"saloon"}
+    console.log(formDetails);
+    console.log(businessDetailsModel);
     // TODO: send the business details form data to backend
+    this.businessService.addBusiness(businessDetails).subscribe({
+      next:(res)=>{
+        console.log(res);
+      }
+    })
   }
 }

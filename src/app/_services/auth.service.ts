@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   googleAuth(idToken: string): Observable<any> {
-    return this.http.post<any>(`${this.BASE_URL}/api/auth/google`, { idToken });
+    return this.http.post<any>(`${this.BASE_URL}/google`, { idToken });
   }
 
   saveAccessToken(accessToken: string): void {
