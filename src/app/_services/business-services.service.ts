@@ -14,6 +14,6 @@ export class BusinessServicesService {
 
 
   addBusinessService(obj:any):Observable<any>{
-      return this.http.post(this.BASE_URL+"/api/businessService",obj);
+      return this.http.post(this.BASE_URL+"/businessService",obj);
   }
 }
