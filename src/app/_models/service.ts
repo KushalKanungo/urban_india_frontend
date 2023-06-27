@@ -1,4 +1,4 @@
 export interface Service {
-  label: string;
-  value: string;
+  title: string;
+  id: number;
 }
