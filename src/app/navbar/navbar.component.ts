@@ -68,4 +68,22 @@ export class NavbarComponent {
       ],
     },
   ];
+
+  navLinks = [
+    {
+      label: 'Home',
+      routerLink: '/',
+      icon: 'bi bi-house',
+    },
+    {
+      label: 'Orders',
+      routerLink: '/orders',
+      icon: 'bi bi-bag-check',
+    },
+    {
+      label: 'My Business',
+      routerLink: '/my-business',
+      icon: 'bi bi-shop',
+    },
+  ];
 }

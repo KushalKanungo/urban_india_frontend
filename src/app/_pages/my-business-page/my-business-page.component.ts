@@ -135,10 +135,14 @@ export class MyBusinessPageComponent {
 
   ref!: DynamicDialogRef;
   constructor(private dialogService: DialogService) {}
-  openAddServiceDialog() {
+  openAddServiceDialog(service: BusinessService | null = null) {
+    let header = 'Add a service';
+    if (service) {
+      header = `Update ${service.title}`;
+    }
     this.ref = this.dialogService.open(AddBusinessServiceFormComponent, {
-      header: 'Add a service',
-      // width: '70%',
+      header: header,
+      data: { service },
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });

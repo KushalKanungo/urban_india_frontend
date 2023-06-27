@@ -4,6 +4,7 @@ import { FormDetailsService } from '../_services/form-details.service';
 import { Service } from '../_models/service';
 import { BusinessService } from '../_services/business.service';
 import { BusinessServicesService } from '../_services/business-services.service';
+import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-add-business-service-form',
@@ -11,17 +12,28 @@ import { BusinessServicesService } from '../_services/business-services.service'
   styleUrls: ['./add-business-service-form.component.scss'],
 })
 export class AddBusinessServiceFormComponent implements OnInit {
-
-  service_types :Service[]= [];
-  constructor(private formService:FormDetailsService,private businessServie:BusinessServicesService){
-  }
+  service_types: Service[] = [];
+  addServiceForm!: FormGroup;
+  constructor(
+    private dialogConfig: DynamicDialogConfig,
+    private formService: FormDetailsService,
+    private businessServie: BusinessServicesService
+  ) {}
   ngOnInit(): void {
-    this.formService.getAllService().subscribe({
-      next:(res)=>{
-          this.service_types = res;
-      },error:err=>{
-
-      }
+    this._fetch_services();
+    this.addServiceForm = new FormGroup({
+      business_service_name: new FormControl(
+        this.dialogConfig.data?.service?.title ?? '',
+        [Validators.required]
+      ),
+      description: new FormControl(
+        this.dialogConfig.data?.service?.description ?? '',
+        [Validators.required, Validators.maxLength(50)]
+      ),
+      service_type_name: new FormControl('', [Validators.required]),
+      price: new FormControl(this.dialogConfig.data?.service?.price ?? '', [
+        Validators.required,
+      ]),
     });
   }
 
@@ -40,26 +52,13 @@ export class AddBusinessServiceFormComponent implements OnInit {
     }
   }
 
-
-  addServiceForm: FormGroup = new FormGroup({
-    business_service_name: new FormControl('Test Service', [
-      Validators.required,
-    ]),
-    description: new FormControl('Happy to serve you', [
-      Validators.required,
-      Validators.maxLength(50),
-    ]),
-    service_type_name: new FormControl('', [Validators.required]),
-    price: new FormControl('', [Validators.required]),
-  });
-
   submitHandeler(formDetails: any) {
     const businessServiceModel = {
       title: formDetails.business_service_name,
       description: formDetails.description,
-      price:formDetails.price,
-      serviceType: formDetails.service_type_name
-    }
+      price: formDetails.price,
+      serviceType: formDetails.service_type_name,
+    };
     console.log(formDetails);
 
     let businessServiceDetails = new FormData();
@@ -67,9 +66,19 @@ export class AddBusinessServiceFormComponent implements OnInit {
     if (this.file) businessServiceDetails.set('file', this.file);
 
     this.businessServie.addBusinessService(businessServiceDetails).subscribe({
-      next:(res)=>{
+      next: (res) => {
         console.log(res);
-      }
-    })
-    }
+      },
+    });
+  }
+
+  _fetch_services() {
+    this.formService.getAllService().subscribe({
+      next: (res) => {
+        this.service_types = res;
+        console.log(this.service_types);
+      },
+      error: (err) => {},
+    });
+  }
 }

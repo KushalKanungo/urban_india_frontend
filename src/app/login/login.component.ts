@@ -68,6 +68,7 @@ export class LoginComponent {
   }
 
   signInButtonHandeler() {
+    // this.googleButttonHandeler();
     let signInDetails = {
       userNameOrEmail: this.signInForm.value['usernameOrEmail'],
       password: this.signInForm.value['password'],
