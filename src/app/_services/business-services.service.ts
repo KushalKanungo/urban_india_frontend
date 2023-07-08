@@ -7,15 +7,17 @@ import { environment } from 'src/environment/environment';
   providedIn: 'root',
 })
 export class BusinessServicesService {
-  private BASE_URL = 'http://localhost:8080/api';
+
+
+  private BASE_URL = "http://localhost:8080/api/businessService";
 
   constructor(private http: HttpClient) {}
 
-  addBusinessService(obj: any): Observable<any> {
-    return this.http.post(this.BASE_URL + '/api/businessService', obj);
+  addBusinessService(obj:any):Observable<any>{
+      return this.http.post(this.BASE_URL,obj);
   }
 
-  updateBusinessService(obj: any): Observable<any> {
-    return this.http.put(this.BASE_URL + '/api/businessService', obj);
+  getAllBusinessService():Observable<any>{
+    return this.http.get(this.BASE_URL);
   }
 }

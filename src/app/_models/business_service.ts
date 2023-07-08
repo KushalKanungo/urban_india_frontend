@@ -1,18 +1,21 @@
-export interface BusinessService {
+export interface BusinessServiceModal {
   id: number;
   title: string;
   description: string;
-  business_name: string;
-  business_id?: number;
+  businessName: string;
+  businessId?: number;
   price: number;
-  mode?: number;
+  mode_id?: number;
   image: string;
   rating: number;
-  service_type: string;
+  serviceTypeId:number;
+  serviceTypeName: string;
+  statusId:string;
   address?: {
-    flat_no: string;
+    plotNo: string;
     city: string;
     state: string;
-    google_code: string;
+    pin : string;
+    google_location_code: string;
   };
 }

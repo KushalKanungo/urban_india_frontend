@@ -1,7 +1,7 @@
 <div class="container pt-4">
   <app-search-bar></app-search-bar>
   <ul class="cards">
-    <ng-template ngIf="true" *ngFor="let item of businessServices">
+    <ng-template ngIf="true" *ngFor="let item of businessServicesData">
       <app-business-service-card
         class="cards_item"
         [businessServiceData]="item"

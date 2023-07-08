@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { BusinessService } from '../_models/business_service';
+import { BusinessServiceModal } from '../_models/business_service';
 
 @Component({
   selector: 'app-business-service-card',
@@ -7,5 +7,5 @@ import { BusinessService } from '../_models/business_service';
   styleUrls: ['./business-service-card.component.scss'],
 })
 export class BusinessServiceCardComponent {
-  @Input() businessServiceData!: BusinessService;
+  @Input() businessServiceData!: BusinessServiceModal;
 }
