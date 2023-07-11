@@ -7,6 +7,8 @@ import { BusinessRegisterFormComponent } from './business-register-form/business
 import { AuthGuard } from './_guards/auth.guard';
 import { BusinessPageComponent } from './_pages/business-page/business-page.component';
 import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-page.component';
+import { BusinessServicePageComponent } from './_pages/business-service-page/business-service-page.component';
+import { BusinessServiceResolver } from './_resolver/business-service.resolver';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
@@ -16,7 +18,7 @@ const routes: Routes = [
     component: BusinessServiceListPageComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'business/:id', component: BusinessPageComponent },
+  { path: 'view/business/:id', component: BusinessPageComponent },
 
   { path: 'signup', component: SignupPageComponent, canActivate: [AuthGuard] },
   {
@@ -28,6 +30,11 @@ const routes: Routes = [
     path: 'my-business',
     component: MyBusinessPageComponent,
   },
+  {
+    path: 'business/:businessId/service/:serviceId',
+    component: BusinessServicePageComponent,
+    resolve: { data: BusinessServiceResolver }
+  }
 ];
 
 @NgModule({

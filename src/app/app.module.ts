@@ -23,6 +23,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SliderModule } from 'primeng/slider';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
 import { BusinessRegisterFormComponent } from './business-register-form/business-register-form.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -34,6 +35,7 @@ import { ReviewPageComponent } from './_pages/review-page/review-page.component'
 import { AuthInterceptor } from './_interceptors/auth_interceptor';
 import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-page.component';
 import { AddBusinessServiceFormComponent } from './add-business-service-form/add-business-service-form.component';
+import { BusinessServicePageComponent } from './_pages/business-service-page/business-service-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +53,7 @@ import { AddBusinessServiceFormComponent } from './add-business-service-form/add
     ReviewPageComponent,
     MyBusinessPageComponent,
     AddBusinessServiceFormComponent,
+    BusinessServicePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ import { AddBusinessServiceFormComponent } from './add-business-service-form/add
     MenuModule,
     CarouselModule,
     ProgressBarModule,
+    BreadcrumbModule
   ],
   providers: [
     DialogService,
