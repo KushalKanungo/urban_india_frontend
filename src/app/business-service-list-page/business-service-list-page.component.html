@@ -1,5 +1,5 @@
 <div class="container pt-4">
-  <app-search-bar></app-search-bar>
+  <app-search-bar [businessServiceData] = businessServicesData (filterApplied)="appliedFilter($event)"></app-search-bar>
   <ul class="cards">
     <ng-template ngIf="true" *ngFor="let item of businessServicesData">
       <app-business-service-card

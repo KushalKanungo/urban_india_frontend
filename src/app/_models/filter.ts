@@ -5,8 +5,9 @@ export class Filter {
   sortField: string[] = [];
   minPrice!: number;
   maxPrice!: number;
-  status_id: number[] = [];
-  business_ids: number[] = [];
+  listOfStatusIds: number[] = [];
+  listOfBusinessIds: number[] = [];
+  listOfBusinessServiceIds  :number[] = [];
   rating!: number;
 
   public parsed() {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BusinessServiceModal } from '../_models/business_service';
 import { BusinessServicesService } from '../_services/business-services.service';
+import { Filter } from '../_models/filter';
 
 
 @Component({
@@ -12,20 +13,50 @@ import { BusinessServicesService } from '../_services/business-services.service'
 export class BusinessServiceListPageComponent implements OnInit{
   constructor(private businessService:BusinessServicesService) {}
 
+  business:BusinessServiceModal= {  id: 1,
+    title: 'Tech Support',
+    businessName: 'RegaTech',
+    businessId:12,
+    address: {
+      google_location_code: '1234',
+      plotNo:'90',
+      city: 'Jaipur',
+      state: 'Rajasthan',
+      pin:'iop'
+    },
+    // mode: 1,
+    description: 'All types of tech support',
+    image: 'thi',
+    price: 5600,
+    rating: 4.6,
+    serviceTypeName: 'Technology',
+    serviceTypeId:12,
+    statusId:'12'
+  };
+
   businessServicesData : BusinessServiceModal[]=[];
 
   ngOnInit() {
     this.businessService.getAllBusinessService().subscribe({
       next:(res)=>{
-        console.log(res);
         this.businessServicesData = res;
-        console.log(this.businessServicesData);
       },error:(err)=>{
         console.log(err);
       }
     })
   }
 
+  appliedFilter(event:Filter){
+    console.log(event);
+    this.businessService.getAllFilteredBusinssService(event).subscribe({
+      next:(res)=>{
+        console.log(res);
+        this.businessServicesData = res;
+      },error:(err)=>{
+
+      }
+    })
+  }
   // businessServices: BusinessServiceModal[] = [
   //   {
   //     id: 1,
