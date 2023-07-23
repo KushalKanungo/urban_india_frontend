@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BusinessServiceModal } from '../_models/business_service';
 import { BusinessServicesService } from '../_services/business-services.service';
+import { Filter } from '../_models/filter';
+import { Page } from '../_models/page';
+
 
 
 @Component({
@@ -13,19 +16,46 @@ export class BusinessServiceListPageComponent implements OnInit{
   constructor(private businessService:BusinessServicesService) {}
 
   businessServicesData : BusinessServiceModal[]=[];
+  businessServicePage! : Page<any>;
+  filterModel  = new Filter();
 
   ngOnInit() {
-    this.businessService.getAllBusinessService().subscribe({
+    // this.businessService.getAllBusinessService().subscribe({
+    //   next:(res)=>{
+    //     this.businessServicesData = res.dto;
+    //   },error:(err)=>{
+    //     console.log(err);
+    //   }
+    // })
+
+    this.filterModel.page = 0;
+    this.filterModel.per = 10;
+    this.getFilterBusinessServiceData();
+  }
+
+  appliedFilter(){
+    console.log(this.filterModel);
+    this.getFilterBusinessServiceData();
+  }
+
+  onPageChange(event:any){
+    this.filterModel.page = event.page;
+    this.filterModel.per = event.rows; 
+    this.getFilterBusinessServiceData();
+    console.log(event);
+  }
+
+  getFilterBusinessServiceData(){
+    this.businessService.getAllFilteredBusinssService(this.filterModel).subscribe({
       next:(res)=>{
         console.log(res);
-        this.businessServicesData = res;
-        console.log(this.businessServicesData);
+        this.businessServicesData = res.dto.content;
+        this.businessServicePage = res.dto;
       },error:(err)=>{
-        console.log(err);
+
       }
     })
   }
-
   // businessServices: BusinessServiceModal[] = [
   //   {
   //     id: 1,

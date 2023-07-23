@@ -1,12 +1,13 @@
 export class Filter {
-  rows!: number;
-  pageNo!: number;
+  per!: number;
+  page!: number;
   searchQuery!: string;
   sortField: string[] = [];
   minPrice!: number;
   maxPrice!: number;
-  status_id: number[] = [];
-  business_ids: number[] = [];
+  listOfStatusIds: any = null;
+  listOfBusinessIds: any = null;
+  listOfBusinessServiceIds  :any = null;
   rating!: number;
 
   public parsed() {

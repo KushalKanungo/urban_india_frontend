@@ -3,7 +3,7 @@ export interface BusinessServiceModal {
   title: string;
   description: string;
   businessName: string;
-  businessId?: number;
+  businessId: number;
   price: number;
   mode_id?: number;
   image: string;
