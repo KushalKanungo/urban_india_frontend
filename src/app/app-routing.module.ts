@@ -8,7 +8,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { BusinessPageComponent } from './_pages/business-page/business-page.component';
 import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-page.component';
 import { BusinessServicePageComponent } from './_pages/business-service-page/business-service-page.component';
-import { BusinessServiceResolver } from './_resolver/business-service.resolver';
+// import { BusinessServiceResolver } from './_resolver/business-service.resolver';
 import { businessServiceResolver } from './_resolver/businessService.resolver';
 
 const routes: Routes = [
@@ -34,7 +34,7 @@ const routes: Routes = [
   {
     path: 'service/:serviceId',
     component: BusinessServicePageComponent,
-    resolve: { data: businessServiceResolver }
+    resolve: { data:  businessServiceResolver  }
   }
 ];
 
