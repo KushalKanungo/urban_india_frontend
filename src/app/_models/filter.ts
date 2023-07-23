@@ -3,8 +3,9 @@ export class Filter {
   page!: number;
   searchQuery!: string;
   sortField: string[] = [];
-  minPrice!: number;
-  maxPrice!: number;
+  // minPrice!: number;
+  // maxPrice!: number;
+  priceRange:number[] = [0,100];
   listOfStatusIds: any = null;
   listOfBusinessIds: any = null;
   listOfBusinessServiceIds  :any = null;
@@ -12,6 +13,7 @@ export class Filter {
 
   public parsed() {
     const self: any = Object.assign({}, this);
+    console.log(typeof(self));
     for (const key of self) {
       if (
         key instanceof Function ||

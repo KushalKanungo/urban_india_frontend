@@ -1,5 +1,5 @@
 <div class="container pt-4">
-  <app-search-bar [businessServiceData] = businessServicesData [filter] = filterModel (filterApplied)="appliedFilter()"></app-search-bar>
+  <app-search-bar [businesses]="businesses" [servicesTypes]="servicesTypes" [filter] = filterModel (filterApplied)="appliedFilter()"></app-search-bar>
   <ul class="cards">
     <ng-template ngIf="true" *ngFor="let item of businessServicesData">
       <app-business-service-card

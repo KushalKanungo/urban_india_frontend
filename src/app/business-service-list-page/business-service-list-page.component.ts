@@ -4,6 +4,7 @@ import { BusinessServiceModal } from '../_models/business_service';
 import { BusinessServicesService } from '../_services/business-services.service';
 import { Filter } from '../_models/filter';
 import { Page } from '../_models/page';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -13,11 +14,14 @@ import { Page } from '../_models/page';
   styleUrls: ['./business-service-list-page.component.scss'],
 })
 export class BusinessServiceListPageComponent implements OnInit{
-  constructor(private businessService:BusinessServicesService) {}
+  constructor(private businessService:BusinessServicesService
+    ,private activateRoute:ActivatedRoute) {}
 
   businessServicesData : BusinessServiceModal[]=[];
   businessServicePage! : Page<any>;
   filterModel  = new Filter();
+  businesses : {label: string; value:number} [] =[];
+  servicesTypes : {label: string; value:number} [] =[];
 
   ngOnInit() {
     // this.businessService.getAllBusinessService().subscribe({
@@ -30,6 +34,15 @@ export class BusinessServiceListPageComponent implements OnInit{
 
     this.filterModel.page = 0;
     this.filterModel.per = 10;
+    this.activateRoute.data.subscribe(({businesses,services})=>{
+      console.log(businesses);
+      this.businesses = businesses;
+      this.servicesTypes = services;
+    }
+
+    
+    )
+
     this.getFilterBusinessServiceData();
   }
 

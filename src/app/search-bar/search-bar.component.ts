@@ -12,10 +12,9 @@ import { Filter } from '../_models/filter';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'],
 })
-export class SearchBarComponent implements OnInit,OnChanges {
+export class SearchBarComponent implements OnInit {
 
   visible: boolean = false;
-  rangeValues: number[] = [0, 100];
   // businesses: { title: string; id: string }[] = [
   //   {
   //     title: 'ABC Corporation',
@@ -58,8 +57,8 @@ export class SearchBarComponent implements OnInit,OnChanges {
   //     id: '10',
   //   },
   // ];
-  businesses : {name: string; id:number} [] =[];
-  businessesServciesType : {title: string; id:number} [] =[];
+ @Input() businesses : {label: string; value:number} [] =[];
+  @Input()servicesTypes : {label: string; value:number} [] =[];
 
   ratings: number[] = [0, 100];
   selectedBusiness: { name: string; id: number }[] = [];
@@ -69,30 +68,7 @@ export class SearchBarComponent implements OnInit,OnChanges {
 
   @Output("filterApplied") filterAppliedModal = new EventEmitter<any>();
 
-  searchedQuery:any = null;
 
-  @Input() businessServiceData : BusinessServiceModal[]=[];
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const uniqueBusiness = new Map();
-    const uniqueBusineeServieType= new Map();
-
-    this.businesses = [];
-    this.businessesServciesType = [];
-
-    this.businessServiceData.forEach(businessService =>{
-
-      if(!uniqueBusiness.has(businessService.businessId)){
-      uniqueBusiness.set(businessService.businessId,businessService.businessName);
-      this.businesses.push({name:businessService.businessName, id : businessService.businessId});
-      }
-
-      if(!uniqueBusineeServieType.has(businessService.serviceTypeId)){
-      uniqueBusineeServieType.set(businessService.serviceTypeId,businessService.serviceTypeName);
-      this.businessesServciesType.push({title:businessService.serviceTypeName, id:businessService.serviceTypeId});
-      }
-    })
-  }
   ngOnInit(): void {
   }
 
@@ -103,24 +79,7 @@ export class SearchBarComponent implements OnInit,OnChanges {
 
   appliedFilter(){
     console.log("filter applied");
-
-    this.filter.listOfBusinessIds = this.selectedBusiness.map(business => business.id);
-
-    this.filter.listOfBusinessServiceIds = this.selectedBusinessServicesType.map(serviceType => serviceType.id);
-
-    this.filter.searchQuery = this.searchedQuery;
-    this.filter.minPrice = this.rangeValues[0]*100;
-    this.filter.maxPrice = this.rangeValues[1]*100;
-
-    if(this.filter.listOfBusinessIds.length == 0){
-      this.filter.listOfBusinessIds = null;
-    }
-
-    if(this.filter.listOfBusinessServiceIds.length  == 0){
-      this.filter.listOfBusinessServiceIds = null;
-    }
-
-    console.log(this.filter);
+    console.log(this.filter.parsed());
     this.filterAppliedModal.emit();
   }
 }

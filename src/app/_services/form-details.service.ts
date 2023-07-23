@@ -21,4 +21,14 @@ export class FormDetailsService {
       })
     );
   }
+
+  getAllBusinessList():Observable<any[]>{
+    return this.http.get<any[]>(this.BASE_URL+`/business/all`).pipe(
+      map((res) => {
+        return res.map((business) => {
+          return { label: business.name, value: business.id };
+        });
+      })
+    );
+  }
 }

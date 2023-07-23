@@ -12,5 +12,7 @@ export class BusinessService {
 
   addBusiness(businessDetails:FormData):Observable<any>{
     return this.http.post(this.BASE_URL,businessDetails);
+
+  
   }
 }
