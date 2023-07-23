@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class BusinessService {
 
-  private BASE_URL = 'http://localhost:8080/api/business';
+  private BASE_URL = 'http://localhost:8080/api/business/all';
   constructor(private http:HttpClient) { }
 
   addBusiness(businessDetails:FormData):Observable<any>{

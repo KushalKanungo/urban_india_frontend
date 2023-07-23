@@ -9,6 +9,7 @@ import { BusinessPageComponent } from './_pages/business-page/business-page.comp
 import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-page.component';
 import { BusinessServicePageComponent } from './_pages/business-service-page/business-service-page.component';
 import { BusinessServiceResolver } from './_resolver/business-service.resolver';
+import { businessServiceResolver } from './_resolver/businessService.resolver';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
@@ -18,7 +19,7 @@ const routes: Routes = [
     component: BusinessServiceListPageComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'view/business/:id', component: BusinessPageComponent },
+  { path: 'business/:id', component: BusinessPageComponent },
 
   { path: 'signup', component: SignupPageComponent, canActivate: [AuthGuard] },
   {
@@ -31,9 +32,9 @@ const routes: Routes = [
     component: MyBusinessPageComponent,
   },
   {
-    path: 'business/:businessId/service/:serviceId',
+    path: 'service/:serviceId',
     component: BusinessServicePageComponent,
-    resolve: { data: BusinessServiceResolver }
+    resolve: { data: businessServiceResolver }
   }
 ];
 
