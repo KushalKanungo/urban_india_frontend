@@ -65,17 +65,20 @@ export class SearchBarComponent implements OnInit,OnChanges {
   selectedBusiness: { name: string; id: number }[] = [];
   selectedBusinessServicesType: { title: string; id: number }[] = [];
 
-  filter  = new Filter();
+  @Input() filter!:Filter;
 
-  @Output("filterApplied") filterAppliedModal = new EventEmitter<Filter>();
+  @Output("filterApplied") filterAppliedModal = new EventEmitter<any>();
 
-  searchedQuery!:string;
+  searchedQuery:any = null;
 
   @Input() businessServiceData : BusinessServiceModal[]=[];
 
   ngOnChanges(changes: SimpleChanges): void {
     const uniqueBusiness = new Map();
     const uniqueBusineeServieType= new Map();
+
+    this.businesses = [];
+    this.businessesServciesType = [];
 
     this.businessServiceData.forEach(businessService =>{
 
@@ -106,10 +109,18 @@ export class SearchBarComponent implements OnInit,OnChanges {
     this.filter.listOfBusinessServiceIds = this.selectedBusinessServicesType.map(serviceType => serviceType.id);
 
     this.filter.searchQuery = this.searchedQuery;
-    this.filter.minPrice = this.rangeValues[0];
-    this.filter.maxPrice = this.rangeValues[1];
+    this.filter.minPrice = this.rangeValues[0]*100;
+    this.filter.maxPrice = this.rangeValues[1]*100;
+
+    if(this.filter.listOfBusinessIds.length == 0){
+      this.filter.listOfBusinessIds = null;
+    }
+
+    if(this.filter.listOfBusinessServiceIds.length  == 0){
+      this.filter.listOfBusinessServiceIds = null;
+    }
 
     console.log(this.filter);
-    this.filterAppliedModal.emit(this.filter);
+    this.filterAppliedModal.emit();
   }
 }

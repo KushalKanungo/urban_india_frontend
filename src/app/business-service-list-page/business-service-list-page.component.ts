@@ -3,6 +3,8 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BusinessServiceModal } from '../_models/business_service';
 import { BusinessServicesService } from '../_services/business-services.service';
 import { Filter } from '../_models/filter';
+import { Page } from '../_models/page';
+
 
 
 @Component({
@@ -13,45 +15,42 @@ import { Filter } from '../_models/filter';
 export class BusinessServiceListPageComponent implements OnInit{
   constructor(private businessService:BusinessServicesService) {}
 
-  business:BusinessServiceModal= {  id: 1,
-    title: 'Tech Support',
-    businessName: 'RegaTech',
-    businessId:12,
-    address: {
-      google_location_code: '1234',
-      plotNo:'90',
-      city: 'Jaipur',
-      state: 'Rajasthan',
-      pin:'iop'
-    },
-    // mode: 1,
-    description: 'All types of tech support',
-    image: 'thi',
-    price: 5600,
-    rating: 4.6,
-    serviceTypeName: 'Technology',
-    serviceTypeId:12,
-    statusId:'12'
-  };
-
   businessServicesData : BusinessServiceModal[]=[];
+  businessServicePage! : Page<any>;
+  filterModel  = new Filter();
 
   ngOnInit() {
-    this.businessService.getAllBusinessService().subscribe({
-      next:(res)=>{
-        this.businessServicesData = res;
-      },error:(err)=>{
-        console.log(err);
-      }
-    })
+    // this.businessService.getAllBusinessService().subscribe({
+    //   next:(res)=>{
+    //     this.businessServicesData = res.dto;
+    //   },error:(err)=>{
+    //     console.log(err);
+    //   }
+    // })
+
+    this.filterModel.page = 0;
+    this.filterModel.per = 10;
+    this.getFilterBusinessServiceData();
   }
 
-  appliedFilter(event:Filter){
+  appliedFilter(){
+    console.log(this.filterModel);
+    this.getFilterBusinessServiceData();
+  }
+
+  onPageChange(event:any){
+    this.filterModel.page = event.page;
+    this.filterModel.per = event.rows; 
+    this.getFilterBusinessServiceData();
     console.log(event);
-    this.businessService.getAllFilteredBusinssService(event).subscribe({
+  }
+
+  getFilterBusinessServiceData(){
+    this.businessService.getAllFilteredBusinssService(this.filterModel).subscribe({
       next:(res)=>{
         console.log(res);
-        this.businessServicesData = res;
+        this.businessServicesData = res.dto.content;
+        this.businessServicePage = res.dto;
       },error:(err)=>{
 
       }

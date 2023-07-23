@@ -23,6 +23,6 @@ export class BusinessServicesService {
   }
 
   getAllFilteredBusinssService(filterModel:Filter):Observable<any>{
-    return this.http.post(this.BASE_URL,filterModel);
+    return this.http.post(this.BASE_URL+"/all-filter",filterModel);
   }
 }
