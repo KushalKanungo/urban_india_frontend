@@ -5,18 +5,17 @@ export class Filter {
   sortField: string[] = [];
   // minPrice!: number;
   // maxPrice!: number;
-  priceRange:number[] = [0,100];
-  listOfStatusIds: any = null;
-  listOfBusinessIds: any = null;
-  listOfBusinessServiceIds  :any = null;
+  priceRange: number[] = [0, 100];
+  listOfStatusIds: any = [];
+  listOfBusinessIds: any = [];
+  listOfBusinessServiceIds: any = [];
   rating!: number;
 
   public parsed() {
     const self: any = Object.assign({}, this);
-    console.log(typeof(self));
-    for (const key of self) {
+    for (const key in self) {
       if (
-        key instanceof Function ||
+        self[key] instanceof Function ||
         JSON.stringify(self[key]) === JSON.stringify({}) ||
         JSON.stringify(self[key]) === JSON.stringify([])
       ) {
@@ -24,21 +23,6 @@ export class Filter {
       }
     }
     return self;
-  }
-
-  appliedFilters() {
-    let filters: any = {};
-    const self: any = this;
-    for (const key of self) {
-      const isValid =
-        self[key] &&
-        ((self[key] instanceof Array && self[key].length > 0) ||
-          (self[key] instanceof String && self[key].length > 0));
-
-      if (isValid) {
-        filters[key] = self[key];
-      }
-    }
   }
 
   storeFilter(key: string) {
