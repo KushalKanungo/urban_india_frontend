@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { BusinessServiceModal } from '../_models/business_service';
 import { Filter } from '../_models/filter';
 /**
@@ -13,7 +21,6 @@ import { Filter } from '../_models/filter';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
-
   visible: boolean = false;
   // businesses: { title: string; id: string }[] = [
   //   {
@@ -57,28 +64,25 @@ export class SearchBarComponent implements OnInit {
   //     id: '10',
   //   },
   // ];
- @Input() businesses : {label: string; value:number} [] =[];
-  @Input()servicesTypes : {label: string; value:number} [] =[];
+  @Input() businesses: { label: string; value: number }[] = [];
+  @Input() servicesTypes: { label: string; value: number }[] = [];
 
   ratings: number[] = [0, 100];
   selectedBusiness: { name: string; id: number }[] = [];
   selectedBusinessServicesType: { title: string; id: number }[] = [];
 
-  @Input() filter!:Filter;
+  @Input() filter!: Filter;
 
-  @Output("filterApplied") filterAppliedModal = new EventEmitter<any>();
+  @Output('filterApplied') filterAppliedModal = new EventEmitter<any>();
 
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  
   showDialog() {
     this.visible = true;
   }
 
-  appliedFilter(){
-    console.log("filter applied");
+  appliedFilter() {
+    console.log('filter applied');
     console.log(this.filter.parsed());
     this.filterAppliedModal.emit();
   }

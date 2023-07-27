@@ -1,7 +1,12 @@
 <div class="search-wrapper">
   <div class="search-inner">
-    <input class="search p-1" type="text" placeholder="Search" 
-    [(ngModel)]="filter.searchQuery" (keyup.enter)="appliedFilter()"/>
+    <input
+      class="search p-1"
+      type="text"
+      placeholder="Search"
+      [(ngModel)]="filter.searchQuery"
+      (keyup.enter)="appliedFilter()"
+    />
     <p-button
       class="mx-2"
       (click)="showDialog()"
@@ -13,7 +18,7 @@
 </div>
 
 <p-dialog
-  header="Header"
+  header="Filter"
   [(visible)]="visible"
   [modal]="true"
   [style]="{
@@ -29,6 +34,7 @@
 >
   <p-multiSelect
     [options]="businesses"
+    appendTo="body"
     [(ngModel)]="filter.listOfBusinessIds"
     defaultLabel="Select a business"
     styleClass="mt-4"
@@ -45,15 +51,20 @@
     ></p-slider>
     <div class="d-flex justify-content-between mt-2">
       <span class="">
-        {{ filter.priceRange[0]*100 | currency : "INR" : "symbol" : "1.0-0" }}</span
+        {{
+          filter.priceRange[0] * 100 | currency : "INR" : "symbol" : "1.0-0"
+        }}</span
       >
       <span class="">
-        {{ filter.priceRange[1]*100 | currency : "INR" : "symbol" : "1.0-0" }}</span
+        {{
+          filter.priceRange[1] * 100 | currency : "INR" : "symbol" : "1.0-0"
+        }}</span
       >
     </div>
   </div>
   <p-multiSelect
     [options]="servicesTypes"
+    appendTo="body"
     [(ngModel)]="filter.listOfBusinessServiceIds"
     defaultLabel="Select a business service type"
     styleClass="mt-4"
