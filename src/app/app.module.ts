@@ -36,7 +36,8 @@ import { AuthInterceptor } from './_interceptors/auth_interceptor';
 import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-page.component';
 import { AddBusinessServiceFormComponent } from './add-business-service-form/add-business-service-form.component';
 import { BusinessServicePageComponent } from './_pages/business-service-page/business-service-page.component';
-import { PaginatorModule } from 'primeng/paginator'
+import { PaginatorModule } from 'primeng/paginator';
+import { CouponSectionComponent } from './coupon-section/coupon-section.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +56,7 @@ import { PaginatorModule } from 'primeng/paginator'
     MyBusinessPageComponent,
     AddBusinessServiceFormComponent,
     BusinessServicePageComponent,
+    CouponSectionComponent,
   ],
   imports: [
     BrowserModule,

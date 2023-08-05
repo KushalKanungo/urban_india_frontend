@@ -5,7 +5,7 @@
     [filter]="filterModel"
     (filterApplied)="appliedFilter()"
   ></app-search-bar>
-  <ul class="cards">
+  <ul class="cards row row-cols-1 row-cols-sm-2 row-cols-lg-3">
     <ng-template ngIf="true" *ngFor="let item of businessServicesData">
       <app-business-service-card
         class="cards_item"
