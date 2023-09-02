@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { Button, ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
 import { AvatarModule } from 'primeng/avatar';
 import { BusinessServiceCardComponent } from './business-service-card/business-service-card.component';
 import { BusinessServiceListPageComponent } from './business-service-list-page/business-service-list-page.component';
@@ -37,7 +38,8 @@ import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-p
 import { AddBusinessServiceFormComponent } from './add-business-service-form/add-business-service-form.component';
 import { BusinessServicePageComponent } from './_pages/business-service-page/business-service-page.component';
 import { PaginatorModule } from 'primeng/paginator';
-import { CouponSectionComponent } from './coupon-section/coupon-section.component'
+import { CouponSectionComponent } from './coupon-section/coupon-section.component';
+import { CouponFormComponent } from './coupon-form/coupon-form.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +59,7 @@ import { CouponSectionComponent } from './coupon-section/coupon-section.componen
     AddBusinessServiceFormComponent,
     BusinessServicePageComponent,
     CouponSectionComponent,
+    CouponFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,8 @@ import { CouponSectionComponent } from './coupon-section/coupon-section.componen
     CarouselModule,
     ProgressBarModule,
     BreadcrumbModule,
-    PaginatorModule
+    PaginatorModule,
+    CalendarModule
   ],
   providers: [
     DialogService,
