@@ -1,9 +1,9 @@
-export type Coupon {
-  id: number,
+export type Coupon = {
+  id?: number,
   startTime: string,
   endTime: string,
-  discountPercent: number,
+  percent: number,
   code: string,
   status?: string,
-  minimumAmount: string
+  minimumAmount: number
 } 

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { BusinessServiceModal} from 'src/app/_models/business_service';
+import { CouponService } from 'src/app/_services/coupon.service';
 import { AddBusinessServiceFormComponent } from 'src/app/add-business-service-form/add-business-service-form.component';
 
 @Component({
@@ -8,7 +9,7 @@ import { AddBusinessServiceFormComponent } from 'src/app/add-business-service-fo
   templateUrl: './my-business-page.component.html',
   styleUrls: ['./my-business-page.component.scss'],
 })
-export class MyBusinessPageComponent {
+export class MyBusinessPageComponent implements OnInit {
   // businessServices: BusinessServiceModal[] = [];
   businessServices: BusinessServiceModal[] = [
     {
@@ -171,7 +172,11 @@ export class MyBusinessPageComponent {
   ];
 
   ref!: DynamicDialogRef;
-  constructor(private dialogService: DialogService) {}
+  constructor(private dialogService: DialogService, private readonly couponService: CouponService) {}
+
+  ngOnInit(): void {
+    // this.fetchCoupons()
+  }
   openAddServiceDialog(service: BusinessServiceModal | null = null) {
     let header = 'Add a service';
     if (service) {
@@ -186,4 +191,5 @@ export class MyBusinessPageComponent {
 
     this.ref.onClose.subscribe(() => {});
   }
+
 }

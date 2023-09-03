@@ -21,6 +21,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SignupComponent } from './signup/signup.component';
 import { SignupPageComponent } from './_pages/signup-page/signup-page.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SliderModule } from 'primeng/slider';
 import { MultiSelectModule } from 'primeng/multiselect';
@@ -40,6 +41,7 @@ import { BusinessServicePageComponent } from './_pages/business-service-page/bus
 import { PaginatorModule } from 'primeng/paginator';
 import { CouponSectionComponent } from './coupon-section/coupon-section.component';
 import { CouponFormComponent } from './coupon-form/coupon-form.component'
+import { ConfirmationService } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,10 +86,12 @@ import { CouponFormComponent } from './coupon-form/coupon-form.component'
     ProgressBarModule,
     BreadcrumbModule,
     PaginatorModule,
-    CalendarModule
+    CalendarModule,
+    ConfirmDialogModule
   ],
   providers: [
     DialogService,
+    ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

@@ -1,11 +1,13 @@
 <div class="row">
   <div class="col-12">
+    <form [formGroup]="couponForm" (ngSubmit)="formSubmit(couponForm.value)">
     <div class="d-flex flex-column gap-2">
-      <input type="text" placeholder="Code" pInputText  />
-      <p-calendar placeholder="Start Date" selectionMode="range" appendTo="body" dateFormat="yy-mm-dd" [(ngModel)]="date"></p-calendar>
-      <input type="number"  placeholder="Discount %" pInputText  />
-      <input type="number" placeholder="Min Cart Price" pInputText  />
-      <p-button> Add Coupon </p-button>
+      <input type="text" placeholder="Code" pInputText formControlName="code" />
+      <p-calendar placeholder="Date Range" selectionMode="range" appendTo="body" dateFormat="dd M y" formControlName="dateRange" [showIcon]="true"></p-calendar>
+      <input type="number"  placeholder="Discount %" pInputText  formControlName="percent"/>
+      <input type="number" placeholder="Min Cart Price" pInputText  formControlName="minimumAmount"/>
+      <p-button type="submit" [disabled]="couponForm.invalid"> Add Coupon </p-button>
     </div>
+  </form>
   </div>
 </div>
