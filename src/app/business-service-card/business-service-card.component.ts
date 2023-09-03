@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BusinessServiceModal } from '../_models/business_service';
 
 @Component({
@@ -6,6 +6,13 @@ import { BusinessServiceModal } from '../_models/business_service';
   templateUrl: './business-service-card.component.html',
   styleUrls: ['./business-service-card.component.scss'],
 })
-export class BusinessServiceCardComponent {
+export class BusinessServiceCardComponent implements  OnInit{
+  ngOnInit(): void {
+    if(this.businessServiceData.image != null){
+      this.businessServiceData.image = 'http://localhost:8080/image/'+this.businessServiceData.image;
+    }
+
+  }
   @Input() businessServiceData!: BusinessServiceModal;
+
 }
