@@ -27,7 +27,7 @@ export class CartService {
 
 
   private isServiceValidToAdd(cartItems: BusinessServiceModal[], newItem: BusinessServiceModal){
-    return true || cartItems.every((item) => item.id !== newItem.id) 
+    return cartItems.every((item) => item.id !== newItem.id) 
   }
 
 
