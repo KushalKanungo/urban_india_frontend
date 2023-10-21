@@ -6,7 +6,9 @@
       <p-calendar placeholder="Date Range" selectionMode="range" appendTo="body" dateFormat="dd M y" formControlName="dateRange" [showIcon]="true"></p-calendar>
       <input type="number"  placeholder="Discount %" pInputText  formControlName="percent"/>
       <input type="number" placeholder="Min Cart Price" pInputText  formControlName="minimumAmount"/>
-      <p-button type="submit" [disabled]="couponForm.invalid"> Add Coupon </p-button>
+      <p-button  styleClass="text-center w-100" type="submit" [disabled]="couponForm.invalid"> 
+      <span class="w-100">  {{ inEditMode ? 'Save Changes' : 'Add Coupon' }} </span>
+       </p-button>
     </div>
   </form>
   </div>

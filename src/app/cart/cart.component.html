@@ -1,0 +1,10 @@
+<span #cart class="cart-button">
+    <i #targetEl class="bi bi-cart" (click)="op.toggle($event, targetEl)"></i>
+    <span class="cart-size">
+       <span> {{cartService.cartItems.length ?? 0 }} </span>
+    </span>
+</span>
+<p-overlayPanel styleClass="cart-panel"  #op>
+    <p>Cart Price {{cartService.getCartPrice() | currency:'INR' }} </p>
+    <app-business-service-card-small *ngFor="let similarService of cartService.cartItems" [businessServiceData]="similarService"> </app-business-service-card-small>
+</p-overlayPanel>

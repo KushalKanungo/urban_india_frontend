@@ -1,8 +1,25 @@
 <div class="container pt-3">
   <div class="row">
     <div class="col-12 col-lg-12">
-      <h2>{{ businessService.title }}</h2>
+      <h2>{{ businessService.title }} <button class="btn btn-accent" (click)="addItem()">ADD To Cart </button> </h2>
       <p>{{ businessService.description }}</p>
+      <div class="row">
+        <div class="col-8">
+          <div class="image-wrapper" style="height: 66vh;">
+            <img
+            [src]="'http://localhost:8080/image/' + businessService.image"
+            alt="..."
+            />
+          </div>
+        </div>
+        <div class="col-4">
+
+          <section style="height: 66vh; overflow-y: scroll; overflow-x: hidden; padding: 0px 14px 14px 14px;">
+            <app-business-service-card-small *ngFor="let similarService of similarBusinessServices" [businessServiceData]="similarService"> </app-business-service-card-small>
+          </section>
+
+        </div>
+      </div>
       <section>
         <p-carousel
           [value]="reviews"

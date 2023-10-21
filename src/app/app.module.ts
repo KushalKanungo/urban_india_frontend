@@ -23,6 +23,7 @@ import { SignupPageComponent } from './_pages/signup-page/signup-page.component'
 import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FileUploadModule } from 'primeng/fileupload';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SliderModule } from 'primeng/slider';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
@@ -42,6 +43,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { CouponSectionComponent } from './coupon-section/coupon-section.component';
 import { CouponFormComponent } from './coupon-form/coupon-form.component'
 import { ConfirmationService } from 'primeng/api';
+import { BusinessServiceCardSmallComponent } from './business-service-card-small/business-service-card-small.component';
+import { CartComponent } from './cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +65,8 @@ import { ConfirmationService } from 'primeng/api';
     BusinessServicePageComponent,
     CouponSectionComponent,
     CouponFormComponent,
+    BusinessServiceCardSmallComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -87,7 +92,8 @@ import { ConfirmationService } from 'primeng/api';
     BreadcrumbModule,
     PaginatorModule,
     CalendarModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    OverlayPanelModule
   ],
   providers: [
     DialogService,

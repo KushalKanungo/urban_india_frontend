@@ -15,6 +15,14 @@ export class CouponService {
   addCoupon(coupon: Coupon): Observable<any>{
     return this.http.post<any>(this.BASE_URL, coupon)
   }
+  
+  deleteCoupon(coupon_id: number){
+    return this.http.delete<any>(`${this.BASE_URL}/${coupon_id}`)
+  }
+
+  updateCoupon(coupon_id: number, coupon: Coupon){
+    return this.http.put<any>(`${this.BASE_URL}/${coupon_id}`, coupon)
+  }
 
   getCoupons(): Observable<any>{
     return this.http.get(this.BASE_URL)

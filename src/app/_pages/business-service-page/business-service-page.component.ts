@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BusinessServiceModal } from 'src/app/_models/business_service';
+import { Filter } from 'src/app/_models/filter';
 import { Reviews } from 'src/app/_models/reviews';
+import { BusinessServicesService } from 'src/app/_services/business-services.service';
+import { CartService } from 'src/app/_services/cart.service';
 
 @Component({
   selector: 'app-business-service-page',
@@ -9,8 +12,9 @@ import { Reviews } from 'src/app/_models/reviews';
   styleUrls: ['./business-service-page.component.scss'],
 })
 export class BusinessServicePageComponent {
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, private readonly businessServicesService: BusinessServicesService, private cartService: CartService) {}
   businessService!: BusinessServiceModal;
+  similarBusinessServices: BusinessServiceModal[] = []
   reviews: Reviews[] = [
     {
       title: 'Great Experience',
@@ -129,5 +133,28 @@ export class BusinessServicePageComponent {
       // console.log(dto);
       this.businessService = dto;
     });
+    this.fetchSimilarServices()
+  }
+
+  addItem(){
+    this.cartService.addServiceToCart(this.businessService)
+  }
+
+  fetchSimilarServices(){
+    const tempFilter = new Filter()
+    tempFilter.listOfBusinessServiceIds = [this.businessService.serviceTypeId]
+    tempFilter.page = 0
+    tempFilter.per = 6
+    console.log(tempFilter.parsed());
+    
+    this.businessServicesService
+      .getAllFilteredBusinssService(tempFilter.parsed())
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.similarBusinessServices = res.dto.content;
+        },
+        error: (err) => {},
+      });
   }
 }

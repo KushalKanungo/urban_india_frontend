@@ -72,6 +72,51 @@ nav {
   }
 }
 
+::ng-deep .action-buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  i{
+    font-size: 1.3rem;
+    border-radius: 100%;
+    padding: 6px;
+    &:hover{
+      color: var(--accent);
+    }
+  }
+
+  i.bi-cart{
+    &::after{
+      content: 4;
+      
+    }
+  }
+}
+
+::ng-deep .notification-badges {
+  [data-badge] {
+    position:relative;     
+    &:after {
+      position:absolute;
+      right:-10px;
+      top:-8px;
+      min-width:10px;
+      min-height:10px;
+      aspect-ratio: 1;
+      line-height:10px;
+      padding:6px;
+      color:#fff;
+      background-color: var(--accent);
+      font-size:10px;
+      border-radius:20px;
+      content:attr(data-badge);
+    }   
+  }  
+}
+
+
+
 @media (max-width: 40rem) {
   li {
     font-size: 0.8rem;
