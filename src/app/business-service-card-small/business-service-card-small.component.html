@@ -7,7 +7,7 @@
       />
     </div>
     <div class="col-8">
-      <div> {{ businessServiceData.title }} </div>
+      <div class="title" (click)="goToServicePage()"> {{ businessServiceData.title }} </div>
       <p class="text-truncate" style="font-size: 12px;"> {{ businessServiceData.description }} </p>
       <p-rating
       [(ngModel)]="this.businessServiceData.rating"

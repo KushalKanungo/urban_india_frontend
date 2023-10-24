@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { BusinessServiceModal } from '../_models/business_service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-business-service-card-small',
@@ -10,5 +11,9 @@ export class BusinessServiceCardSmallComponent {
 
   @Input() businessServiceData!: BusinessServiceModal;
 
+  constructor(private router: Router) {}
+  goToServicePage(){
+    this.router.navigate(['service', this.businessServiceData.id])
+  }
 
 }
