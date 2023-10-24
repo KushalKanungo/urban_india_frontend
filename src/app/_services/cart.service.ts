@@ -20,14 +20,26 @@ export class CartService {
       this.cartItems.push(service)
     // TODO: Add toaster message than item cannot be added twice
   }
-  
+
   public addServicesToCart(services: BusinessServiceModal[]) {
     this.cartItems.concat(services)
   }
 
+  public removeServiceToCart(businessServiceId: number) {
+    this.cartItems = this.cartItems.filter( ({id}) => id !== businessServiceId)
+  }
 
   private isServiceValidToAdd(cartItems: BusinessServiceModal[], newItem: BusinessServiceModal){
-    return cartItems.every((item) => item.id !== newItem.id) 
+    return cartItems.every((item) => item.id !== newItem.id)
+  }
+
+  private postServiceToCart(service: BusinessServiceModal) {
+    // TODO: API Call to add service to cart
+  }
+
+
+  private postServicesToCart(services: BusinessServiceModal[]) {
+    // TODO: API Call to add service to cart
   }
 
 

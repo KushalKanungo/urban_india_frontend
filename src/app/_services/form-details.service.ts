@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Service } from '../_models/service';
 import { getLocaleNumberFormat } from '@angular/common';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormDetailsService {
-  private BASE_URL = 'http://localhost:8080/api';
+  private BASE_URL = `${environment.baseUrl}/api`;
 
   constructor(private http: HttpClient) {}
 

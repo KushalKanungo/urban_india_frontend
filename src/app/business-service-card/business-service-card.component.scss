@@ -13,6 +13,13 @@ img {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  &:hover{
+    .actions{
+      display: block !important;
+    }
+  }
+
 }
 
 .card_content {

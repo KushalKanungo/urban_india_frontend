@@ -10,7 +10,7 @@ import { Filter } from '../_models/filter';
 export class BusinessServicesService {
 
 
-  private BASE_URL = "http://localhost:8080/api/businessService";
+  private BASE_URL = `${environment.baseUrl}/api/businessService`;
 
   constructor(private http: HttpClient) {}
 

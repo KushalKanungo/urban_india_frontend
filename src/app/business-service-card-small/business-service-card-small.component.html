@@ -2,7 +2,7 @@
   <div class="small-card row">
     <div class="image-wrapper col-4">
       <img
-      [src]=" businessServiceData?.image ? 'http://localhost:8080/image/' + businessServiceData.image : 'https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTd8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80'"
+      [src]=" businessServiceData?.image ? baseUrl + '/image/' + businessServiceData.image : 'https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTd8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80'"
       alt="..."
       />
     </div>
@@ -16,5 +16,12 @@
     ></p-rating>
     <p> {{this.businessServiceData.price | currency:'INR'}} </p>
     </div>
+
+    
+  </div>
+  <div *ngIf="showDeleteIcon" class="actions right-align">
+    <button class="red">
+      <i class="bi bi-trash3"></i>
+    </button>
   </div>
 </div>

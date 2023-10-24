@@ -6,6 +6,9 @@
   --radius: 0.5rem;
   --accent: #7c3aed;
   --accent-dark: #6127c5;
+  --red: #FF6969;
+  --green: #79AC78;
+  --yellow: #FFB000;
 
 }
 
@@ -68,7 +71,62 @@ textarea:active .p-inputtext:active {
 }
 
 textarea {
-  border-radius: 6px;
+  border-radius: 8px;
+}
+
+.actions{
+  position: absolute;
+
+  &.hidden{
+    display: none;
+  }
+  
+  button{
+    all: unset;
+    aspect-ratio: 1;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: white;
+    font-size: 1.2rem;
+    color: var(--accent);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    &:hover{
+      background-color: var(--accent);
+      color: white;
+    }
+
+    &.red{
+      color: var(--red) !important;
+      &:hover{
+        background-color: var(--red) !important;
+        color: white !important;
+      }
+    }
+    &.green{
+      color: var(--green) !important;
+      &:hover{
+        background-color: var(--green) !important;
+        color: white !important;
+      }
+    }
+    &.yellow{
+      color: var(--yellow) !important;
+      &:hover{
+        background-color: var(--yellow) !important;
+        color: white !important;
+      }
+    }
+
+  }
+}
+
+.actions.right-align{
+  right: 8px;
+  top: 20px;
 }
 
 ::-webkit-scrollbar-track {

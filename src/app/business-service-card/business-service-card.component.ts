@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BusinessServiceModal } from '../_models/business_service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environment/environment';
+import { CartService } from '../_services/cart.service';
 
 @Component({
   selector: 'app-business-service-card',
@@ -9,10 +11,10 @@ import { Router } from '@angular/router';
 })
 export class BusinessServiceCardComponent implements  OnInit{
 
-  constructor ( private readonly router: Router ) { }
+  constructor ( private readonly router: Router, private cartService: CartService ) { }
   ngOnInit(): void {
     if(this.businessServiceData.image != null){
-      this.businessServiceData.image = 'http://localhost:8080/image/'+this.businessServiceData.image;
+      this.businessServiceData.image = `${environment.baseUrl}/image/`+this.businessServiceData.image;
     }
 
   }
@@ -20,6 +22,10 @@ export class BusinessServiceCardComponent implements  OnInit{
 
   openServicePage( event: any, id: number){
     this.router.navigate(['service', id])
+  }
+
+  addItemToCart(){
+    this.cartService.addServiceToCart(this.businessServiceData)
   }
 
 }

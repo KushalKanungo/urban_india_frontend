@@ -15,7 +15,7 @@ export type SignInResponse = {
 export class AuthService {
   private ACCESS_TOKEN_KEY_NAME = 'accessToken';
   private AUTH_FAILED_REDIRECT_URL = '/';
-  private BASE_URL = 'http://localhost:8080/api/auth';
+  private BASE_URL = `${environment.baseUrl}/api/auth`;
 
   constructor(private http: HttpClient, private router: Router) {}
 

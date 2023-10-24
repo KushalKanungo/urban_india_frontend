@@ -5,6 +5,7 @@ import { Filter } from 'src/app/_models/filter';
 import { Reviews } from 'src/app/_models/reviews';
 import { BusinessServicesService } from 'src/app/_services/business-services.service';
 import { CartService } from 'src/app/_services/cart.service';
+import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-business-service-page',
@@ -15,6 +16,7 @@ export class BusinessServicePageComponent {
   constructor(private activatedRoute: ActivatedRoute, private readonly businessServicesService: BusinessServicesService, private cartService: CartService) {}
   businessService!: BusinessServiceModal;
   similarBusinessServices: BusinessServiceModal[] = []
+  serviceImage = ''
   reviews: Reviews[] = [
     {
       title: 'Great Experience',
@@ -132,6 +134,9 @@ export class BusinessServicePageComponent {
 
       // console.log(dto);
       this.businessService = dto;
+      this.serviceImage = this.businessService.image
+        ? environment.baseUrl + '/image/' + this.businessService.image
+        : 'https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTd8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80';
     });
     this.fetchSimilarServices()
   }
@@ -146,7 +151,7 @@ export class BusinessServicePageComponent {
     tempFilter.page = 0
     tempFilter.per = 6
     console.log(tempFilter.parsed());
-    
+
     this.businessServicesService
       .getAllFilteredBusinssService(tempFilter.parsed())
       .subscribe({
