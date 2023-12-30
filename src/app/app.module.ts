@@ -40,9 +40,10 @@ import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-p
 import { AddBusinessServiceFormComponent } from './add-business-service-form/add-business-service-form.component';
 import { BusinessServicePageComponent } from './_pages/business-service-page/business-service-page.component';
 import { PaginatorModule } from 'primeng/paginator';
+import { ToastModule } from 'primeng/toast';
 import { CouponSectionComponent } from './coupon-section/coupon-section.component';
 import { CouponFormComponent } from './coupon-form/coupon-form.component'
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { BusinessServiceCardSmallComponent } from './business-service-card-small/business-service-card-small.component';
 import { CartComponent } from './cart/cart.component';
 @NgModule({
@@ -93,11 +94,13 @@ import { CartComponent } from './cart/cart.component';
     PaginatorModule,
     CalendarModule,
     ConfirmDialogModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    ToastModule
   ],
   providers: [
     DialogService,
     ConfirmationService,
+    MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
