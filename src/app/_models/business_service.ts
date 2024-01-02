@@ -6,7 +6,7 @@ export interface BusinessServiceModal {
   businessId: number;
   price: number;
   mode_id?: number;
-  image: string;
+  image?: string;
   rating: number;
   serviceTypeId:number;
   serviceTypeName: string;

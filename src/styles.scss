@@ -85,7 +85,8 @@ textarea {
     all: unset;
     height: 2rem;
     aspect-ratio: 1;
-    padding: 8px;
+    height: 2rem;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,8 +94,13 @@ textarea {
     background-color: white;
     font-size: 1.1rem;
     color: var(--accent);
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:active{
+      transform: scale(0.9);
+    }
+
     &:hover{
       background-color: var(--accent);
       color: white;

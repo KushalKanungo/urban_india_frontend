@@ -3,6 +3,8 @@ import { BusinessService } from './business.service';
 import { BusinessServiceModal } from '../_models/business_service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { MessageService } from 'primeng/api';
+import { environment } from 'src/environment/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,17 +13,31 @@ export class CartService {
 
 
   cartItems: BusinessServiceModal[] = []
-  toasterService:MessageService = inject(MessageService)
+  baseUrl = `${environment.baseUrl}/cart`
+
+  constructor(
+    private toasterService:MessageService,
+    private http: HttpClient
+  ){
+
+  }
 
   public getCartPrice(){
     return this.cartItems.reduce(( acc, {price} )=> { return acc+=price  }, 0)
   }
 
   public addServiceToCart(service: BusinessServiceModal) {
-    if (this.isServiceValidToAdd(this.cartItems, service))
-      this.cartItems.push(service)
-    else
-    this.toasterService.add({severity: 'info', detail: `${service.title} already present in cart.` })
+    this.postServiceToCart(service).subscribe({
+      next: ()=>{
+        if (this.isServiceValidToAdd(this.cartItems, service))
+          this.cartItems.push(service)
+          this.toasterService.add({
+            severity: 'info',
+            detail: 'Item added to cart.',
+            closable: true
+          })
+      }
+    })
   }
 
   public addServicesToCart(services: BusinessServiceModal[]) {
@@ -29,7 +45,11 @@ export class CartService {
   }
 
   public removeServiceToCart(businessServiceId: number) {
-    this.cartItems = this.cartItems.filter( ({id}) => id !== businessServiceId)
+    this.removeServiceFromCart(businessServiceId).subscribe({
+      next: ()=>{
+        this.cartItems = this.cartItems.filter( ({id}) => id !== businessServiceId)
+      }
+    })
   }
 
   private isServiceValidToAdd(cartItems: BusinessServiceModal[], newItem: BusinessServiceModal){
@@ -37,14 +57,14 @@ export class CartService {
   }
 
   private postServiceToCart(service: BusinessServiceModal) {
-    // TODO: API Call to add service to cart
+    return this.http.post(`${this.baseUrl}/add`, { businessServiceId: service.id })
   }
 
+  private removeServiceFromCart(cartItemId: number){
+    return this.http.post(`${this.baseUrl}/remove`, { businessServiceId: cartItemId })
+  }
 
   private postServicesToCart(services: BusinessServiceModal[]) {
     // TODO: API Call to add service to cart
   }
-
-
-  constructor() { }
 }
