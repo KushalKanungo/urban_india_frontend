@@ -13,7 +13,7 @@ export class CartService {
 
 
   cartItems: BusinessServiceModal[] = []
-  baseUrl = `${environment.baseUrl}/cart`
+  baseUrl = `${environment.baseUrl}/api/cart`
 
   constructor(
     private toasterService:MessageService,
@@ -57,11 +57,11 @@ export class CartService {
   }
 
   private postServiceToCart(service: BusinessServiceModal) {
-    return this.http.post(`${this.baseUrl}/add`, { businessServiceId: service.id })
+    return this.http.post(`${this.baseUrl}`, { businessServiceId: service.id })
   }
 
   private removeServiceFromCart(cartItemId: number){
-    return this.http.post(`${this.baseUrl}/remove`, { businessServiceId: cartItemId })
+    return this.http.delete(`${this.baseUrl}/${cartItemId}`)
   }
 
   private postServicesToCart(services: BusinessServiceModal[]) {
