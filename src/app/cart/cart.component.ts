@@ -18,6 +18,12 @@ export class CartComponent implements OnInit{
       showPrice: true,
       showRatings: false
     }
+
+    this.cartService.getCartServices().subscribe({next: (data: any)=>{
+      
+      this.cartService.cartItems = data.dto.map((res: any) => res)
+      
+    }})
   }
 
   removeFromCart(id: number){

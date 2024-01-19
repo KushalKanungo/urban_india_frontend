@@ -6,13 +6,18 @@ import { MessageService } from 'primeng/api';
 import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
 
+
+export type CartItemModel = {
+  id: number,
+  businessService: BusinessServiceModal
+}
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
 
-  cartItems: BusinessServiceModal[] = []
+  cartItems: CartItemModel[] = []
   baseUrl = `${environment.baseUrl}/api/cart`
 
   constructor(
@@ -23,14 +28,17 @@ export class CartService {
   }
 
   public getCartPrice(){
-    return this.cartItems.reduce(( acc, {price} )=> { return acc+=price  }, 0)
+    return this.cartItems.reduce(( acc, {businessService: { price}} )=> { return acc+=price  }, 0)
   }
 
+  public getCartServices() {
+    return this.http.get(this.baseUrl)
+  }
+  
   public addServiceToCart(service: BusinessServiceModal) {
     this.postServiceToCart(service).subscribe({
-      next: ()=>{
-        if (this.isServiceValidToAdd(this.cartItems, service))
-          this.cartItems.push(service)
+      next: (response: any)=>{
+          this.cartItems.push(response.dto)
           this.toasterService.add({
             severity: 'info',
             detail: 'Item added to cart.',
@@ -40,19 +48,25 @@ export class CartService {
     })
   }
 
-  public addServicesToCart(services: BusinessServiceModal[]) {
+  public addServicesToCart(services: CartItemModel[]) {
     this.cartItems.concat(services)
   }
 
   public removeServiceToCart(businessServiceId: number) {
-    this.removeServiceFromCart(businessServiceId).subscribe({
+    let cartItemId = this.cartItems.find(({businessService: { id }}) => id === businessServiceId )?.id
+    this.removeServiceFromCart(cartItemId).subscribe({
       next: ()=>{
-        this.cartItems = this.cartItems.filter( ({id}) => id !== businessServiceId)
+        this.cartItems = this.cartItems.filter( ({id}) => id !== cartItemId)
+        this.toasterService.add({
+          severity: 'info',
+          detail: 'Item removed from cart.',
+          closable: true
+        })
       }
     })
   }
 
-  private isServiceValidToAdd(cartItems: BusinessServiceModal[], newItem: BusinessServiceModal){
+  private isServiceValidToAdd(cartItems: CartItemModel[], newItem: CartItemModel){
     return cartItems.every((item) => item.id !== newItem.id)
   }
 
@@ -60,7 +74,7 @@ export class CartService {
     return this.http.post(`${this.baseUrl}`, { businessServiceId: service.id })
   }
 
-  private removeServiceFromCart(cartItemId: number){
+  private removeServiceFromCart(cartItemId: number | undefined){
     return this.http.delete(`${this.baseUrl}/${cartItemId}`)
   }
 
