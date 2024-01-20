@@ -10,7 +10,7 @@
       <div class="title" (click)="goToServicePage()"> {{ businessServiceData.title }} </div>
       <p class="text-truncate" style="font-size: 12px;"> {{ businessServiceData.description }} </p>
       <p-rating
-      *ngIf="cardConfig.showRatings"
+      *ngIf="cardConfig?.showRatings"
       [(ngModel)]="this.businessServiceData.rating"
       [readonly]="false"
       [cancel]="false"

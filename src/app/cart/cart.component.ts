@@ -13,6 +13,7 @@ export class CartComponent implements OnInit{
   cardConfig!: SmallCardConfig
   constructor(public cartService: CartService){ }
 
+  public isCardSideBarVisible = false
   ngOnInit(){
     this.cardConfig = {
       showPrice: true,

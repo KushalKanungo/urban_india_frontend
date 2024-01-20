@@ -46,6 +46,11 @@ import { CouponFormComponent } from './coupon-form/coupon-form.component'
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BusinessServiceCardSmallComponent } from './business-service-card-small/business-service-card-small.component';
 import { CartComponent } from './cart/cart.component';
+import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
+import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { SidebarModule } from 'primeng/sidebar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,13 +100,17 @@ import { CartComponent } from './cart/cart.component';
     CalendarModule,
     ConfirmDialogModule,
     OverlayPanelModule,
-    ToastModule
+    ToastModule,
+    LoadingBarHttpClientModule,
+    SidebarModule
+    
   ],
   providers: [
     DialogService,
     ConfirmationService,
     MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

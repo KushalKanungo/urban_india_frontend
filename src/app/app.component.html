@@ -1,4 +1,10 @@
 <!-- <app-login-page></app-login-page> -->
-<p-toast></p-toast>
+<p-toast position="bottom-center"></p-toast>
 <app-navbar></app-navbar>
+<ngx-loading-bar
+  [color]="progressBarConfig.color"
+  [height]="progressBarConfig.height"
+  [includeSpinner]="progressBarConfig.includeSpinner"
+  [fixed]="progressBarConfig.fixed"
+></ngx-loading-bar>
 <router-outlet></router-outlet>

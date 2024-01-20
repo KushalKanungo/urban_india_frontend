@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { progressBarConfig } from './_config/progress-bar-config';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'urban_india_frontend';
+  progressBarConfig = progressBarConfig
 }
