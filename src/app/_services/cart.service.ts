@@ -18,6 +18,7 @@ export class CartService {
 
 
   cartItems: CartItemModel[] = []
+  cartPrice: number = 0
   baseUrl = `${environment.baseUrl}/api/cart`
 
   constructor(
@@ -27,8 +28,9 @@ export class CartService {
 
   }
 
-  public getCartPrice(){
-    return this.cartItems.reduce(( acc, {businessService: { price}} )=> { return acc+=price  }, 0)
+  public getCartPrice(cartItems: CartItemModel[]){
+    debugger
+    this.cartPrice = cartItems.reduce(( acc, {businessService: { price}} )=> { return acc+=price  }, 0)
   }
 
   public getCartServices() {

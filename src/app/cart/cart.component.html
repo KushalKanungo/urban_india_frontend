@@ -18,7 +18,7 @@
   [blockScroll]="true"
   [modal]="true"
 >
-  <p>Cart Price {{ cartService.getCartPrice() | currency : "INR" }}</p>
+  <p>Cart Price {{ cartService.cartPrice | currency : "INR" }}</p>
   <app-business-service-card-small
     [showDeleteIcon]="true"
     *ngFor="let cartItem of cartService.cartItems"

@@ -23,6 +23,7 @@ export class CartComponent implements OnInit{
     this.cartService.getCartServices().subscribe({next: (data: any)=>{
       
       this.cartService.cartItems = data.dto.map((res: any) => res)
+      this.cartService.getCartPrice(this.cartService.cartItems)
       
     }})
   }
