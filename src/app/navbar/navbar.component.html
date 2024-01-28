@@ -1,0 +1,29 @@
+<nav class="px-4">
+  <div class="logo">
+    <span class="letter">U</span>rban<span class="flip">i</span>
+    <span class="last">ndia</span>
+  </div>
+  <div class="links-wrapper">
+    <ul>
+      <li
+        *ngFor="let link of navLinks"
+        class="link-wrapper mx-2 mx-md-2 mx-lg-4"
+      >
+        <a [routerLink]="link.routerLink" class="hover-1">
+          <i *ngIf="link.icon" class="{{ link.icon }} me-2"></i>
+          {{ link.label }}
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="action-buttons notification-badges">
+    <app-cart></app-cart>
+    <p-avatar
+      image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+      styleClass="mr-2"
+      shape="circle"
+      (click)="menu.toggle($event)"
+    ></p-avatar>
+    <p-menu #menu [model]="items" [popup]="true" [baseZIndex]="8"></p-menu>
+  </div>
+</nav>

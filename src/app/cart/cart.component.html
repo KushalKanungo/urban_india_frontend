@@ -1,0 +1,29 @@
+<span #cart class="cart-button" id="cart">
+  <i
+    #targetEl
+    class="bi bi-cart"
+    (click)="isCardSideBarVisible = !isCardSideBarVisible"
+  ></i>
+  <span class="cart-size">
+    <span> {{ cartService.cartItems.length }} </span>
+  </span>
+</span>
+
+<p-sidebar
+  [(visible)]="isCardSideBarVisible"
+  styleClass="cart-sidebar"
+  appendTo="body"
+  position="right"
+  [style.width]="'28vw'"
+  [blockScroll]="true"
+  [modal]="true"
+>
+  <p>Cart Price {{ cartService.getCartPrice() | currency : "INR" }}</p>
+  <app-business-service-card-small
+    [showDeleteIcon]="true"
+    *ngFor="let cartItem of cartService.cartItems"
+    [businessServiceData]="cartItem.businessService"
+    [cardConfig]="cardConfig"
+  >
+  </app-business-service-card-small>
+</p-sidebar>

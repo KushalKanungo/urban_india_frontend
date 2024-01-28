@@ -1,0 +1,54 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <h2>{{ businessService.title }} <button class="btn btn-accent" (click)="addItem()">ADD To Cart </button> </h2>
+      <p>{{ businessService.description }}</p>
+      <div class="row">
+        <div class="col-8">
+          <div class="image-wrapper" style="height: 66vh;">
+            <img
+            [src]="serviceImage"
+            alt="..."
+            />
+          </div>
+        </div>
+        <div class="col-4">
+
+          <section style="height: 66vh; overflow-y: scroll; overflow-x: hidden; padding: 0px 14px 14px 14px;">
+            <app-business-service-card-small *ngFor="let similarService of similarBusinessServices" [businessServiceData]="similarService"> </app-business-service-card-small>
+          </section>
+
+        </div>
+      </div>
+      <section>
+        <p-carousel
+          [value]="reviews"
+          [numVisible]="3"
+          [numScroll]="3"
+          [circular]="true"
+          [responsiveOptions]="responsiveOptions"
+          [showIndicators]="false"
+        >
+          <ng-template let-review pTemplate="item">
+            <div
+              class="review-card border-1 surface-border border-round m-2 py-4 px-3"
+            >
+              <h5 class="title text-truncate">{{ review.title }}</h5>
+              <strong>{{ review.customer }}</strong>
+
+              <p class="desc">{{ review.description }}</p>
+              <div>{{ review.date | date }}</div>
+              <p-rating
+                [(ngModel)]="review.rating"
+                [readonly]="true"
+                [cancel]="false"
+              ></p-rating>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </section>
+    </div>
+
+    <div class="col-12 col-lg-4"></div>
+  </div>
+</div>

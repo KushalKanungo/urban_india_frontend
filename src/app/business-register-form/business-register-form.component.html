@@ -1,0 +1,106 @@
+<!-- avatar-upload.component.html -->
+
+<div class="row full-form justify-content-center p-4">
+  <div
+    class="d-none d-md-flex justify-content-center align-items-center col-md-6"
+  >
+    <img class="side-img" src="../../assets/business.jpg" alt="" />
+  </div>
+  <div class="col-12 col-md-6">
+    <form
+      class=""
+      action=""
+      [formGroup]="businessForm"
+      (ngSubmit)="addBusinessButton(businessForm.value)"
+    >
+      <div
+        class="avatar-upload d-flex justify-content-center align-items-center"
+      >
+        <div class="text-center upload"><i class="bi bi-upload"></i></div>
+        <img
+          [src]="imageUrl"
+          alt="Avatar Preview"
+          class="avatar-image"
+          *ngIf="imageUrl"
+        />
+        <input type="file" (change)="onFileSelect($event)" *ngIf="!imageUrl" />
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2 justify-content-center">
+        <div class="col mt-2">
+          <input
+            class=""
+            type="text"
+            pInputText
+            placeholder="Business Name"
+            formControlName="business_name"
+          />
+        </div>
+        <div class="col mt-2">
+          <input
+            class=""
+            type="text"
+            pInputText
+            placeholder="Tagline"
+            formControlName="tagline"
+          />
+        </div>
+        <div class="col mt-2">
+          <input
+            class=""
+            type="text"
+            pInputText
+            placeholder="GSTIN Number"
+            formControlName="gstin_number"
+          />
+        </div>
+        <div class="col mt-2">
+          <input
+            class=""
+            type="text"
+            pInputText
+            placeholder="Address"
+            formControlName="address"
+          />
+        </div>
+        <div class="col mt-2">
+          <p-dropdown
+            styleClass="same-width "
+            [options]="states"
+            (onChange)="onStateSelect($event)"
+            placeholder="State"
+            optionLabel="state"
+            optionValue="state"
+            formControlName="state"
+          ></p-dropdown>
+        </div>
+        <div class="col mt-2">
+          <p-dropdown
+            styleClass="same-width "
+            placeholder="Districts"
+            emptyMessage="Select State First"
+            formControlName="district"
+            [options]="districts"
+          ></p-dropdown>
+        </div>
+        <div class="col mt-2">
+          <input
+            class=""
+            type="text"
+            pInputText
+            placeholder="Pincode"
+            formControlName="pin"
+          />
+        </div>
+        <div class="col mt-2">
+          <p-button
+            styleClass="p-button  "
+            type="submit"
+            [disabled]="!businessForm.valid"
+          >
+            Add Business<i class="pi pi-sign-in px-2 pt-1"></i
+          ></p-button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

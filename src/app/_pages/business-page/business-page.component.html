@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>{{ "Business Name " }}</h1>
+
+  <hr />
+  <section>
+    <h4 class="my-4 ms-3">
+      Reviews
+      <p-button
+        label="Read More"
+        styleClass="p-button-text"
+        (click)="openReviewsDialog()"
+      ></p-button>
+    </h4>
+
+    <p-carousel
+      [value]="reviews"
+      [numVisible]="3"
+      [numScroll]="3"
+      [circular]="true"
+      [responsiveOptions]="responsiveOptions"
+      [showIndicators]="false"
+    >
+      <ng-template let-review pTemplate="item">
+        <div
+          class="review-card border-1 surface-border border-round m-2 py-4 px-3"
+        >
+          <h5>{{ review.title }}</h5>
+
+          <p>{{ review.description }}</p>
+          <strong>{{ review.customer }}</strong>
+          <div>{{ review.date | date }}</div>
+          <p-rating
+            [(ngModel)]="review.rating"
+            [readonly]="true"
+            [cancel]="false"
+          ></p-rating>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </section>
+  <h4 class="my-4 ms-3">Services</h4>
+  <section>
+    <ul class="cards row row-cols-1 row-cols-md-2 row-cols-xl-3">
+      <ng-template ngIf="true" *ngFor="let item of businessServices">
+        <app-business-service-card
+          class="cards_item col"
+          [businessServiceData]="item"
+        ></app-business-service-card>
+      </ng-template>
+    </ul>
+  </section>
+</div>

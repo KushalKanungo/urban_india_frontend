@@ -1,0 +1,54 @@
+<button (click)="openAddServiceDialog()">Add Service</button>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-7 col-xl-8">
+      <div class="my-services shadow p-2 row row-cols-1 row-cols-md-2">
+        <div class="col" *ngFor="let service of businessServices">
+          <div class="card my-2 p-4">
+            <div class="row">
+              <div class="col-7">
+                <h4>{{ service.title }}</h4>
+                <p class="desc text-truncate">{{ service.description }}</p>
+                <div class="mt-2">
+                  <p-button
+                    (click)="openAddServiceDialog(service)"
+                    icon="pi pi-pencil"
+                    styleClass="p-button-sm p-button-rounded p-button-text"
+                  >
+                  </p-button>
+                  <p-button
+                    icon="pi pi-chart-bar"
+                    styleClass="p-button-sm p-button-success p-button-rounded p-button-text"
+                  >
+                  </p-button>
+                  <p-button
+                    icon="pi pi-ban"
+                    styleClass="p-button-sm p-button-danger p-button-rounded p-button-text"
+                  >
+                  </p-button>
+                </div>
+              </div>
+              <div class="col-5 image-wrapper">
+                <img
+                  src="https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTd8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-5 col-xl-4">
+      <div class="row row-cols-1  row-cols-xl-1">
+        <app-coupon-section></app-coupon-section>
+        <div class="notification-wrapper">
+          <div class="notifications shadow mt-3">
+            <h4 class="ps-2 pt-2">Notifications</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

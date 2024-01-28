@@ -1,0 +1,39 @@
+<!-- <li class="cards_item"> -->
+<div class="card">
+  <div>
+  </div>
+  <div class="card_image">
+    <img
+      [src]="this.businessServiceData.image ?? 'https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTd8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80'"
+      alt="..."
+    />
+  </div>
+  <div class="card_content">
+    <h3 class="card_title">{{ this.businessServiceData.title }}</h3>
+    <span class="card_company">
+      {{ this.businessServiceData.businessName}}
+    </span>
+    <p class="card_text">
+      {{ this.businessServiceData.description }}
+    </p>
+    <div class="d-flex justify-content-between">
+      <div>
+        <p-rating
+          [(ngModel)]="this.businessServiceData.rating"
+          [readonly]="true"
+          [cancel]="false"
+        ></p-rating>
+        <span class="price">
+          {{ this.businessServiceData.price | currency : "INR" : "symbol" }}
+        </span>
+      </div>
+      <p-button label="More" styleClass="p-button-text" (onClick)="openServicePage($event, businessServiceData.id)"></p-button>
+    </div>
+  </div>
+  <div  class="actions right-align hidden">
+    <button (click)="addItemToCart()" class="">
+      <i class="bi bi-cart-plus"></i>
+    </button>
+  </div>
+</div>
+<!-- </li -->

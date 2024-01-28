@@ -1,0 +1,18 @@
+.login-wrapper {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  width: 800px;
+  border-radius: 10px;
+  //   height: 400px;
+  // overflow: hidden;
+  //   aspect-ratio: 1/1;
+  height: fit-content;
+
+  .left-side {
+    background: rgb(167, 123, 242);
+    background: linear-gradient(
+      184deg,
+      rgba(167, 123, 242, 1) 0%,
+      rgba(124, 58, 237, 1) 35%
+    );
+  }
+}

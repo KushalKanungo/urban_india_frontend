@@ -1,0 +1,12 @@
+<div class="review-card border-2 surface-border border-round m-2 py-4 px-3">
+  <h5>{{ review.title }}</h5>
+
+  <p>{{ review.description }}</p>
+  <strong>{{ review.customer }}</strong>
+  <div>{{ review.date | date }}</div>
+  <p-rating
+    [(ngModel)]="review.rating"
+    [readonly]="true"
+    [cancel]="false"
+  ></p-rating>
+</div>

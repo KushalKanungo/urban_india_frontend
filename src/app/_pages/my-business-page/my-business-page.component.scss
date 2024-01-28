@@ -1,0 +1,33 @@
+.my-services{
+  height: 82vh;
+  border-radius: var(--radius);
+  overflow-y: scroll;
+}
+
+.card {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  border: none !important;
+  height: 10rem;
+}
+
+h4{
+  font-size: 1.1rem;
+}
+
+.desc{
+  font-size: 0.8rem;
+}
+
+.image-wrapper {
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.notifications{
+  height: 40vh;
+  border-radius: var(--radius);
+}

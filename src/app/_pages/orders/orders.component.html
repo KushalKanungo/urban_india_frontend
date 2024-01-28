@@ -1,0 +1,26 @@
+<div class="container pt-5">
+<div class="row">
+
+  <div class="col-4 offset-2">
+    <app-address-form [editMode]="editMode" [editAddressModel]="editAddressModel"></app-address-form>
+  </div>
+  <div class="col-4">
+    <p-listbox [options]="addressess" emptyMessage="No saved address found" [(ngModel)]="selectedAddress" optionValue="id" optionLabel="plotNo">
+      <ng-template let-address pTemplate="item">
+        <div class="flex align-items-center gap-2">
+            <div class="fs-5">{{ address.plotNo }}</div>
+            <div class="fw-lighter fs-6"> {{address.city}}, {{address.state}}</div>
+            <div class="action-buttons-holder">
+              <i class="pi-pencil pi green"(click)="editAddress(address)" ></i>
+              <i class="pi pi-trash red" (click)="deleteAddress(address.id)"></i>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <div class="text-center p-2 hover-accent" (click)="addNewAddress()"> <i class="bi bi-house-add"></i> ADD ADDRESS</div>
+    </ng-template>
+    </p-listbox>
+  </div>
+</div>
+</div>
+  <!-- <div class="col-1"></div> -->
