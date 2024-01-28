@@ -136,6 +136,36 @@ textarea {
   top: 20px;
 }
 
+.action-button-parent{
+  position: relative;
+}
+
+.action-buttons-holder{
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  right: 1rem;
+
+  i{
+    padding: 0 6px;
+  }
+
+  i:hover.red{
+    color: var(--red);
+  }
+  i:hover.green{
+    color: var(--green);
+  }
+  i:hover{
+    color: var(--accent);
+  }
+}
+
+.hover-accent:hover{
+  cursor: pointer;
+  color: var(--accent);
+}
+
 ::-webkit-scrollbar-track {
   // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: white;

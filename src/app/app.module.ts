@@ -51,6 +51,9 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { SidebarModule } from 'primeng/sidebar';
+import { AddressFormComponent } from './address-form/address-form.component';
+import { OrdersComponent } from './_pages/orders/orders.component';
+import { ListboxModule } from 'primeng/listbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +76,8 @@ import { SidebarModule } from 'primeng/sidebar';
     CouponFormComponent,
     BusinessServiceCardSmallComponent,
     CartComponent,
+    AddressFormComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,7 +107,8 @@ import { SidebarModule } from 'primeng/sidebar';
     OverlayPanelModule,
     ToastModule,
     LoadingBarHttpClientModule,
-    SidebarModule
+    SidebarModule,
+    ListboxModule
     
   ],
   providers: [

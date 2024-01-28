@@ -19,7 +19,6 @@ export class ErrorInterceptor implements HttpInterceptor {
   }
 
   private httpErrorHandeler(err: HttpErrorResponse){
-    debugger
     if( err.status >= 500){
       this.toasterService.add({
         severity: 'error',

@@ -11,10 +11,12 @@ import { BusinessServicePageComponent } from './_pages/business-service-page/bus
 // import { BusinessServiceResolver } from './_resolver/business-service.resolver';
 import { businessServiceResolver } from './_resolver/businessService.resolver';
 import { businessResolver, serviceResolver } from './_resolver/listing-data.resolver';
+import { OrdersComponent } from './_pages/orders/orders.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginPageComponent, canActivate: [AuthGuard] },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
   {
     path: 'services',
     component: BusinessServiceListPageComponent,
