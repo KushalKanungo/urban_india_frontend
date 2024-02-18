@@ -30,6 +30,6 @@
   
   <p>Coupons</p>
   <div class="row row-cols-2 g-0" *ngIf="cartService.cartItems.length">
-    <app-coupon-card (click)="selectCoupon(coupon.id)" [selected]="cartService.selectedCouponId == coupon.id" *ngFor="let coupon of cartService.coupons" [coupon]="coupon"> </app-coupon-card>
+    <app-coupon-card (click)="selectCoupon(coupon.id)" dateFormat="dd M y" [selected]="cartService.selectedCouponId == coupon.id" *ngFor="let coupon of cartService.coupons" [coupon]="coupon"> </app-coupon-card>
   </div>
 </p-sidebar>

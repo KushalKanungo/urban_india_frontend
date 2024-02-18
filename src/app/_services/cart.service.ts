@@ -89,7 +89,7 @@ export class CartService {
     })
   }
 
-  public update(params: { id?: number, completionDate?: Date}): Observable<any>{
+  public update(params: { id?: number, completionDate?: Date | string}): Observable<any>{
     return this.http.put<any>(this.baseUrl, params)
   }
 
