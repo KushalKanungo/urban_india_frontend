@@ -20,18 +20,20 @@
 
     
   </div>
-  <div *ngIf="showDeleteIcon" class="actions right-align">
+  <div *ngIf="showDeleteIcon" class="button-holder">
     <button class="red" (click)="removeItem(businessServiceData.id)">
-      <i class="bi bi-trash3"></i>
+      <i class="bi bi-x"></i>
     </button>
   </div>
 
   <div class="date" *ngIf="cartItem">
     <span (click)="op.toggle($event)" *ngIf="!cartItem.completionDate">{{ 'Date' }}</span>
     <span (click)="op.toggle($event)" *ngIf="cartItem.completionDate">{{ cartItem.completionDate | date:'dd MMM' }}</span>
-    <p-overlayPanel #op>
-      <p-calendar appendTo="body" placeholder="Select Date" (onSelect)="dateChangeHandle($event)" [(ngModel)]="cartItem.completionDate" [showButtonBar]="true"></p-calendar>
-  </p-overlayPanel>
   </div>
+  <p-overlayPanel #op appendTo="body">
+    <ng-template pTemplate="content">
+      <p-calendar *ngIf="cartItem" [inline]="true" appendTo="body" placeholder="Select Date" (onSelect)="dateChangeHandle($event, op)" [(ngModel)]="cartItem.completionDate"></p-calendar>
+    </ng-template>
+  </p-overlayPanel>
   
 </div>

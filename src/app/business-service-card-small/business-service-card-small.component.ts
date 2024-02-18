@@ -3,6 +3,7 @@ import { BusinessServiceModal } from '../_models/business_service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
 import { CartItemModel, CartService } from '../_services/cart.service';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 export interface SmallCardConfig {
   showRatings?: boolean,
@@ -40,10 +41,10 @@ export class BusinessServiceCardSmallComponent {
     return `${year}-${month}-${day}`;
   }
 
-  dateChangeHandle(date: Date){
+  dateChangeHandle(date: Date, op: OverlayPanel){
     this.cartService.update({ id: this.cartItem.id, completionDate: this.formatDate(this.cartItem.completionDate) }).subscribe({
       next: (data)=>{
-        
+        op.toggle('')
       }
     })
   }

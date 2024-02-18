@@ -22,7 +22,7 @@ export class CartService {
 
   cartItems: CartItemModel[] = []
   coupons: Coupon[] = []
-  selectedCouponId: number | undefined  
+  selectedCoupon: Coupon | undefined  
   cartPrice: number = 0
   cartBusinessId!: number
   baseUrl = `${environment.baseUrl}/api/cart`

@@ -33,8 +33,8 @@ export class CartComponent implements OnInit{
   }
 
 
-  selectCoupon(couponId: number | undefined){
-    this.cartService.selectedCouponId = couponId
+  selectCoupon(coupon: Coupon | undefined){
+    this.cartService.selectedCoupon = coupon
   }
 
   removeFromCart(id: number){

@@ -8,7 +8,7 @@
 
     height: 8rem;
     border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     padding: 1rem;
     .image-wrapper{
       height: 100%;
@@ -22,6 +22,29 @@
       
     }
   }
+
+  .button-holder{
+    display: none;
+    button{
+      all: unset;
+      cursor: pointer;
+    }
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 1.4rem;
+  }
+  &:hover{
+    .button-holder{
+      display: initial;
+      &:hover{
+        button{
+          color: brown;
+        }
+      }
+    }
+  }
+
 }
 
 .title{
