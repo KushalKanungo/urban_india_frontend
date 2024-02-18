@@ -5,6 +5,8 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
+import { CouponService } from './coupon.service';
+import { Coupon } from '../_models/coupon';
 
 
 export type CartItemModel = {
@@ -18,18 +20,20 @@ export class CartService {
 
 
   cartItems: CartItemModel[] = []
+  coupons: Coupon[] = []
   cartPrice: number = 0
+  cartBusinessId!: number
   baseUrl = `${environment.baseUrl}/api/cart`
 
   constructor(
     private toasterService:MessageService,
+    private couponService: CouponService,
     private http: HttpClient
   ){
 
   }
 
   public getCartPrice(cartItems: CartItemModel[]){
-    debugger
     this.cartPrice = cartItems.reduce(( acc, {businessService: { price}} )=> { return acc+=price  }, 0)
   }
 
@@ -41,6 +45,8 @@ export class CartService {
     this.postServiceToCart(service).subscribe({
       next: (response: any)=>{
           this.cartItems.push(response.dto)
+          this.cartBusinessId = service.businessId
+          this.fetchCoupons()
           this.toasterService.add({
             severity: 'info',
             detail: 'Item added to cart.',
@@ -64,6 +70,16 @@ export class CartService {
           detail: 'Item removed from cart.',
           closable: true
         })
+      }
+    })
+  }
+
+  public fetchCoupons(){
+    if (!this.cartBusinessId)
+      return
+    this.couponService.getCouponsFiltered(this.cartBusinessId).subscribe({
+      next: (data)=>{
+        this.coupons = data?.dto
       }
     })
   }

@@ -26,4 +26,8 @@
     [cardConfig]="cardConfig"
   >
   </app-business-service-card-small>
+
+  <div>
+    <app-coupon-card *ngFor="let coupon of cartService.coupons" [coupon]="coupon"> </app-coupon-card>
+  </div>
 </p-sidebar>

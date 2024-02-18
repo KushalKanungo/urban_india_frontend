@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../_services/cart.service';
 import { BusinessServiceModal } from '../_models/business_service';
 import { SmallCardConfig } from '../business-service-card-small/business-service-card-small.component';
+import { Coupon } from '../_models/coupon';
+import { CouponService } from '../_services/coupon.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +13,7 @@ import { SmallCardConfig } from '../business-service-card-small/business-service
 export class CartComponent implements OnInit{
   
   cardConfig!: SmallCardConfig
-  constructor(public cartService: CartService){ }
+  constructor(public cartService: CartService, public couponService: CouponService){ }
 
   public isCardSideBarVisible = false
   ngOnInit(){
@@ -24,9 +26,13 @@ export class CartComponent implements OnInit{
       
       this.cartService.cartItems = data.dto.map((res: any) => res)
       this.cartService.getCartPrice(this.cartService.cartItems)
+      this.cartService.cartBusinessId = this.cartService.cartItems[0]?.businessService.businessId 
+      this.cartService.fetchCoupons()
       
     }})
   }
+
+
 
   removeFromCart(id: number){
     this.cartService.removeServiceToCart(id)

@@ -54,6 +54,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { AddressFormComponent } from './address-form/address-form.component';
 import { OrdersComponent } from './_pages/orders/orders.component';
 import { ListboxModule } from 'primeng/listbox';
+import { CouponCardComponent } from './coupon-card/coupon-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +79,7 @@ import { ListboxModule } from 'primeng/listbox';
     CartComponent,
     AddressFormComponent,
     OrdersComponent,
+    CouponCardComponent,
   ],
   imports: [
     BrowserModule,

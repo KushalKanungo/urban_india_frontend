@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { CouponFormComponent } from '../coupon-form/coupon-form.component';
 import { Coupon } from '../_models/coupon';
@@ -11,7 +11,7 @@ import { CouponService } from '../_services/coupon.service';
 })
 export class CouponSectionComponent implements OnInit{
   ref!: DynamicDialogRef;
-
+  @Input() businessId!: number  
   constructor(private readonly dialogService: DialogService, private readonly couponService: CouponService) { }
   
   coupons: Coupon[] =  [
@@ -98,7 +98,10 @@ export class CouponSectionComponent implements OnInit{
   ];
   
   ngOnInit(): void {
-    this.fetchCoupons()
+    if (this.businessId === undefined)
+      this.fetchCoupons()
+    else
+      this.fetchBusinessCoupons()
   }
 
   formatDate(date = new Date()) {
@@ -139,7 +142,12 @@ export class CouponSectionComponent implements OnInit{
 
   fetchCoupons(){
     this.couponService.getCoupons().subscribe({next: (data)=>{
-      console.log(data);
+      this.coupons = data?.dto
+    }})
+  }
+  
+  fetchBusinessCoupons(){
+    this.couponService.getCouponsFiltered(this.businessId).subscribe({next: (data)=>{
       this.coupons = data?.dto
     }})
   }

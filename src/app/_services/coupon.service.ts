@@ -11,6 +11,7 @@ export class CouponService {
 
   constructor(private readonly http: HttpClient) { }
   BASE_URL = `${environment.baseUrl}/api/coupon`
+  BASE_APP_URL = environment.baseUrl
 
   addCoupon(coupon: Coupon): Observable<any>{
     return this.http.post<any>(this.BASE_URL, coupon)
@@ -26,6 +27,11 @@ export class CouponService {
 
   getCoupons(): Observable<any>{
     return this.http.get(this.BASE_URL)
+  }
+  
+  getCouponsFiltered(businessId: number): Observable<any>{
+    return this.http.get<any>(`${this.BASE_APP_URL}/api/businesses/${businessId}/coupons`)
+    
   }
 
 }

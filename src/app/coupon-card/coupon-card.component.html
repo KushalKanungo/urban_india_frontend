@@ -1,0 +1,12 @@
+<div class="col p-1 coupon-card-wrapper">
+  <div class="coupon-card p-3">
+    <div class="action-icons">
+    </div>
+    <div class="code"> {{ coupon.code }} </div>
+    <div *ngIf="settings.time" class="date mb-2">{{ coupon.startTime | date: 'dd MMM yy'}}   <i class="bi bi-arrow-right"></i>  {{ coupon.endTime | date: 'dd MMM yy'}}</div>
+    <div class="row row-cols-1">
+      <div class="percent">Discount <span class="value"> :  {{ coupon.percent }}% </span></div>
+      <div class="amount">Min. Cart <span class="value"> :  {{ coupon.minimumAmount | currency:'INR' }} </span></div>
+    </div>
+  </div>
+</div>
