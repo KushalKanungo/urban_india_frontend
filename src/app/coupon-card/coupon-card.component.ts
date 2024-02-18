@@ -8,6 +8,7 @@ import { Coupon } from '../_models/coupon';
 })
 export class CouponCardComponent {
   @Input() coupon!: Coupon
+  @Input() selected: boolean = false
   @Input() settings: {edit: boolean, time: boolean} = {
     edit: false,
     time: false

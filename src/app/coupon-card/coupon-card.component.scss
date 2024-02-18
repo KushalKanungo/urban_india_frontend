@@ -1,15 +1,16 @@
 .coupon-card-wrapper{
-  height: 8rem;
+  height: 5rem;
   .coupon-card{
     position: relative;
     height: 100%;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     border-radius: var(--radius);
+    background: white;
+    transition: all 5s cubic-bezier(0.165, 0.84, 0.44, 1);
     .code{
       text-transform: uppercase;
       font-weight: 400;
       color: var(--accent);
-
     }
 
     .action-icons{
@@ -35,6 +36,25 @@
       }
     }
   }
+
+  .coupon-card.selected {
+    transition: all 5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    background: linear-gradient(
+      90deg,
+      rgba(124, 58, 237, 1) 0%,
+      rgba(215, 193, 255, 1) 100%
+    );
+    color: white;
+    .code, .percent{
+      color: white;
+      .value{
+        font-weight: bold;
+        color: white;
+      }
+    }
+    
+  }
 }
 
 .date{
@@ -48,4 +68,25 @@
     color: var(--accent);
     font-weight: 500 !important;
   }
+}
+
+
+.fill:hover {
+  color: whitesmoke;
+}
+
+.fill:before {
+  content: "";
+  position: absolute;
+  background: #383736;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: -1;
+  -webkit-transition: top 0.09s ease-in;
+}
+
+.fill:hover:before {
+  top: 0;
 }

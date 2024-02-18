@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BusinessServiceModal } from '../_models/business_service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/environment';
-import { CartService } from '../_services/cart.service';
+import { CartItemModel, CartService } from '../_services/cart.service';
 
 export interface SmallCardConfig {
   showRatings?: boolean,
@@ -20,6 +20,7 @@ export class BusinessServiceCardSmallComponent {
   @Input() businessServiceData!: BusinessServiceModal;
   @Input() showDeleteIcon!: boolean
   @Input() cardConfig!: SmallCardConfig;
+  @Input() cartItem!: CartItemModel
 
   baseUrl = environment.baseUrl
 
@@ -31,5 +32,15 @@ export class BusinessServiceCardSmallComponent {
   removeItem(id: number){
     this.cartService.removeServiceToCart(id)
   }
+
+  dateChangeHandle(date: Date){
+    this.cartService.update({ id: this.cartItem.id, completionDate: date }).subscribe({
+      next: (data)=>{
+        
+      }
+    })
+  }
+
+  
 
 }

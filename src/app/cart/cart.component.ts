@@ -33,6 +33,9 @@ export class CartComponent implements OnInit{
   }
 
 
+  selectCoupon(couponId: number | undefined){
+    this.cartService.selectedCouponId = couponId
+  }
 
   removeFromCart(id: number){
     this.cartService.removeServiceToCart(id)

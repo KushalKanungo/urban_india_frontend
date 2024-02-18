@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { BusinessService } from './business.service';
 import { BusinessServiceModal } from '../_models/business_service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { Coupon } from '../_models/coupon';
 export type CartItemModel = {
   id: number,
   businessService: BusinessServiceModal
+  completionDate?: Date 
 }
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class CartService {
 
   cartItems: CartItemModel[] = []
   coupons: Coupon[] = []
+  selectedCouponId: number | undefined  
   cartPrice: number = 0
   cartBusinessId!: number
   baseUrl = `${environment.baseUrl}/api/cart`
@@ -47,6 +49,7 @@ export class CartService {
           this.cartItems.push(response.dto)
           this.cartBusinessId = service.businessId
           this.fetchCoupons()
+          this.getCartPrice(this.cartItems)
           this.toasterService.add({
             severity: 'info',
             detail: 'Item added to cart.',
@@ -65,6 +68,8 @@ export class CartService {
     this.removeServiceFromCart(cartItemId).subscribe({
       next: ()=>{
         this.cartItems = this.cartItems.filter( ({id}) => id !== cartItemId)
+        this.getCartPrice(this.cartItems)
+        this.fetchCoupons()
         this.toasterService.add({
           severity: 'info',
           detail: 'Item removed from cart.',
@@ -82,6 +87,10 @@ export class CartService {
         this.coupons = data?.dto
       }
     })
+  }
+
+  public update(params: { id?: number, completionDate?: Date}): Observable<any>{
+    return this.http.put<any>(this.baseUrl, params)
   }
 
   private isServiceValidToAdd(cartItems: CartItemModel[], newItem: CartItemModel){
