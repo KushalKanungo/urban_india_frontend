@@ -7,6 +7,7 @@ import { environment } from 'src/environment/environment';
 import { HttpClient } from '@angular/common/http';
 import { CouponService } from './coupon.service';
 import { Coupon } from '../_models/coupon';
+import { DeviceDetectorService } from './device-detector.service';
 
 
 export type CartItemModel = {
@@ -19,7 +20,6 @@ export type CartItemModel = {
 })
 export class CartService {
 
-
   cartItems: CartItemModel[] = []
   coupons: Coupon[] = []
   selectedCoupon: Coupon | undefined  
@@ -30,9 +30,8 @@ export class CartService {
   constructor(
     private toasterService:MessageService,
     private couponService: CouponService,
-    private http: HttpClient
+    private http: HttpClient,
   ){
-
   }
 
   public getCartPrice(cartItems: CartItemModel[]){

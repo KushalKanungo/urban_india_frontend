@@ -11,44 +11,72 @@
 
 <p-sidebar
   [(visible)]="isCardSideBarVisible"
-  styleClass="cart-sidebar"
   appendTo="body"
+  [styleClass]="isMobile ? '' : 'p-sidebar-lg'"
   position="right"
-  [style.width]="'28vw'"
   [blockScroll]="true"
   [showCloseIcon]="true"
+  [fullScreen]="isMobile"
   [modal]="true"
 >
-<ng-template pTemplate="header">
-  <p class="fs-5 fw-4">Cart Price {{ cartService.cartPrice | currency : "INR" }}</p>
-</ng-template>
-  <app-business-service-card-small
-    [showDeleteIcon]="true"
-    *ngFor="let cartItem of cartService.cartItems"
-    [businessServiceData]="cartItem.businessService"
-    [cardConfig]="cardConfig"
-    [cartItem]="cartItem"
-  >
-  </app-business-service-card-small>
-  
-  
-  <ng-template pTemplate="footer" >
-    <p>Coupons</p>
-    
-    <p-carousel [value]="cartService.coupons" [numVisible]="2" [showNavigators]="false" [numScroll]="2" [circular]="false">
-      <ng-template let-coupon pTemplate="item">
-        <app-coupon-card (click)="selectCoupon(coupon)" dateFormat="dd M y" [selected]="cartService.selectedCoupon?.id == coupon.id" [coupon]="coupon"> </app-coupon-card>
-      </ng-template>
-  </p-carousel>
+  <ng-template pTemplate="header">
+    <p class="fs-5 fw-4">
+      Cart Price {{ cartService.cartPrice | currency : "INR" }}
+    </p>
+  </ng-template>
+  <div class="row row-cols-1 row-cols-md-2">
+    <div class="col" *ngFor="let cartItem of cartService.cartItems">
+      <app-business-service-card-small
+        [showDeleteIcon]="true"
+        [businessServiceData]="cartItem.businessService"
+        [cardConfig]="cardConfig"
+        [cartItem]="cartItem"
+      >
+      </app-business-service-card-small>
+    </div>
+  </div>
 
-    <div  class="d-flex justify-content-between " >
+  <ng-template pTemplate="footer">
+    <p>Coupons</p>
+
+    <p-carousel
+      [value]="cartService.coupons"
+      [numVisible]="isMobile ? 2 : 3"
+      [showNavigators]="false"
+      [numScroll]="2"
+      [circular]="false"
+    >
+      <ng-template let-coupon pTemplate="item">
+        <app-coupon-card
+          (click)="selectCoupon(coupon)"
+          dateFormat="dd M y"
+          [selected]="cartService.selectedCoupon?.id == coupon.id"
+          [coupon]="coupon"
+        >
+        </app-coupon-card>
+      </ng-template>
+    </p-carousel>
+
+    <div class="d-flex justify-content-between">
       <div class="px-2 mb-2">
         <span class="fs-6">Final Price</span>
-        <br>
+        <br />
         <span class="fs-6">
-          <span [style.text-decoration]="'line-through'" *ngIf="cartService.selectedCoupon">{{ cartService.cartPrice | currency:'INR':'symbol-narrow' }}</span>
-          <span class="ps-2" *ngIf="cartService.selectedCoupon" >{{ cartService.cartPrice - cartService.cartPrice * cartService.selectedCoupon.percent/100 | currency:'INR':'symbol-narrow' }}</span>
-          <span *ngIf="!cartService.selectedCoupon">{{ cartService.cartPrice | currency:'INR':'symbol-narrow' }}</span>
+          <span
+            [style.text-decoration]="'line-through'"
+            *ngIf="cartService.selectedCoupon"
+            >{{
+              cartService.cartPrice | currency : "INR" : "symbol-narrow"
+            }}</span
+          >
+          <span class="ps-2" *ngIf="cartService.selectedCoupon">{{
+            cartService.cartPrice -
+              (cartService.cartPrice * cartService.selectedCoupon.percent) / 100
+              | currency : "INR" : "symbol-narrow"
+          }}</span>
+          <span *ngIf="!cartService.selectedCoupon">{{
+            cartService.cartPrice | currency : "INR" : "symbol-narrow"
+          }}</span>
         </span>
       </div>
       <p-button> Place Order </p-button>

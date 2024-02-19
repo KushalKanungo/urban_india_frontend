@@ -9,7 +9,7 @@
     transition: all 5s cubic-bezier(0.165, 0.84, 0.44, 1);
     .code{
       text-transform: uppercase;
-      font-weight: 400;
+      font-weight: bold;
       color: var(--accent);
     }
 
@@ -63,7 +63,7 @@
 }
 
 .percent, .amount{
-  font-size: 0.75em;
+  font-size: 0.85em;
   .value{
     color: var(--accent);
     font-weight: 500 !important;
