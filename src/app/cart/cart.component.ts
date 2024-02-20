@@ -38,6 +38,8 @@ export class CartComponent implements OnInit {
         this.cartService.fetchCoupons();
       },
     });
+    this.cartService.fetchAddress();
+
   }
 
   selectCoupon(coupon: Coupon | undefined) {

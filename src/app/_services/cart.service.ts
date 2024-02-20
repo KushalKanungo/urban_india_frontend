@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import { CouponService } from './coupon.service';
 import { Coupon } from '../_models/coupon';
 import { DeviceDetectorService } from './device-detector.service';
+import { Address } from '../_models/address';
+import { AddressService } from './address.service';
 
 
 export type CartItemModel = {
@@ -26,10 +28,12 @@ export class CartService {
   cartPrice: number = 0
   cartBusinessId!: number
   baseUrl = `${environment.baseUrl}/api/cart`
+  addresses!: Address[]
 
   constructor(
     private toasterService:MessageService,
     private couponService: CouponService,
+    private addressSerive: AddressService,
     private http: HttpClient,
   ){
   }
@@ -76,6 +80,12 @@ export class CartService {
         })
       }
     })
+  }
+
+  public fetchAddress(){
+    this.addressSerive.getAllAddress().subscribe({next: (res: any)=>{
+        this.addresses = res.dto
+    }})
   }
 
   public fetchCoupons(){

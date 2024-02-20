@@ -37,6 +37,20 @@
   </div>
 
   <ng-template pTemplate="footer">
+      <p>Address: <i class="bi bi-geo-alt me-4"></i>
+        <p-dropdown
+        styleClass="same-width "
+        [options]="this.cartService.addresses"
+        optionLabel="plotNo"
+        optionValue="id"
+        placeholder="Select an address"
+        >
+        <ng-template let-address pTemplate="item">
+          <div>{{ address.plotNo }}</div>
+          <div>{{ address.city }},{{ address.state }}</div>
+        </ng-template>
+      </p-dropdown>
+    </p>  
     <p>Coupons</p>
 
     <p-carousel
