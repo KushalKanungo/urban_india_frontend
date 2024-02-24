@@ -55,6 +55,7 @@ import { AddressFormComponent } from './address-form/address-form.component';
 import { OrdersComponent } from './_pages/orders/orders.component';
 import { ListboxModule } from 'primeng/listbox';
 import { CouponCardComponent } from './coupon-card/coupon-card.component';
+import { PanelModule } from 'primeng/panel';
 @NgModule({
   declarations: [
     AppComponent,
@@ -110,8 +111,8 @@ import { CouponCardComponent } from './coupon-card/coupon-card.component';
     ToastModule,
     LoadingBarHttpClientModule,
     SidebarModule,
-    ListboxModule
-    
+    ListboxModule,
+    PanelModule
   ],
   providers: [
     DialogService,

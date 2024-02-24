@@ -1,5 +1,5 @@
 <div class="container pt-5">
-<div class="row">
+<!-- <div class="row">
 
   <div class="col-4 offset-2">
     <app-address-form [editMode]="editMode" [editAddressModel]="editAddressModel"></app-address-form>
@@ -21,6 +21,28 @@
     </ng-template>
     </p-listbox>
   </div>
-</div>
+</div> -->
+
+
+<p-panel *ngFor="let order of orders" [toggleable]="true" styleClass="my-4">
+  <ng-template pTemplate="header">
+      <div class="flex align-items-center gap-2">
+          <span class="font-bold">{{ creteOrderTitle(order) }}</span>
+      </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <div class="d-flex justify-content-between px-5">
+      <span>Total</span>
+      <span class="fw-bold text-green">{{ 20000 | currency : "INR" : "symbol"}}</span>
+    </div>
+  </ng-template>
+  <section>
+    <div class="d-flex justify-content-between px-5 my-3" *ngFor="let item of order.orderItems">
+      <span>{{item.businessService.name}}</span>
+      <span>{{item.businessService.price | currency : "INR" : "symbol"}}</span>
+    </div>
+  </section>
+  </p-panel>
+
 </div>
   <!-- <div class="col-1"></div> -->

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Address } from 'src/app/_models/address';
+import { Order } from 'src/app/_models/order';
 import { AddressService } from 'src/app/_services/address.service';
+import { OrdersService } from 'src/app/_services/orders.service';
 
 @Component({
   selector: 'app-orders',
@@ -10,17 +12,30 @@ import { AddressService } from 'src/app/_services/address.service';
 })
 export class OrdersComponent implements OnInit{
 
-  constructor(private addressService: AddressService, private toasterService: MessageService) { }
+  constructor(private addressService: AddressService, private toasterService: MessageService, private readonly ordersService: OrdersService) { }
 
   addressess: Address[] = []
   editMode = false
   editAddressModel: Address | null = null
-
+  selectedAddress: Address | null = null
+  orders!: Order[]
   ngOnInit(){
     this.fetchAllAddresses()
+    this.fetchAllOrderes()
+  }
+  fetchAllOrderes() {
+    this.ordersService.getMyOrders().subscribe({next: (res)=>{
+      this.orders = res.data
+      debugger
+      console.log(this.orders);
+      
+    }})
   }
 
-  selectedAddress: Address | null = null
+  creteOrderTitle(order: Order){
+    return order.orderItems.map((item) => {return item.businessService.name}).join(', ')
+  }
+
 
   fetchAllAddresses(){
     this.addressService.getAllAddress().subscribe({next: (res: any)=>{
