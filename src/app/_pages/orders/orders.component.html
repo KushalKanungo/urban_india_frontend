@@ -24,25 +24,31 @@
 </div> -->
 
 
-<p-panel *ngFor="let order of orders" [toggleable]="true" styleClass="my-4">
-  <ng-template pTemplate="header">
-      <div class="flex align-items-center gap-2">
-          <span class="font-bold">{{ creteOrderTitle(order) }}</span>
+<div class="mx-md-5 px-md-5">
+  <p-panel *ngFor="let order of orders" [toggleable]="true" styleClass="my-4">
+    <ng-template pTemplate="header">
+        <div class=" align-items-center gap-2 px-md-5">
+            <span class="font-bold">{{ creteOrderTitle(order) }}</span>
+            <div class="mt-1"> <p-tag styleClass="p-1 px-2" [value]="order.status"></p-tag> </div>
+        </div>
+    </ng-template>
+    <section>
+      <div class="d-flex justify-content-between px-md-5 my-3" *ngFor="let item of order.orderItems">
+        <span>{{item.businessService.name}}</span>
+        <span>{{item.businessService.price | currency : "INR" : "symbol"}}</span>
       </div>
-  </ng-template>
-  <ng-template pTemplate="footer">
-    <div class="d-flex justify-content-between px-5">
-      <span>Total</span>
-      <span class="fw-bold text-green">{{ 20000 | currency : "INR" : "symbol"}}</span>
-    </div>
-  </ng-template>
-  <section>
-    <div class="d-flex justify-content-between px-5 my-3" *ngFor="let item of order.orderItems">
-      <span>{{item.businessService.name}}</span>
-      <span>{{item.businessService.price | currency : "INR" : "symbol"}}</span>
-    </div>
-  </section>
-  </p-panel>
-
+      <div *ngIf="order.coupon?.id" class="d-flex justify-content-between px-md-5">
+        <span>Discount <span class="text-accent"> ({{order.coupon.code}}) </span></span>
+        <span class="fw-bold text-red"> - {{ 20000*(order.coupon.percent/100)| currency : "INR" : "symbol"}}</span>
+      </div>
+    </section>
+    <ng-template pTemplate="footer">
+      <div class="d-flex justify-content-between px-md-5 fs-5">
+        <span>Total</span>
+        <span class="fw-bold text-green">{{ 20000 | currency : "INR" : "symbol"}}</span>
+      </div>
+    </ng-template>
+    </p-panel>
+</div>
 </div>
   <!-- <div class="col-1"></div> -->

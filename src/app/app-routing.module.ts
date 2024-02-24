@@ -12,6 +12,7 @@ import { BusinessServicePageComponent } from './_pages/business-service-page/bus
 import { businessServiceResolver } from './_resolver/businessService.resolver';
 import { businessResolver, serviceResolver } from './_resolver/listing-data.resolver';
 import { OrdersComponent } from './_pages/orders/orders.component';
+import { AddressComponent } from './_pages/address/address.component';
 
 const routes: Routes = [
   { path: '', component: LoginPageComponent, canActivate: [AuthGuard] },
@@ -39,6 +40,10 @@ const routes: Routes = [
     path: 'service/:serviceId',
     component: BusinessServicePageComponent,
     resolve: { data:  businessServiceResolver  }
+  },
+  {
+    path: 'address',
+    component: AddressComponent,
   }
 ];
 

@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { Order } from '../_models/order';
 import { OrderItem } from '../_models/order-item';
+import { toStatus } from '../_enum/status';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +30,12 @@ export class OrdersService {
             name: order.businessName
           },
           coupon: order.coupon,
-          status: order.status,
+          status: toStatus(order.status),
           orderItems: (order.orderItems as any[]).map((item)=>{
             return {
               id: item.id,
               completionDate: item.completionDate,
-              status: item.status,
+              status: toStatus(item.status),
               businessService: {
                 id: item.businessServiceId,
                 name: item.businessServiceName,

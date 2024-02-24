@@ -26,8 +26,6 @@ export class OrdersComponent implements OnInit{
   fetchAllOrderes() {
     this.ordersService.getMyOrders().subscribe({next: (res)=>{
       this.orders = res.data
-      debugger
-      console.log(this.orders);
       
     }})
   }

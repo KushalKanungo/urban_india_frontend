@@ -85,5 +85,10 @@ export class NavbarComponent {
       routerLink: '/my-business',
       icon: 'bi bi-shop',
     },
+    {
+      label: 'Address',
+      routerLink: '/address',
+      icon: 'bi bi-geo-alt',
+    },
   ];
 }
