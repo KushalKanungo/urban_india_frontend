@@ -4,18 +4,8 @@
     <div class="col-12 col-md-8">
       <h2 class="text-center mt-4" style="font-weight: 600">URBAN INDIA</h2>
       <h4 class="mx-3">Signup</h4>
-      <form
-        class="p-3"
-        [formGroup]="signupForm"
-        (submit)="signupButtonHandeler()"
-      >
-        <p-fileUpload
-          mode="basic"
-          chooseLabel="Choose"
-          name="demo[]"
-          accept="image/*"
-          (onSelect)="onSelect($event)"
-        >
+      <form class="p-3" [formGroup]="signupForm" (submit)="signupButtonHandeler()">
+        <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" accept="image/*" (onSelect)="onSelect($event)">
           <ng-template pTemplate="content">
             <ul *ngIf="uploadedFile.length">
               <li *ngFor="let file of uploadedFile">
@@ -26,84 +16,37 @@
         </p-fileUpload>
         <div class="row row-cols-1 row-cols-sm-2 p-4 p-sm-2">
           <div class="col mt-3">
-            <input
-              type="text"
-              class="same-width"
-              placeholder="First Name"
-              pInputText
-              formControlName="firstName"
-            />
+            <input type="text" class="same-width" placeholder="First Name" pInputText formControlName="firstName" />
           </div>
           <div class="col mt-3">
-            <input
-              type="text"
-              class="same-width"
-              placeholder="Last Name"
-              pInputText
-              formControlName="lastName"
-            />
+            <input type="text" class="same-width" placeholder="Last Name" pInputText formControlName="lastName" />
           </div>
           <div class="col mt-3">
-            <input
-              type="text"
-              class="same-width"
-              placeholder="Username"
-              pInputText
-              formControlName="username"
-            />
+            <input type="text" class="same-width" placeholder="Username" pInputText formControlName="username" />
           </div>
           <div class="col mt-3">
-            <input
-              type="email"
-              class="same-width"
-              placeholder="Email"
-              pInputText
-              formControlName="email"
-            />
+            <input type="email" class="same-width" placeholder="Email" pInputText formControlName="email" />
           </div>
           <div class="col mt-3">
-            <input
-              type="text"
-              class="same-width"
-              placeholder="Mobile Number"
-              pInputText
-              formControlName="phone_number"
-            />
+            <input type="text" class="same-width" placeholder="Mobile Number" pInputText
+              formControlName="phone_number" />
           </div>
           <div class="col mt-3">
-            <p-dropdown
-              styleClass="same-width"
-              placeholder="Gender"
-              [options]="genders"
-              optionLabel="name"
-              formControlName="gender"
-            ></p-dropdown>
+            <p-dropdown styleClass="same-width" placeholder="Gender" [options]="genders" optionLabel="name"
+              formControlName="gender"></p-dropdown>
           </div>
           <div class="col mt-3">
-            <p-password
-              [toggleMask]="true"
-              [feedback]="false"
-              placeholder="Password"
-              [inputStyle]="{ width: '100%', maxWidth: '100%' }"
-              formControlName="password"
-            ></p-password>
+            <p-password [toggleMask]="true" [feedback]="false" placeholder="Password"
+              [inputStyle]="{ width: '100%', maxWidth: '100%' }" formControlName="password"></p-password>
           </div>
           <div class="col mt-3">
-            <p-password
-              [toggleMask]="true"
-              placeholder="Confirm  Password"
-              [inputStyle]="{ width: '100%', maxWidth: '100%' }"
-            ></p-password>
+            <p-password [toggleMask]="true" placeholder="Confirm  Password"
+              [inputStyle]="{ width: '100%', maxWidth: '100%' }"></p-password>
           </div>
         </div>
 
-        <p-button
-          styleClass="p-button mt-3"
-          type="submit"
-          [disabled]="!signupForm.valid"
-        >
-          Signup <i class="pi pi-sign-in px-2 pt-1"></i
-        ></p-button>
+        <p-button styleClass="p-button mt-3" type="submit" [disabled]="!signupForm.valid">
+          Signup <i class="pi pi-sign-in px-2 pt-1"></i></p-button>
       </form>
     </div>
   </div>

@@ -4,12 +4,19 @@
       <ng-template pTemplate="header">
         <div class=" align-items-center gap-2 px-md-5">
           <span class="font-bold">{{ creteOrderTitle(order) }}</span>
+          <div class="text-muted my-2" [style.font-size]="'0.8rem'"> 
+            <i class="bi bi-geo-alt"></i>
+            {{order.address.plotNo}}, {{order.address.city}}, {{order.address.state}}
+          </div>
           <div class="mt-1"> <p-tag styleClass="p-1 px-2" [value]="order.status"></p-tag> </div>
         </div>
       </ng-template>
       <section>
         <div class="d-flex justify-content-between px-md-5 my-3" *ngFor="let item of order.orderItems">
-          <span>{{item.businessService.name}}</span>
+          <span>
+            {{item.businessService.name}}
+            <div class="text-muted mb-1" [style.font-size]="'0.8rem'"> {{item.completionDate | date}}</div> 
+          </span>
           <span> <span class="me-2" [style.text-decoration]="'line-through'"
               *ngIf="item.effectivePrice !== item.businessService.price"> {{item.businessService.price | currency :
               "INR" : "symbol"}} </span> {{item.effectivePrice | currency : "INR" : "symbol"}}</span>
