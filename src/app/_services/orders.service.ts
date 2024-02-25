@@ -14,8 +14,8 @@ export class OrdersService {
   constructor(private readonly http: HttpClient) { }
   baseUrl = `${environment.baseUrl}/api/orders`
 
-  placeOrder(params: {cartId: number, addressId: number, couponId?: number }){
-
+  placeOrder(params: { addressId: number, couponId?: number }){
+    return this.http.post(this.baseUrl, params)
   }
 
   getMyOrders(params = {per: 10, page: 0, paginate: true }): Observable<{data: Order[], total: number, page: number, per: number}>{
@@ -31,11 +31,14 @@ export class OrdersService {
           },
           coupon: order.coupon,
           status: toStatus(order.status),
+          price: order.price,
+          effectivePrice: order.effectivePrice,
           orderItems: (order.orderItems as any[]).map((item)=>{
             return {
               id: item.id,
               completionDate: item.completionDate,
               status: toStatus(item.status),
+              effectivePrice: item.effectivePrice,
               businessService: {
                 id: item.businessServiceId,
                 name: item.businessServiceName,

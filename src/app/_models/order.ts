@@ -8,6 +8,8 @@ export interface Order {
   address: Address,
   coupon: Coupon,
   status: Status
+  price: number
+  effectivePrice: number
   business: {
     id: number,
     name: string

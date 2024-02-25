@@ -1,54 +1,32 @@
 <div class="container pt-5">
-<!-- <div class="row">
-
-  <div class="col-4 offset-2">
-    <app-address-form [editMode]="editMode" [editAddressModel]="editAddressModel"></app-address-form>
-  </div>
-  <div class="col-4">
-    <p-listbox [options]="addressess" emptyMessage="No saved address found" [(ngModel)]="selectedAddress" optionValue="id" optionLabel="plotNo">
-      <ng-template let-address pTemplate="item">
-        <div class="flex align-items-center gap-2">
-            <div class="fs-5">{{ address.plotNo }}</div>
-            <div class="fw-lighter fs-6"> {{address.city}}, {{address.state}}</div>
-            <div class="action-buttons-holder">
-              <i class="pi-pencil pi green"(click)="editAddress(address)" ></i>
-              <i class="pi pi-trash red" (click)="deleteAddress(address.id)"></i>
-            </div>
-        </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-      <div class="text-center p-2 hover-accent" (click)="addNewAddress()"> <i class="bi bi-house-add"></i> ADD ADDRESS</div>
-    </ng-template>
-    </p-listbox>
-  </div>
-</div> -->
-
-
-<div class="mx-md-5 px-md-5">
-  <p-panel *ngFor="let order of orders" [toggleable]="true" styleClass="my-4">
-    <ng-template pTemplate="header">
+  <div class="mx-md-5 px-md-5">
+    <p-panel *ngFor="let order of orders" [toggleable]="true" styleClass="my-4">
+      <ng-template pTemplate="header">
         <div class=" align-items-center gap-2 px-md-5">
-            <span class="font-bold">{{ creteOrderTitle(order) }}</span>
-            <div class="mt-1"> <p-tag styleClass="p-1 px-2" [value]="order.status"></p-tag> </div>
+          <span class="font-bold">{{ creteOrderTitle(order) }}</span>
+          <div class="mt-1"> <p-tag styleClass="p-1 px-2" [value]="order.status"></p-tag> </div>
         </div>
-    </ng-template>
-    <section>
-      <div class="d-flex justify-content-between px-md-5 my-3" *ngFor="let item of order.orderItems">
-        <span>{{item.businessService.name}}</span>
-        <span>{{item.businessService.price | currency : "INR" : "symbol"}}</span>
-      </div>
-      <div *ngIf="order.coupon?.id" class="d-flex justify-content-between px-md-5">
-        <span>Discount <span class="text-accent"> ({{order.coupon.code}}) </span></span>
-        <span class="fw-bold text-red"> - {{ 20000*(order.coupon.percent/100)| currency : "INR" : "symbol"}}</span>
-      </div>
-    </section>
-    <ng-template pTemplate="footer">
-      <div class="d-flex justify-content-between px-md-5 fs-5">
-        <span>Total</span>
-        <span class="fw-bold text-green">{{ 20000 | currency : "INR" : "symbol"}}</span>
-      </div>
-    </ng-template>
+      </ng-template>
+      <section>
+        <div class="d-flex justify-content-between px-md-5 my-3" *ngFor="let item of order.orderItems">
+          <span>{{item.businessService.name}}</span>
+          <span> <span class="me-2" [style.text-decoration]="'line-through'"
+              *ngIf="item.effectivePrice !== item.businessService.price"> {{item.businessService.price | currency :
+              "INR" : "symbol"}} </span> {{item.effectivePrice | currency : "INR" : "symbol"}}</span>
+        </div>
+        <div *ngIf="order.coupon?.id" class="d-flex justify-content-between px-md-5">
+          <span>Discount <span class="text-accent"> ({{order.coupon.code}}) </span></span>
+          <span class="fw-bold text-red"> - {{ order.price*(order.coupon.percent/100)| currency : "INR" :
+            "symbol"}}</span>
+        </div>
+      </section>
+      <ng-template pTemplate="footer">
+        <div class="d-flex justify-content-between px-md-5 fs-5">
+          <span>Total</span>
+          <span class="fw-bold text-green">{{ order.effectivePrice | currency : "INR" : "symbol"}}</span>
+        </div>
+      </ng-template>
     </p-panel>
+  </div>
 </div>
-</div>
-  <!-- <div class="col-1"></div> -->
+<!-- <div class="col-1"></div> -->

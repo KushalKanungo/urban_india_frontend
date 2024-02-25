@@ -8,5 +8,6 @@ export interface OrderItem{
     price: number
   },
   status: string
+  effectivePrice: number
 
 }

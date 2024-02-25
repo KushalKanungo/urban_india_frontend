@@ -1,24 +1,12 @@
 <span #cart class="cart-button" id="cart">
-  <i
-    #targetEl
-    class="bi bi-cart"
-    (click)="isCardSideBarVisible = !isCardSideBarVisible"
-  ></i>
+  <i #targetEl class="bi bi-cart" (click)="isCardSideBarVisible = !isCardSideBarVisible"></i>
   <span class="cart-size">
     <span> {{ cartService.cartItems.length }} </span>
   </span>
 </span>
 
-<p-sidebar
-  [(visible)]="isCardSideBarVisible"
-  appendTo="body"
-  [styleClass]="isMobile ? '' : 'p-sidebar-lg'"
-  position="right"
-  [blockScroll]="true"
-  [showCloseIcon]="true"
-  [fullScreen]="isMobile"
-  [modal]="true"
->
+<p-sidebar [(visible)]="isCardSideBarVisible" appendTo="body" [styleClass]="isMobile ? '' : 'p-sidebar-lg'"
+  position="right" [blockScroll]="true" [showCloseIcon]="true" [fullScreen]="isMobile" [modal]="true">
   <ng-template pTemplate="header">
     <p class="fs-5 fw-4">
       Cart Price {{ cartService.cartPrice | currency : "INR" }}
@@ -26,47 +14,30 @@
   </ng-template>
   <div class="row row-cols-1 row-cols-md-2">
     <div class="col" *ngFor="let cartItem of cartService.cartItems">
-      <app-business-service-card-small
-        [showDeleteIcon]="true"
-        [businessServiceData]="cartItem.businessService"
-        [cardConfig]="cardConfig"
-        [cartItem]="cartItem"
-      >
+      <app-business-service-card-small [showDeleteIcon]="true" [businessServiceData]="cartItem.businessService"
+        [cardConfig]="cardConfig" [cartItem]="cartItem">
       </app-business-service-card-small>
     </div>
   </div>
 
   <ng-template pTemplate="footer">
-      <p>Address: <i class="bi bi-geo-alt me-4"></i>
-        <p-dropdown
-        styleClass="same-width "
-        [options]="this.cartService.addresses"
-        optionLabel="plotNo"
-        optionValue="id"
-        placeholder="Select an address"
-        >
+    <p>
+      Address: <i class="bi bi-geo-alt me-4"></i>
+      <p-dropdown styleClass="same-width " [options]="this.cartService.addresses" optionLabel="plotNo" optionValue="id"
+        placeholder="Select an address" [(ngModel)]="orderParam.addressId">
         <ng-template let-address pTemplate="item">
           <div>{{ address.plotNo }}</div>
           <div>{{ address.city }},{{ address.state }}</div>
         </ng-template>
       </p-dropdown>
-    </p>  
+    </p>
     <p>Coupons</p>
 
-    <p-carousel
-      [value]="cartService.coupons"
-      [numVisible]="isMobile ? 2 : 3"
-      [showNavigators]="false"
-      [numScroll]="2"
-      [circular]="false"
-    >
+    <p-carousel [value]="cartService.coupons" [numVisible]="isMobile ? 2 : 3" [showNavigators]="false" [numScroll]="2"
+      [circular]="false">
       <ng-template let-coupon pTemplate="item">
-        <app-coupon-card
-          (click)="selectCoupon(coupon)"
-          dateFormat="dd M y"
-          [selected]="cartService.selectedCoupon?.id == coupon.id"
-          [coupon]="coupon"
-        >
+        <app-coupon-card (click)="selectCoupon(coupon)" dateFormat="dd M y"
+          [selected]="cartService.selectedCoupon?.id == coupon.id" [coupon]="coupon">
         </app-coupon-card>
       </ng-template>
     </p-carousel>
@@ -76,24 +47,20 @@
         <span class="fs-6">Final Price</span>
         <br />
         <span class="fs-6">
-          <span
-            [style.text-decoration]="'line-through'"
-            *ngIf="cartService.selectedCoupon"
-            >{{
-              cartService.cartPrice | currency : "INR" : "symbol-narrow"
-            }}</span
-          >
+          <span [style.text-decoration]="'line-through'" *ngIf="cartService.selectedCoupon">{{
+            cartService.cartPrice | currency : "INR" : "symbol-narrow"
+            }}</span>
           <span class="ps-2" *ngIf="cartService.selectedCoupon">{{
             cartService.cartPrice -
-              (cartService.cartPrice * cartService.selectedCoupon.percent) / 100
-              | currency : "INR" : "symbol-narrow"
-          }}</span>
+            (cartService.cartPrice * cartService.selectedCoupon.percent) / 100
+            | currency : "INR" : "symbol-narrow"
+            }}</span>
           <span *ngIf="!cartService.selectedCoupon">{{
             cartService.cartPrice | currency : "INR" : "symbol-narrow"
-          }}</span>
+            }}</span>
         </span>
       </div>
-      <p-button> Place Order </p-button>
+      <p-button (onClick)="placeOrder()"> Place Order </p-button>
     </div>
   </ng-template>
 </p-sidebar>

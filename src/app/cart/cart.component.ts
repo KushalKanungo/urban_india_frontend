@@ -5,6 +5,8 @@ import { SmallCardConfig } from '../business-service-card-small/business-service
 import { Coupon } from '../_models/coupon';
 import { CouponService } from '../_services/coupon.service';
 import { DeviceDetectorService } from '../_services/device-detector.service';
+import { OrdersService } from '../_services/orders.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-cart',
@@ -14,10 +16,16 @@ import { DeviceDetectorService } from '../_services/device-detector.service';
 export class CartComponent implements OnInit {
   isMobile = false;
   cardConfig!: SmallCardConfig;
+  orderParam: {
+    couponId?: number;
+    addressId: number;
+  } = {addressId: 0 };
   constructor(
     public cartService: CartService,
     public couponService: CouponService,
-    private deviceDetector: DeviceDetectorService
+    private deviceDetector: DeviceDetectorService,
+    private ordersService: OrdersService,
+    private toasterService: MessageService
   ) {
     this.isMobile = deviceDetector.isMobile();
   }
@@ -39,14 +47,26 @@ export class CartComponent implements OnInit {
       },
     });
     this.cartService.fetchAddress();
-
   }
 
   selectCoupon(coupon: Coupon | undefined) {
     this.cartService.selectedCoupon = coupon;
+    this.orderParam.couponId = coupon?.id;
   }
 
   removeFromCart(id: number) {
     this.cartService.removeServiceToCart(id);
+  }
+
+  placeOrder() {
+    this.ordersService.placeOrder(this.orderParam).subscribe({
+      next: () => {
+        this.toasterService.add({
+          severity: 'success',
+          detail: 'Order placed successfully',
+        });
+        this.isCardSideBarVisible = false;
+      },
+    });
   }
 }
