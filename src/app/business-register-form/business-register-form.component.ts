@@ -894,15 +894,13 @@ export class BusinessRegisterFormComponent {
   districts: string[] = [];
   file: any;
 
-  constructor(private businessService:BusinessService){
-
-  }
+  constructor(private businessService: BusinessService) {}
   onFileSelect(event: any): void {
     if (event.target.files && event.target.files.length > 0) {
       this.file = event.target.files[0];
       const reader = new FileReader();
 
-      reader.onload = (e) => {
+      reader.onload = e => {
         this.imageUrl = e.target?.result;
       };
 
@@ -913,8 +911,7 @@ export class BusinessRegisterFormComponent {
   // REVIEW: Very bad way
   onStateSelect(event: any) {
     this.states.forEach(({ state, districts }) => {
-      if(state==event.value)
-      this.districts = districts;
+      if (state == event.value) this.districts = districts;
     });
   }
 
@@ -929,33 +926,31 @@ export class BusinessRegisterFormComponent {
   });
 
   addBusinessButton(formDetails: any) {
-
     const address = {
-      plotNo:formDetails.address,
-      state:formDetails.state,
-      city:formDetails.district,
-      pin:formDetails.pin
-    }
+      plotNo: formDetails.address,
+      state: formDetails.state,
+      city: formDetails.district,
+      pin: formDetails.pin,
+    };
 
     const documents = {
-      gstinNumber:formDetails.gstin_number
-    }
-    const businessDetailsModel={
-        name:formDetails.business_name,
-        tagline:formDetails.tagline,
-        documentsModel:documents,
-        addressModel:address
-    }
+      gstinNumber: formDetails.gstin_number,
+    };
+    const businessDetailsModel = {
+      name: formDetails.business_name,
+      tagline: formDetails.tagline,
+      documentsModel: documents,
+      addressModel: address,
+    };
 
     const businessDetails = new FormData();
     businessDetails.set('data', JSON.stringify(businessDetailsModel));
     if (this.file) businessDetails.set('file', this.file);
-//     {"documents":"xdadwfwfsadfsadfaefef  vdfsdfsfv vf",
-// "address":{"google_location_code":"xcsfvsd wssw","state":"raj","city":"jaipur","pin":"313131","plotNo":"13/12"},"name":"saloon"}
+    //     {"documents":"xdadwfwfsadfsadfaefef  vdfsdfsfv vf",
+    // "address":{"google_location_code":"xcsfvsd wssw","state":"raj","city":"jaipur","pin":"313131","plotNo":"13/12"},"name":"saloon"}
     // TODO: send the business details form data to backend
     this.businessService.addBusiness(businessDetails).subscribe({
-      next:(res)=>{
-      }
-    })
+      next: res => {},
+    });
   }
 }

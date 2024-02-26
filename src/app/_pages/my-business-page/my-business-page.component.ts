@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { BusinessServiceModal} from 'src/app/_models/business_service';
+import { BusinessServiceModal } from 'src/app/_models/business_service';
 import { CouponService } from 'src/app/_services/coupon.service';
 import { AddBusinessServiceFormComponent } from 'src/app/add-business-service-form/add-business-service-form.component';
 
@@ -20,7 +20,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 4.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -33,7 +33,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -46,7 +46,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -59,7 +59,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -72,7 +72,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -86,7 +86,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -99,7 +99,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 4.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -112,7 +112,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -125,7 +125,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -138,7 +138,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -151,7 +151,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -164,7 +164,7 @@ export class MyBusinessPageComponent implements OnInit {
       image: 'thi',
       price: 5600,
       rating: 3.6,
-      serviceTypeId:2,
+      serviceTypeId: 2,
       businessId: 2,
       statusId: '2',
       serviceTypeName: 'Technology',
@@ -172,7 +172,10 @@ export class MyBusinessPageComponent implements OnInit {
   ];
 
   ref!: DynamicDialogRef;
-  constructor(private dialogService: DialogService, private readonly couponService: CouponService) {}
+  constructor(
+    private dialogService: DialogService,
+    private readonly couponService: CouponService,
+  ) {}
 
   ngOnInit(): void {
     // this.fetchCoupons()
@@ -191,5 +194,4 @@ export class MyBusinessPageComponent implements OnInit {
 
     this.ref.onClose.subscribe(() => {});
   }
-
 }

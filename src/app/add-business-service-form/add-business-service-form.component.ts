@@ -17,18 +17,18 @@ export class AddBusinessServiceFormComponent implements OnInit {
   constructor(
     private dialogConfig: DynamicDialogConfig,
     private formService: FormDetailsService,
-    private businessServie: BusinessServicesService
+    private businessServie: BusinessServicesService,
   ) {}
   ngOnInit(): void {
     this._fetch_services();
     this.addServiceForm = new FormGroup({
       business_service_name: new FormControl(
         this.dialogConfig.data?.service?.title ?? '',
-        [Validators.required]
+        [Validators.required],
       ),
       description: new FormControl(
         this.dialogConfig.data?.service?.description ?? '',
-        [Validators.required, Validators.maxLength(50)]
+        [Validators.required, Validators.maxLength(50)],
       ),
       service_type_name: new FormControl('', [Validators.required]),
       price: new FormControl(this.dialogConfig.data?.service?.price ?? '', [
@@ -44,7 +44,7 @@ export class AddBusinessServiceFormComponent implements OnInit {
       this.file = event.target.files[0];
       const reader = new FileReader();
 
-      reader.onload = (e) => {
+      reader.onload = e => {
         this.imageUrl = e.target?.result;
       };
 
@@ -56,16 +56,16 @@ export class AddBusinessServiceFormComponent implements OnInit {
     const businessServiceModel = {
       title: formDetails.business_service_name,
       description: formDetails.description,
-      price:formDetails.price,
-      serviceTypeId: formDetails.service_type_name
-    }
+      price: formDetails.price,
+      serviceTypeId: formDetails.service_type_name,
+    };
 
     const businessServiceDetails = new FormData();
     businessServiceDetails.set('data', JSON.stringify(businessServiceModel));
     if (this.file) businessServiceDetails.set('file', this.file);
 
     this.businessServie.addBusinessService(businessServiceDetails).subscribe({
-      next: (res) => {
+      next: res => {
         console.log(res);
       },
     });
@@ -73,11 +73,11 @@ export class AddBusinessServiceFormComponent implements OnInit {
 
   _fetch_services() {
     this.formService.getAllService().subscribe({
-      next: (res) => {
+      next: res => {
         this.service_types = res;
         console.log(this.service_types);
       },
-      error: (err) => {},
+      error: err => {},
     });
   }
 }

@@ -1,109 +1,109 @@
-import { Component } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { DialogService } from "primeng/dynamicdialog";
-import { BusinessServiceModal } from "src/app/_models/business_service";
-import { Reviews } from "src/app/_models/reviews";
-import { ReviewPageComponent } from "../review-page/review-page.component";
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DialogService } from 'primeng/dynamicdialog';
+import { BusinessServiceModal } from 'src/app/_models/business_service';
+import { Reviews } from 'src/app/_models/reviews';
+import { ReviewPageComponent } from '../review-page/review-page.component';
 
 @Component({
-  selector: "app-business-page",
-  templateUrl: "./business-page.component.html",
-  styleUrls: ["./business-page.component.scss"],
+  selector: 'app-business-page',
+  templateUrl: './business-page.component.html',
+  styleUrls: ['./business-page.component.scss'],
 })
 export class BusinessPageComponent {
   id!: number;
   reviews: Reviews[] = [
     {
-      title: "Great Experience",
-      description: "The service was excellent and the staff was very friendly.",
+      title: 'Great Experience',
+      description: 'The service was excellent and the staff was very friendly.',
       rating: 5,
-      service: "Restaurant",
-      business: "ABC Restaurant",
-      customer: "John Doe",
-      date: new Date("2022-05-15"),
+      service: 'Restaurant',
+      business: 'ABC Restaurant',
+      customer: 'John Doe',
+      date: new Date('2022-05-15'),
     },
     {
-      title: "Highly Recommend",
+      title: 'Highly Recommend',
       description:
-        "I had a wonderful time and would definitely come back again.",
+        'I had a wonderful time and would definitely come back again.',
       rating: 4.5,
-      service: "Hotel",
-      business: "XYZ Hotel",
-      customer: "Jane Smith",
-      date: new Date("2022-07-01"),
+      service: 'Hotel',
+      business: 'XYZ Hotel',
+      customer: 'Jane Smith',
+      date: new Date('2022-07-01'),
     },
     {
-      title: "Good Service",
-      description: "The staff was attentive and the food was delicious.",
+      title: 'Good Service',
+      description: 'The staff was attentive and the food was delicious.',
       rating: 4,
-      service: "Restaurant",
-      business: "123 Cafe",
-      customer: "Mike Johnson",
-      date: new Date("2022-09-20"),
+      service: 'Restaurant',
+      business: '123 Cafe',
+      customer: 'Mike Johnson',
+      date: new Date('2022-09-20'),
     },
     {
-      title: "Average Experience",
-      description: "The service was okay, but nothing exceptional.",
+      title: 'Average Experience',
+      description: 'The service was okay, but nothing exceptional.',
       rating: 3,
-      service: "Hotel",
-      business: "456 Inn",
-      customer: "Sarah Williams",
-      date: new Date("2022-08-10"),
+      service: 'Hotel',
+      business: '456 Inn',
+      customer: 'Sarah Williams',
+      date: new Date('2022-08-10'),
     },
     {
-      title: "Disappointing",
-      description: "The service was poor and the food was not up to par.",
+      title: 'Disappointing',
+      description: 'The service was poor and the food was not up to par.',
       rating: 2,
-      service: "Restaurant",
-      business: "789 Bistro",
-      customer: "Robert Davis",
-      date: new Date("2022-06-05"),
+      service: 'Restaurant',
+      business: '789 Bistro',
+      customer: 'Robert Davis',
+      date: new Date('2022-06-05'),
     },
     {
-      title: "Excellent Stay",
-      description: "The hotel exceeded my expectations. Highly recommended.",
+      title: 'Excellent Stay',
+      description: 'The hotel exceeded my expectations. Highly recommended.',
       rating: 5,
-      service: "Hotel",
-      business: "PQR Resort",
-      customer: "Emily Wilson",
-      date: new Date("2022-11-12"),
+      service: 'Hotel',
+      business: 'PQR Resort',
+      customer: 'Emily Wilson',
+      date: new Date('2022-11-12'),
     },
     {
-      title: "Average Food",
-      description: "The food was decent, but nothing extraordinary.",
+      title: 'Average Food',
+      description: 'The food was decent, but nothing extraordinary.',
       rating: 3.5,
-      service: "Restaurant",
-      business: "LMN Grill",
-      customer: "David Thompson",
-      date: new Date("2022-10-03"),
+      service: 'Restaurant',
+      business: 'LMN Grill',
+      customer: 'David Thompson',
+      date: new Date('2022-10-03'),
     },
     {
-      title: "Terrible Experience",
-      description: "I had a terrible time at this hotel. Avoid at all costs.",
+      title: 'Terrible Experience',
+      description: 'I had a terrible time at this hotel. Avoid at all costs.',
       rating: 1,
-      service: "Hotel",
-      business: "STU Lodge",
-      customer: "Amy Anderson",
-      date: new Date("2022-12-28"),
+      service: 'Hotel',
+      business: 'STU Lodge',
+      customer: 'Amy Anderson',
+      date: new Date('2022-12-28'),
     },
     {
-      title: "Good Value",
-      description: "The service was good and the prices were reasonable.",
+      title: 'Good Value',
+      description: 'The service was good and the prices were reasonable.',
       rating: 4,
-      service: "Restaurant",
-      business: "VWX Diner",
-      customer: "Daniel Lee",
-      date: new Date("2022-07-22"),
+      service: 'Restaurant',
+      business: 'VWX Diner',
+      customer: 'Daniel Lee',
+      date: new Date('2022-07-22'),
     },
     {
-      title: "Excellent Service",
+      title: 'Excellent Service',
       description:
-        "The staff went above and beyond to make our stay comfortable.",
+        'The staff went above and beyond to make our stay comfortable.',
       rating: 5,
-      service: "Hotel",
-      business: "DEF Resort",
-      customer: "Sophia Moore",
-      date: new Date("2022-04-02"),
+      service: 'Hotel',
+      business: 'DEF Resort',
+      customer: 'Sophia Moore',
+      date: new Date('2022-04-02'),
     },
   ];
   businessServices: BusinessServiceModal[] = [];
@@ -317,17 +317,17 @@ export class BusinessPageComponent {
 
   responsiveOptions = [
     {
-      breakpoint: "1199px",
+      breakpoint: '1199px',
       numVisible: 1,
       numScroll: 1,
     },
     {
-      breakpoint: "991px",
+      breakpoint: '991px',
       numVisible: 2,
       numScroll: 1,
     },
     {
-      breakpoint: "767px",
+      breakpoint: '767px',
       numVisible: 1,
       numScroll: 1,
     },
@@ -338,14 +338,14 @@ export class BusinessPageComponent {
   ) {}
 
   ngOnInit() {
-    this.id = parseInt(this.route.snapshot.paramMap.get("id") || "1");
+    this.id = parseInt(this.route.snapshot.paramMap.get('id') || '1');
   }
 
   openReviewsDialog() {
     const ref = this.dialogService.open(ReviewPageComponent, {
       maximizable: true,
-      width: "90vw",
-      height: "80vh",
+      width: '90vw',
+      height: '80vh',
     });
   }
 }

@@ -15,21 +15,21 @@ export class FormDetailsService {
 
   getAllService(): Observable<any[]> {
     return this.http.get<any[]>(this.BASE_URL + '/service').pipe(
-      map((res) => {
-        return res.map((service) => {
+      map(res => {
+        return res.map(service => {
           return { label: service.title, value: service.id };
         });
-      })
+      }),
     );
   }
 
-  getAllBusinessList():Observable<any[]>{
-    return this.http.get<any[]>(this.BASE_URL+`/business/all`).pipe(
-      map((res) => {
-        return res.map((business) => {
+  getAllBusinessList(): Observable<any[]> {
+    return this.http.get<any[]>(this.BASE_URL + `/business/all`).pipe(
+      map(res => {
+        return res.map(business => {
           return { label: business.name, value: business.id };
         });
-      })
+      }),
     );
   }
 }

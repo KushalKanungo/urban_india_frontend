@@ -12,7 +12,10 @@ import { Button } from 'primeng/button';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
   private REDIRECT_URI = 'services';
   private clientId = environment.clientId;
   loading = false;
@@ -39,7 +42,7 @@ export class LoginComponent {
 
   googleButttonHandeler() {
     const buttonPlaceHolder = document.getElementById(
-      'button-placeholder'
+      'button-placeholder',
     ) as HTMLElement;
     if (buttonPlaceHolder?.childNodes.length < 1) {
       const span = new HTMLSpanElement();
@@ -62,10 +65,10 @@ export class LoginComponent {
         height: 60,
         longtitle: false,
         theme: 'dark',
-      }
+      },
     );
     const button: HTMLButtonElement = document.querySelector(
-      'div[role=button]'
+      'div[role=button]',
     ) as HTMLButtonElement;
     button.click();
   }
@@ -96,7 +99,7 @@ export class LoginComponent {
       },
     });
   }
-  
+
   private renderButton() {
     // @ts-ignore
     google.accounts.id.initialize({
@@ -114,7 +117,7 @@ export class LoginComponent {
         height: 60,
         longtitle: false,
         theme: 'dark',
-      }
+      },
     );
   }
 }

@@ -9,7 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./signup.component.scss'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {
     if (this.router.getCurrentNavigation()?.extras.state?.['email'])
       this.email = this.router.getCurrentNavigation()?.extras.state?.['email'];
   }

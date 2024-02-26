@@ -7,21 +7,24 @@ import { CouponService } from '../_services/coupon.service';
 @Component({
   selector: 'app-coupon-section',
   templateUrl: './coupon-section.component.html',
-  styleUrls: ['./coupon-section.component.scss']
+  styleUrls: ['./coupon-section.component.scss'],
 })
-export class CouponSectionComponent implements OnInit{
+export class CouponSectionComponent implements OnInit {
   ref!: DynamicDialogRef;
-  @Input() businessId!: number  
-  constructor(private readonly dialogService: DialogService, private readonly couponService: CouponService) { }
-  
-  coupons: Coupon[] =  [
+  @Input() businessId!: number;
+  constructor(
+    private readonly dialogService: DialogService,
+    private readonly couponService: CouponService,
+  ) {}
+
+  coupons: Coupon[] = [
     {
       id: 1,
       startTime: '2023-01-01',
       endTime: '2023-02-01',
       percent: 10,
       code: 'COUPON10',
-      minimumAmount: 50.00,
+      minimumAmount: 50.0,
     },
     {
       id: 2,
@@ -29,7 +32,7 @@ export class CouponSectionComponent implements OnInit{
       endTime: '2023-03-15',
       percent: 20,
       code: 'SPRINGSALE',
-      minimumAmount: 30.00,
+      minimumAmount: 30.0,
     },
     {
       id: 3,
@@ -37,7 +40,7 @@ export class CouponSectionComponent implements OnInit{
       endTime: '2023-04-01',
       percent: 15,
       code: 'MARCH15',
-      minimumAmount: 25.00,
+      minimumAmount: 25.0,
     },
     {
       id: 4,
@@ -45,7 +48,7 @@ export class CouponSectionComponent implements OnInit{
       endTime: '2023-05-10',
       percent: 25,
       code: 'SPRING25',
-      minimumAmount: 40.00,
+      minimumAmount: 40.0,
     },
     {
       id: 5,
@@ -53,7 +56,7 @@ export class CouponSectionComponent implements OnInit{
       endTime: '2023-06-05',
       percent: 30,
       code: 'MAYSALE30',
-      minimumAmount: 60.00,
+      minimumAmount: 60.0,
     },
     {
       id: 6,
@@ -61,7 +64,7 @@ export class CouponSectionComponent implements OnInit{
       endTime: '2023-07-15',
       percent: 10,
       code: 'SUMMERSALE',
-      minimumAmount: 50.00,
+      minimumAmount: 50.0,
     },
     {
       id: 7,
@@ -69,7 +72,7 @@ export class CouponSectionComponent implements OnInit{
       endTime: '2023-08-01',
       percent: 20,
       code: 'JULY20',
-      minimumAmount: 35.00,
+      minimumAmount: 35.0,
     },
     {
       id: 8,
@@ -77,7 +80,7 @@ export class CouponSectionComponent implements OnInit{
       endTime: '2023-09-10',
       percent: 15,
       code: 'BACKTOSCHOOL',
-      minimumAmount: 30.00,
+      minimumAmount: 30.0,
     },
     {
       id: 9,
@@ -85,7 +88,7 @@ export class CouponSectionComponent implements OnInit{
       endTime: '2023-10-01',
       percent: 25,
       code: 'FALL25',
-      minimumAmount: 40.00,
+      minimumAmount: 40.0,
     },
     {
       id: 10,
@@ -93,68 +96,80 @@ export class CouponSectionComponent implements OnInit{
       endTime: '2023-11-15',
       percent: 30,
       code: 'HALLOWEEN30',
-      minimumAmount: 60.00,
+      minimumAmount: 60.0,
     },
   ];
-  
+
   ngOnInit(): void {
-    if (this.businessId === undefined)
-      this.fetchCoupons()
-    else
-      this.fetchBusinessCoupons()
+    if (this.businessId === undefined) this.fetchCoupons();
+    else this.fetchBusinessCoupons();
   }
 
   formatDate(date = new Date()) {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
 
-  openForm(event: any, edit = false, coupon: Coupon | undefined = undefined){
+  openForm(event: any, edit = false, coupon: Coupon | undefined = undefined) {
     this.ref = this.dialogService.open(CouponFormComponent, {
       header: edit ? 'Edit Coupon' : 'Add Coupon',
-      data: { editMode: edit, coupon: coupon},
+      data: { editMode: edit, coupon: coupon },
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
     });
 
-    this.ref.onClose.subscribe({next: (couponValues)=>{
-      if (couponValues){
-        const tempCoupon: Coupon = {
-          code: couponValues.code.toUpperCase(),
-          minimumAmount: couponValues.minimumAmount,
-          percent: couponValues.percent,
-          startTime: this.formatDate(couponValues.dateRange[0]), 
-          endTime: this.formatDate(couponValues.dateRange[1]) 
-        } 
-        if (edit && coupon?.id !== undefined){
-          this.couponService.updateCoupon(coupon.id, tempCoupon).subscribe({next: ()=> { this.fetchCoupons() } })
+    this.ref.onClose.subscribe({
+      next: couponValues => {
+        if (couponValues) {
+          const tempCoupon: Coupon = {
+            code: couponValues.code.toUpperCase(),
+            minimumAmount: couponValues.minimumAmount,
+            percent: couponValues.percent,
+            startTime: this.formatDate(couponValues.dateRange[0]),
+            endTime: this.formatDate(couponValues.dateRange[1]),
+          };
+          if (edit && coupon?.id !== undefined) {
+            this.couponService.updateCoupon(coupon.id, tempCoupon).subscribe({
+              next: () => {
+                this.fetchCoupons();
+              },
+            });
+          } else {
+            this.couponService.addCoupon(tempCoupon).subscribe({
+              next: () => {
+                this.fetchCoupons();
+              },
+            });
+          }
         }
-        else{
-          this.couponService.addCoupon(tempCoupon).subscribe({next: ()=> { this.fetchCoupons() } })
-        }
-      }
-
-    }})
+      },
+    });
   }
 
-  fetchCoupons(){
-    this.couponService.getCoupons().subscribe({next: (data)=>{
-      this.coupons = data?.dto
-    }})
-  }
-  
-  fetchBusinessCoupons(){
-    this.couponService.getCouponsFiltered(this.businessId).subscribe({next: (data)=>{
-      this.coupons = data?.dto
-    }})
+  fetchCoupons() {
+    this.couponService.getCoupons().subscribe({
+      next: data => {
+        this.coupons = data?.dto;
+      },
+    });
   }
 
-  deleteCoupon(event: any, couponId: number | undefined){
-    
-    if (couponId) 
-      this.couponService.deleteCoupon(couponId).subscribe({ next: () => { this.fetchCoupons(  ) }})
+  fetchBusinessCoupons() {
+    this.couponService.getCouponsFiltered(this.businessId).subscribe({
+      next: data => {
+        this.coupons = data?.dto;
+      },
+    });
   }
-  
+
+  deleteCoupon(event: any, couponId: number | undefined) {
+    if (couponId)
+      this.couponService.deleteCoupon(couponId).subscribe({
+        next: () => {
+          this.fetchCoupons();
+        },
+      });
+  }
 }

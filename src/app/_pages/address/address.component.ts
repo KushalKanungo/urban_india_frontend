@@ -14,7 +14,7 @@ export class AddressComponent implements OnInit {
   constructor(
     private addressService: AddressService,
     private toasterService: MessageService,
-    private readonly ordersService: OrdersService
+    private readonly ordersService: OrdersService,
   ) {}
 
   addressess: Address[] = [];
@@ -28,7 +28,7 @@ export class AddressComponent implements OnInit {
 
   creteOrderTitle(order: Order) {
     return order.orderItems
-      .map((item) => {
+      .map(item => {
         return item.businessService.name;
       })
       .join(', ');

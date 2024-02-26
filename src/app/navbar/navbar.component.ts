@@ -11,7 +11,7 @@ import { AuthService } from '../_services/auth.service';
 export class NavbarComponent {
   constructor(
     private dialogService: DialogService,
-    public authService: AuthService
+    public authService: AuthService,
   ) {}
   ref!: DynamicDialogRef;
 
@@ -25,7 +25,7 @@ export class NavbarComponent {
 
     this.ref.onClose.subscribe(() => {});
 
-    this.ref.onMaximize.subscribe((value) => {});
+    this.ref.onMaximize.subscribe(value => {});
   }
 
   logOut() {

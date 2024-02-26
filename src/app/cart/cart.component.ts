@@ -19,13 +19,13 @@ export class CartComponent implements OnInit {
   orderParam: {
     couponId?: number;
     addressId: number;
-  } = {addressId: 0 };
+  } = { addressId: 0 };
   constructor(
     public cartService: CartService,
     public couponService: CouponService,
     private deviceDetector: DeviceDetectorService,
     private ordersService: OrdersService,
-    private toasterService: MessageService
+    private toasterService: MessageService,
   ) {
     this.isMobile = deviceDetector.isMobile();
   }

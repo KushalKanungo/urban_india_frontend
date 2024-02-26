@@ -9,7 +9,8 @@
   "javascript": {
     "formatter": {
       "semicolons": "always",
-      "arrowParentheses": "asNeeded"
+      "arrowParentheses": "asNeeded",
+      "quoteStyle": "single"
     }
   },
   "linter": {
@@ -18,8 +19,8 @@
       "recommended": true,
       "complexity": {
         "noForEach": "error",
-				"useSimplifiedLogicExpression": "warn",
-				"useOptionalChain": "warn"
+        "useSimplifiedLogicExpression": "warn",
+        "useOptionalChain": "warn"
       },
       "performance": {
         "noAccumulatingSpread": "error",

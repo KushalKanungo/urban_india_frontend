@@ -5,33 +5,32 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CouponService {
+  constructor(private readonly http: HttpClient) {}
+  BASE_URL = `${environment.baseUrl}/api/coupon`;
+  BASE_APP_URL = environment.baseUrl;
 
-  constructor(private readonly http: HttpClient) { }
-  BASE_URL = `${environment.baseUrl}/api/coupon`
-  BASE_APP_URL = environment.baseUrl
-
-  addCoupon(coupon: Coupon): Observable<any>{
-    return this.http.post<any>(this.BASE_URL, coupon)
-  }
-  
-  deleteCoupon(couponId: number){
-    return this.http.delete<any>(`${this.BASE_URL}/${couponId}`)
+  addCoupon(coupon: Coupon): Observable<any> {
+    return this.http.post<any>(this.BASE_URL, coupon);
   }
 
-  updateCoupon(couponId: number, coupon: Coupon){
-    return this.http.put<any>(`${this.BASE_URL}/${couponId}`, coupon)
+  deleteCoupon(couponId: number) {
+    return this.http.delete<any>(`${this.BASE_URL}/${couponId}`);
   }
 
-  getCoupons(): Observable<any>{
-    return this.http.get(this.BASE_URL)
-  }
-  
-  getCouponsFiltered(businessId: number): Observable<any>{
-    return this.http.get<any>(`${this.BASE_APP_URL}/api/businesses/${businessId}/coupons`)
-    
+  updateCoupon(couponId: number, coupon: Coupon) {
+    return this.http.put<any>(`${this.BASE_URL}/${couponId}`, coupon);
   }
 
+  getCoupons(): Observable<any> {
+    return this.http.get(this.BASE_URL);
+  }
+
+  getCouponsFiltered(businessId: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.BASE_APP_URL}/api/businesses/${businessId}/coupons`,
+    );
+  }
 }

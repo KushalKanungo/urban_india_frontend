@@ -8,9 +8,8 @@ describe('CouponSectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CouponSectionComponent ]
-    })
-    .compileComponents();
+      declarations: [CouponSectionComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CouponSectionComponent);
     component = fixture.componentInstance;

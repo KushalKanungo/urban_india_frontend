@@ -8,9 +8,8 @@ describe('CouponFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CouponFormComponent ]
-    })
-    .compileComponents();
+      declarations: [CouponFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CouponFormComponent);
     component = fixture.componentInstance;

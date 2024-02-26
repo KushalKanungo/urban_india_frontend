@@ -9,16 +9,14 @@ import { FormDetailsService } from '../_services/form-details.service';
 
 export const businessResolver: ResolveFn<any> = (
   route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
+  state: RouterStateSnapshot,
 ) => {
-
   return inject(FormDetailsService).getAllBusinessList();
 };
 
 export const serviceResolver: ResolveFn<any> = (
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ) => {
-  
-    return inject(FormDetailsService).getAllService();
-  };
+  route: ActivatedRouteSnapshot,
+  state: RouterStateSnapshot,
+) => {
+  return inject(FormDetailsService).getAllService();
+};

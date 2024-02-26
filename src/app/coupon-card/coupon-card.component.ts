@@ -4,15 +4,13 @@ import { Coupon } from '../_models/coupon';
 @Component({
   selector: 'app-coupon-card',
   templateUrl: './coupon-card.component.html',
-  styleUrls: ['./coupon-card.component.scss']
+  styleUrls: ['./coupon-card.component.scss'],
 })
 export class CouponCardComponent {
-  @Input() coupon!: Coupon
-  @Input() selected = false
-  @Input() settings: {edit: boolean, time: boolean} = {
+  @Input() coupon!: Coupon;
+  @Input() selected = false;
+  @Input() settings: { edit: boolean; time: boolean } = {
     edit: false,
-    time: false
-  }
-
-
+    time: false,
+  };
 }

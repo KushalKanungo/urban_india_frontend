@@ -8,9 +8,8 @@ describe('MyBusinessPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MyBusinessPageComponent ]
-    })
-    .compileComponents();
+      declarations: [MyBusinessPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MyBusinessPageComponent);
     component = fixture.componentInstance;

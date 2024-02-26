@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(
     request: HttpRequest<unknown>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
     const token = this.authService.loadAccessToken();
     if (token) {
@@ -26,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     return next.handle(request).pipe(
-      catchError((err) => {
+      catchError(err => {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 401) {
             this.authService.fallBack();
@@ -35,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
         return throwError(() => {
           return err;
         });
-      })
+      }),
     );
   }
 }

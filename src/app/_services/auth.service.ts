@@ -17,7 +17,10 @@ export class AuthService {
   private AUTH_FAILED_REDIRECT_URL = '/';
   private BASE_URL = `${environment.baseUrl}/api/auth`;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   login(signinDetails: {
     userNameOrEmail: string;
@@ -26,9 +29,9 @@ export class AuthService {
     return this.http
       .post<SignInResponse>(`${this.BASE_URL}/signin`, signinDetails)
       .pipe(
-        tap((response) => {
+        tap(response => {
           this.saveAccessToken(response.accessToken);
-        })
+        }),
       );
   }
 

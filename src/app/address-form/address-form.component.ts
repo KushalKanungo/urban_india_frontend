@@ -7,27 +7,26 @@ import { Address } from '../_models/address';
 @Component({
   selector: 'app-address-form',
   templateUrl: './address-form.component.html',
-  styleUrls: ['./address-form.component.scss']
+  styleUrls: ['./address-form.component.scss'],
 })
 export class AddressFormComponent {
-
-  _editAddressModel!: Address | null
-  get editAddressModel(){
-    return this._editAddressModel
+  _editAddressModel!: Address | null;
+  get editAddressModel() {
+    return this._editAddressModel;
   }
 
-  @Input() editMode!: boolean
-  @Input('editAddressModel')set editAddressModel(address: Address | null) {
-    this._editAddressModel = address
-    if(address === null){
-      this.addressForm.reset()
-      return
-    }      
-    this.addressForm.get('plotNo')?.setValue(address.plotNo)
-    this.addressForm.get('state')?.setValue(address.state)
-    this.onStateSelect({value: address.state})
-    this.addressForm.get('city')?.setValue(address.city)
-    this.addressForm.get('pin')?.setValue(address.pin)
+  @Input() editMode!: boolean;
+  @Input('editAddressModel') set editAddressModel(address: Address | null) {
+    this._editAddressModel = address;
+    if (address === null) {
+      this.addressForm.reset();
+      return;
+    }
+    this.addressForm.get('plotNo')?.setValue(address.plotNo);
+    this.addressForm.get('state')?.setValue(address.state);
+    this.onStateSelect({ value: address.state });
+    this.addressForm.get('city')?.setValue(address.city);
+    this.addressForm.get('pin')?.setValue(address.pin);
   }
   states = [
     {
@@ -910,8 +909,10 @@ export class AddressFormComponent {
   ];
   districts: string[] = [];
 
-  constructor(private addressService: AddressService, private toasterService: MessageService) { }
-
+  constructor(
+    private addressService: AddressService,
+    private toasterService: MessageService,
+  ) {}
 
   addressForm: FormGroup = new FormGroup({
     plotNo: new FormControl('Flat 23 Prime', [Validators.required]),
@@ -920,25 +921,34 @@ export class AddressFormComponent {
     pin: new FormControl('302021', [Validators.required]),
   });
 
-    // REVIEW: Very bad way
+  // REVIEW: Very bad way
   onStateSelect(event: any) {
     this.states.forEach(({ state, districts }) => {
-      if(state==event.value)
-      this.districts = districts;
+      if (state == event.value) this.districts = districts;
     });
   }
 
   submitAddress(newAddressModel: Address) {
-    if(this.editMode){
-      this.addressService.editAddress(this.editAddressModel?.id as number, newAddressModel).subscribe({next: ()=>{
-        this.toasterService.add({severity: 'success', summary: 'Address Updated Successfully'})      
-      }})
-    }else{
-      this.addressService.addNewAddress(newAddressModel).subscribe({next: ()=> {
-        this.toasterService.add({severity: 'success', summary: 'Address Saved Successfully'})      
-      } })    
+    if (this.editMode) {
+      this.addressService
+        .editAddress(this.editAddressModel?.id as number, newAddressModel)
+        .subscribe({
+          next: () => {
+            this.toasterService.add({
+              severity: 'success',
+              summary: 'Address Updated Successfully',
+            });
+          },
+        });
+    } else {
+      this.addressService.addNewAddress(newAddressModel).subscribe({
+        next: () => {
+          this.toasterService.add({
+            severity: 'success',
+            summary: 'Address Saved Successfully',
+          });
+        },
+      });
     }
   }
-
-
 }

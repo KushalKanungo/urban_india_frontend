@@ -11,10 +11,9 @@ import { BusinessServicesService } from '../_services/business-services.service'
 
 export const businessServiceResolver: ResolveFn<any> = (
   route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
+  state: RouterStateSnapshot,
 ) => {
-
   return inject(BusinessServicesService).getBusinessServiceById(
-    route.paramMap.get('serviceId')!
+    route.paramMap.get('serviceId')!,
   );
 };

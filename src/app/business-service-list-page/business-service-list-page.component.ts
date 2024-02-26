@@ -14,7 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BusinessServiceListPageComponent implements OnInit {
   constructor(
     private businessService: BusinessServicesService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
   ) {}
 
   businessServicesData: BusinessServiceModal[] = [];
@@ -56,11 +56,11 @@ export class BusinessServiceListPageComponent implements OnInit {
     this.businessService
       .getAllFilteredBusinssService(this.filterModel.parsed())
       .subscribe({
-        next: (res) => {
+        next: res => {
           this.businessServicesData = res.dto.content;
           this.businessServicePage = res.dto;
         },
-        error: (err) => {},
+        error: err => {},
       });
   }
   // businessServices: BusinessServiceModal[] = [

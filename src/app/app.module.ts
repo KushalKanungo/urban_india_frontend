@@ -42,7 +42,7 @@ import { BusinessServicePageComponent } from './_pages/business-service-page/bus
 import { PaginatorModule } from 'primeng/paginator';
 import { ToastModule } from 'primeng/toast';
 import { CouponSectionComponent } from './coupon-section/coupon-section.component';
-import { CouponFormComponent } from './coupon-form/coupon-form.component'
+import { CouponFormComponent } from './coupon-form/coupon-form.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { BusinessServiceCardSmallComponent } from './business-service-card-small/business-service-card-small.component';
 import { CartComponent } from './cart/cart.component';
@@ -116,7 +116,7 @@ import { AddressComponent } from './_pages/address/address.component';
     SidebarModule,
     ListboxModule,
     PanelModule,
-    TagModule
+    TagModule,
   ],
   providers: [
     DialogService,

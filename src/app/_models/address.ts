@@ -4,5 +4,5 @@ export interface Address {
   state: string;
   plotNo: string;
   google_location_code?: string;
-  pin: number
+  pin: number;
 }

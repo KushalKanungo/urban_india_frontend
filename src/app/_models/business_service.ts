@@ -8,14 +8,14 @@ export interface BusinessServiceModal {
   mode_id?: number;
   image?: string;
   rating: number;
-  serviceTypeId:number;
+  serviceTypeId: number;
   serviceTypeName: string;
-  statusId:string;
+  statusId: string;
   address?: {
     plotNo: string;
     city: string;
     state: string;
-    pin : string;
+    pin: string;
     google_location_code: string;
   };
 }

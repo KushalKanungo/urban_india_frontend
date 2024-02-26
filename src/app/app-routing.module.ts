@@ -10,7 +10,10 @@ import { MyBusinessPageComponent } from './_pages/my-business-page/my-business-p
 import { BusinessServicePageComponent } from './_pages/business-service-page/business-service-page.component';
 // import { BusinessServiceResolver } from './_resolver/business-service.resolver';
 import { businessServiceResolver } from './_resolver/businessService.resolver';
-import { businessResolver, serviceResolver } from './_resolver/listing-data.resolver';
+import {
+  businessResolver,
+  serviceResolver,
+} from './_resolver/listing-data.resolver';
 import { OrdersComponent } from './_pages/orders/orders.component';
 import { AddressComponent } from './_pages/address/address.component';
 
@@ -22,7 +25,7 @@ const routes: Routes = [
     path: 'services',
     component: BusinessServiceListPageComponent,
     canActivate: [AuthGuard],
-    resolve: {businesses : businessResolver,services:serviceResolver},
+    resolve: { businesses: businessResolver, services: serviceResolver },
   },
   { path: 'business/:id', component: BusinessPageComponent },
 
@@ -39,13 +42,13 @@ const routes: Routes = [
   {
     path: 'services/:serviceId',
     component: BusinessServicePageComponent,
-    resolve: { data:  businessServiceResolver  }
+    resolve: { data: businessServiceResolver },
   },
   {
     path: 'address',
     component: AddressComponent,
-    canActivate: [AuthGuard]
-  }
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
