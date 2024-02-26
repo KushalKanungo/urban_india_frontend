@@ -41,7 +41,7 @@ export class Filter {
   // }
   
   storeFilter(key: string) {
-    let parsedFilter = this.parsed();
+    const parsedFilter = this.parsed();
     localStorage.setItem(key, JSON.stringify(parsedFilter));
   }
 }

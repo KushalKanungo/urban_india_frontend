@@ -108,10 +108,9 @@ export class ReviewPageComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    let maximizeButton: HTMLButtonElement | null = document.querySelector(
+    const maximizeButton: HTMLButtonElement | null = document.querySelector(
       '.p-dialog-header-maximize'
     );
-    console.log(maximizeButton);
 
     maximizeButton?.click();
   }

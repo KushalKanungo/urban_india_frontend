@@ -13,7 +13,7 @@ export class SignupComponent implements OnInit {
     if (this.router.getCurrentNavigation()?.extras.state?.['email'])
       this.email = this.router.getCurrentNavigation()?.extras.state?.['email'];
   }
-  email: string = '';
+  email = '';
   genders = [{ name: 'Male' }, { name: 'Female' }, { name: 'Other' }];
   uploadedFile!: File | any;
   signupForm: FormGroup = new FormGroup({
@@ -27,7 +27,6 @@ export class SignupComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    debugger;
     if (this.email.length) {
       this.signupForm.get('email')?.setValue(this.email);
       this.signupForm.get('email')?.disable();
@@ -35,14 +34,14 @@ export class SignupComponent implements OnInit {
   }
 
   onSelect($event: any) {
-    for (let file of $event.files) {
+    for (const file of $event.files) {
       this.uploadedFile = file;
     }
   }
 
   signupButtonHandeler() {
-    let signupDetails = new FormData();
-    let data = this.signupForm.value;
+    const signupDetails = new FormData();
+    const data = this.signupForm.getRawValue();
 
     data['gender'] = data['gender'].name;
     signupDetails.set('data', JSON.stringify(data));
@@ -51,7 +50,6 @@ export class SignupComponent implements OnInit {
     this.authService.signup(signupDetails).subscribe({
       next: () => {
         this.router.navigate(['/login']);
-        console.log('Signed up successfully');
       },
     });
   }

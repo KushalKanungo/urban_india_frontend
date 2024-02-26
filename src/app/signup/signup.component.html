@@ -4,6 +4,7 @@
     <div class="col-12 col-md-8">
       <h2 class="text-center mt-4" style="font-weight: 600">URBAN INDIA</h2>
       <h4 class="mx-3">Signup</h4>
+      <a class="mx-3 text-link" routerLink="/login">Already Registered?</a>
       <form class="p-3" [formGroup]="signupForm" (submit)="signupButtonHandeler()">
         <p-fileUpload mode="basic" chooseLabel="Choose" name="demo[]" accept="image/*" (onSelect)="onSelect($event)">
           <ng-template pTemplate="content">

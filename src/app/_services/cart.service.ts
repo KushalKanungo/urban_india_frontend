@@ -25,7 +25,7 @@ export class CartService {
   cartItems: CartItemModel[] = []
   coupons: Coupon[] = []
   selectedCoupon: Coupon | undefined  
-  cartPrice: number = 0
+  cartPrice = 0
   cartBusinessId!: number
   baseUrl = `${environment.baseUrl}/api/cart`
   addresses!: Address[]
@@ -67,7 +67,7 @@ export class CartService {
   }
 
   public removeServiceToCart(businessServiceId: number) {
-    let cartItemId = this.cartItems.find(({businessService: { id }}) => id === businessServiceId )?.id
+    const cartItemId = this.cartItems.find(({businessService: { id }}) => id === businessServiceId )?.id
     this.removeServiceFromCart(cartItemId).subscribe({
       next: ()=>{
         this.cartItems = this.cartItems.filter( ({id}) => id !== cartItemId)

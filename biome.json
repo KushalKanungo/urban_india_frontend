@@ -1,0 +1,43 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "always",
+      "arrowParentheses": "asNeeded"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noForEach": "error",
+				"useSimplifiedLogicExpression": "warn",
+				"useOptionalChain": "warn"
+      },
+      "performance": {
+        "noAccumulatingSpread": "error",
+        "noDelete": "error"
+      },
+      "style": {
+        "useNamingConvention": "warn",
+        "useShorthandArrayType": "warn",
+        "useWhile": "error"
+      },
+      "suspicious": {
+        "all": true,
+        "noConsoleLog": "warn",
+        "noDebugger": "error",
+        "noSelfCompare": "error",
+        "noUnsafeNegation": "error",
+        "useIsArray": "error"
+      }
+    }
+  }
+}

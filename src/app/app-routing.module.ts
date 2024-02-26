@@ -37,13 +37,14 @@ const routes: Routes = [
     component: MyBusinessPageComponent,
   },
   {
-    path: 'service/:serviceId',
+    path: 'services/:serviceId',
     component: BusinessServicePageComponent,
     resolve: { data:  businessServiceResolver  }
   },
   {
     path: 'address',
     component: AddressComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

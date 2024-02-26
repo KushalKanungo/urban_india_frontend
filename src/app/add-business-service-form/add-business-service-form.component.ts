@@ -59,9 +59,8 @@ export class AddBusinessServiceFormComponent implements OnInit {
       price:formDetails.price,
       serviceTypeId: formDetails.service_type_name
     }
-    console.log(formDetails);
 
-    let businessServiceDetails = new FormData();
+    const businessServiceDetails = new FormData();
     businessServiceDetails.set('data', JSON.stringify(businessServiceModel));
     if (this.file) businessServiceDetails.set('file', this.file);
 

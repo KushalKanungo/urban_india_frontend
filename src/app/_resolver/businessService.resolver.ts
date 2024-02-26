@@ -13,7 +13,6 @@ export const businessServiceResolver: ResolveFn<any> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ) => {
-  console.log(route.paramMap.get('serviceId'));
 
   return inject(BusinessServicesService).getBusinessServiceById(
     route.paramMap.get('serviceId')!

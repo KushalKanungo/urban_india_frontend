@@ -11,8 +11,6 @@ import { Observable, of } from 'rxjs';
 })
 export class BusinessServiceResolver implements Resolve<boolean> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    console.log(route.params['businessId']);
-    console.log(route.params['serviceId']);
 
     // TODO: call the api and return the businessService Data
 

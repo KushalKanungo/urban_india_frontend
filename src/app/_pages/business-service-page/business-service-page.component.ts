@@ -130,9 +130,7 @@ export class BusinessServicePageComponent {
   ];
   ngOnInit() {
     this.activatedRoute.data.subscribe(({data: {dto}}) => {
-      console.log(dto);
 
-      // console.log(dto);
       this.businessService = dto;
       this.serviceImage = this.businessService.image
         ? environment.baseUrl + '/image/' + this.businessService.image
@@ -150,13 +148,11 @@ export class BusinessServicePageComponent {
     tempFilter.listOfBusinessServiceIds = [this.businessService.serviceTypeId]
     tempFilter.page = 0
     tempFilter.per = 6
-    console.log(tempFilter.parsed());
 
     this.businessServicesService
       .getAllFilteredBusinssService(tempFilter.parsed())
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.similarBusinessServices = res.dto.content;
         },
         error: (err) => {},

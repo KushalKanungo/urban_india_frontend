@@ -21,7 +21,7 @@ export class BusinessServiceCardComponent implements  OnInit{
   @Input() businessServiceData!: BusinessServiceModal;
 
   openServicePage( event: any, id: number){
-    this.router.navigate(['service', id])
+    this.router.navigate(['services', id])
   }
 
   addItemToCart(){

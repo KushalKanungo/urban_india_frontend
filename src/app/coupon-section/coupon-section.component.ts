@@ -111,7 +111,7 @@ export class CouponSectionComponent implements OnInit{
     return `${year}-${month}-${day}`;
   }
 
-  openForm(event: any, edit:boolean = false, coupon: Coupon | undefined = undefined){
+  openForm(event: any, edit = false, coupon: Coupon | undefined = undefined){
     this.ref = this.dialogService.open(CouponFormComponent, {
       header: edit ? 'Edit Coupon' : 'Add Coupon',
       data: { editMode: edit, coupon: coupon},
@@ -128,7 +128,6 @@ export class CouponSectionComponent implements OnInit{
           startTime: this.formatDate(couponValues.dateRange[0]), 
           endTime: this.formatDate(couponValues.dateRange[1]) 
         } 
-        console.log(tempCoupon);
         if (edit && coupon?.id !== undefined){
           this.couponService.updateCoupon(coupon.id, tempCoupon).subscribe({next: ()=> { this.fetchCoupons() } })
         }
@@ -152,11 +151,10 @@ export class CouponSectionComponent implements OnInit{
     }})
   }
 
-  deleteCoupon(event: any, coupon_id: number | undefined){
-    console.log("deleting coupon", coupon_id);
+  deleteCoupon(event: any, couponId: number | undefined){
     
-    if (coupon_id) 
-      this.couponService.deleteCoupon(coupon_id).subscribe({ next: () => { this.fetchCoupons(  ) }})
+    if (couponId) 
+      this.couponService.deleteCoupon(couponId).subscribe({ next: () => { this.fetchCoupons(  ) }})
   }
   
 }

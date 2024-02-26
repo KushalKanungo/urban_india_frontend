@@ -17,12 +17,12 @@ export class CouponService {
     return this.http.post<any>(this.BASE_URL, coupon)
   }
   
-  deleteCoupon(coupon_id: number){
-    return this.http.delete<any>(`${this.BASE_URL}/${coupon_id}`)
+  deleteCoupon(couponId: number){
+    return this.http.delete<any>(`${this.BASE_URL}/${couponId}`)
   }
 
-  updateCoupon(coupon_id: number, coupon: Coupon){
-    return this.http.put<any>(`${this.BASE_URL}/${coupon_id}`, coupon)
+  updateCoupon(couponId: number, coupon: Coupon){
+    return this.http.put<any>(`${this.BASE_URL}/${couponId}`, coupon)
   }
 
   getCoupons(): Observable<any>{

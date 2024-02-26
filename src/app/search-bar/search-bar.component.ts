@@ -21,7 +21,7 @@ import { Filter } from '../_models/filter';
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
-  visible: boolean = false;
+  visible = false;
   // businesses: { title: string; id: string }[] = [
   //   {
   //     title: 'ABC Corporation',
@@ -82,8 +82,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   appliedFilter() {
-    console.log('filter applied');
-    console.log(this.filter.parsed());
     this.filterAppliedModal.emit();
   }
 }

@@ -19,48 +19,17 @@ export class LoginComponent {
 
   private afterLogin = (response: SignInResponse) => {
     this.authService.saveAccessToken(response.accessToken);
-    console.log(this.authService.isAuthorized());
     this.loading = false;
     this.router.navigate([this.REDIRECT_URI]);
-    console.log('SignedInSuccessfully');
   };
 
   ngOnInit() {
     // @ts-ignore
     window.onGoogleLibraryLoad = () => {
-      // @ts-ignore
-      google.accounts.id.initialize({
-        client_id: this.clientId,
-        callback: this.handleCredentialResponse.bind(this),
-        auto_select: false,
-        cancel_on_tap_outside: true,
-      });
-      // @ts-ignore
-      google.accounts.id.renderButton(
-        // @ts-ignore
-        document.getElementById('buttonDiv'),
-        {
-          'width': 20,
-          'height': 60,
-          'longtitle': false,
-          'theme': 'dark',
-        }
-      );
+      this.renderButton();
       // @ts-ignore
       google.accounts.id.prompt((notification: PromptMomentNotification) => {});
     };
-
-    // @ts-ignore
-    google.accounts.id.renderButton(
-      // @ts-ignore
-      document.getElementById('buttonDiv'),
-      {
-        'width': 20,
-        'height': 60,
-        'longtitle': false,
-        'theme': 'dark',
-      }
-    );
   }
 
   signInForm: FormGroup = new FormGroup({
@@ -69,13 +38,50 @@ export class LoginComponent {
   });
 
   googleButttonHandeler() {
-    let button: HTMLButtonElement = document.querySelector("div[role=button]") as HTMLButtonElement
-    button.click()
-  
+    const buttonPlaceHolder = document.getElementById(
+      'button-placeholder'
+    ) as HTMLElement;
+    if (buttonPlaceHolder?.childNodes.length < 1) {
+      const span = new HTMLSpanElement();
+      span.setAttribute('id', 'buttonDiv');
+      buttonPlaceHolder.appendChild(span);
+    }
+    // @ts-ignore
+    google.accounts.id.initialize({
+      client_id: this.clientId,
+      callback: this.oAuth2ConsentCallback.bind(this),
+      auto_select: false,
+      cancel_on_tap_outside: true,
+    });
+    // @ts-ignore
+    google.accounts.id.renderButton(
+      // @ts-ignore
+      document.getElementById('buttonDiv'),
+      {
+        width: 20,
+        height: 60,
+        longtitle: false,
+        theme: 'dark',
+      }
+    );
+    const button: HTMLButtonElement = document.querySelector(
+      'div[role=button]'
+    ) as HTMLButtonElement;
+    button.click();
   }
 
-  handleCredentialResponse(response: any) {
-    console.log(response.credential);
+  signInButtonHandeler() {
+    const signInDetails = {
+      userNameOrEmail: this.signInForm.value.usernameOrEmail,
+      password: this.signInForm.value.password,
+    };
+    this.loading = true;
+    this.authService.login(signInDetails).subscribe({
+      next: this.afterLogin,
+    });
+  }
+
+  private oAuth2ConsentCallback(response: any) {
     this.authService.googleAuth(response.credential).subscribe({
       next: this.afterLogin,
       error: (err: HttpErrorResponse) => {
@@ -90,16 +96,25 @@ export class LoginComponent {
       },
     });
   }
-
-  signInButtonHandeler() {
-    // this.googleButttonHandeler();
-    let signInDetails = {
-      userNameOrEmail: this.signInForm.value['usernameOrEmail'],
-      password: this.signInForm.value['password'],
-    };
-    this.loading = true;
-    this.authService.login(signInDetails).subscribe({
-      next: this.afterLogin,
+  
+  private renderButton() {
+    // @ts-ignore
+    google.accounts.id.initialize({
+      client_id: this.clientId,
+      callback: this.oAuth2ConsentCallback.bind(this),
+      auto_select: false,
+      cancel_on_tap_outside: true,
     });
+    // @ts-ignore
+    google.accounts.id.renderButton(
+      // @ts-ignore
+      document.getElementById('buttonDiv'),
+      {
+        width: 20,
+        height: 60,
+        longtitle: false,
+        theme: 'dark',
+      }
+    );
   }
 }

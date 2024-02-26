@@ -20,8 +20,8 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   login(signinDetails: {
-    userNameOrEmail: String;
-    password: String;
+    userNameOrEmail: string;
+    password: string;
   }): Observable<SignInResponse> {
     return this.http
       .post<SignInResponse>(`${this.BASE_URL}/signin`, signinDetails)

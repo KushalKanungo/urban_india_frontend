@@ -947,17 +947,14 @@ export class BusinessRegisterFormComponent {
         addressModel:address
     }
 
-    let businessDetails = new FormData();
+    const businessDetails = new FormData();
     businessDetails.set('data', JSON.stringify(businessDetailsModel));
     if (this.file) businessDetails.set('file', this.file);
 //     {"documents":"xdadwfwfsadfsadfaefef  vdfsdfsfv vf",
 // "address":{"google_location_code":"xcsfvsd wssw","state":"raj","city":"jaipur","pin":"313131","plotNo":"13/12"},"name":"saloon"}
-    console.log(formDetails);
-    console.log(businessDetailsModel);
     // TODO: send the business details form data to backend
     this.businessService.addBusiness(businessDetails).subscribe({
       next:(res)=>{
-        console.log(res);
       }
     })
   }

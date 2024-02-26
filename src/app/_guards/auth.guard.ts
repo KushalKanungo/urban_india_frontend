@@ -23,8 +23,6 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    console.log(state.url);
-    console.log(this.authService.isAuthorized());
 
     if (
       (state.url == '/' || state.url == '/login' || state.url == '/signup') &&

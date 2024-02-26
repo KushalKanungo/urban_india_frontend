@@ -11,7 +11,7 @@ import { AuthService } from '../_services/auth.service';
 export class NavbarComponent {
   constructor(
     private dialogService: DialogService,
-    private authService: AuthService
+    public authService: AuthService
   ) {}
   ref!: DynamicDialogRef;
 

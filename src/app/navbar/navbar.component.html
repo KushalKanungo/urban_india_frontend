@@ -1,4 +1,4 @@
-<nav >
+<nav *ngIf="authService.isAuthorized()" >
   <div class="logo px-3">
     <span class="letter">U</span>rban<span class="flip">i</span>
     <span class="last">ndia</span>

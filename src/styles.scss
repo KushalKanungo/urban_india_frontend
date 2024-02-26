@@ -12,6 +12,11 @@
 
 }
 
+body *{
+  margin: 0;
+  padding: 0;
+}
+
 .text-green{
   color: var(--green) !important;
 }
@@ -173,6 +178,16 @@ textarea {
 .hover-accent:hover{
   cursor: pointer;
   color: var(--accent);
+}
+
+.text-link{
+  all: unset;
+  color:var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+  &:hover{
+    color: var(--accent-dark);
+  }
 }
 
 ::-webkit-scrollbar-track {

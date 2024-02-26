@@ -35,7 +35,6 @@ export class BusinessServiceListPageComponent implements OnInit {
     this.filterModel.page = 0;
     this.filterModel.per = 10;
     this.activateRoute.data.subscribe(({ businesses, services }) => {
-      console.log(businesses);
       this.businesses = businesses;
       this.servicesTypes = services;
     });
@@ -44,7 +43,6 @@ export class BusinessServiceListPageComponent implements OnInit {
   }
 
   appliedFilter() {
-    console.log(this.filterModel);
     this.getFilterBusinessServiceData();
   }
 
@@ -52,7 +50,6 @@ export class BusinessServiceListPageComponent implements OnInit {
     this.filterModel.page = event.page;
     this.filterModel.per = event.rows;
     this.getFilterBusinessServiceData();
-    console.log(event);
   }
 
   getFilterBusinessServiceData() {
@@ -60,7 +57,6 @@ export class BusinessServiceListPageComponent implements OnInit {
       .getAllFilteredBusinssService(this.filterModel.parsed())
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.businessServicesData = res.dto.content;
           this.businessServicePage = res.dto;
         },

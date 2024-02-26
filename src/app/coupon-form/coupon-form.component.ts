@@ -32,7 +32,6 @@ export class CouponFormComponent implements OnInit {
     if (!startDate || !endDate){
       return null
     }
-    // console.log([Date.parse(startDate), Date.parse(endDate)]);
     
     return [new Date(startDate), new Date(endDate)]
   }
