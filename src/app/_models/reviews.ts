@@ -1,9 +1,14 @@
 export interface Reviews {
-  title: string;
+  id: number
   description: string;
   rating: number;
-  service: string;
-  business: string;
-  customer: string;
-  date: Date;
+  user: {
+    id: number;
+    name: string;
+  }
+  businessService: {
+    id: number;
+    name: string;
+  };
+  date?: Date;
 }
