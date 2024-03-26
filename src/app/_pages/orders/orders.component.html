@@ -1,39 +1,65 @@
 <div class="container pt-5">
   <div class="mx-md-5 px-md-5">
-    <p-panel *ngFor="let order of orders" [toggleable]="true" styleClass="my-4">
-      <ng-template pTemplate="header">
-        <div class=" align-items-center gap-2 px-md-5">
-          <span class="font-bold">{{ creteOrderTitle(order) }}</span>
-          <div class="text-muted my-2" [style.font-size]="'0.8rem'"> 
-            <i class="bi bi-geo-alt"></i>
-            {{order.address.plotNo}}, {{order.address.city}}, {{order.address.state}}
+    <div *ngFor="let order of orders" class="my-4">
+      <p-panel [toggleable]="true">
+        <ng-template pTemplate="header">
+          <div class=" align-items-center gap-2 px-md-5">
+            <span class="font-bold">{{ creteOrderTitle(order) }}</span>
+            <div class="text-muted my-2" [style.font-size]="'0.8rem'">
+              <i class="bi bi-geo-alt"></i>
+              {{order.address.plotNo}}, {{order.address.city}}, {{order.address.state}}
+            </div>
+            <div class="mt-1"> <p-tag styleClass="p-1 px-2" [value]="order.status"></p-tag> </div>
           </div>
-          <div class="mt-1"> <p-tag styleClass="p-1 px-2" [value]="order.status"></p-tag> </div>
-        </div>
-      </ng-template>
-      <section>
-        <div class="d-flex justify-content-between px-md-5 my-3" *ngFor="let item of order.orderItems">
-          <span>
-            {{item.businessService.name}}
-            <div class="text-muted mb-1" [style.font-size]="'0.8rem'"> {{item.completionDate | date}}</div> 
-          </span>
-          <span> <span class="me-2" [style.text-decoration]="'line-through'"
-              *ngIf="item.effectivePrice !== item.businessService.price"> {{item.businessService.price | currency :
-              "INR" : "symbol"}} </span> {{item.effectivePrice | currency : "INR" : "symbol"}}</span>
-        </div>
-        <div *ngIf="order.coupon?.id" class="d-flex justify-content-between px-md-5">
-          <span>Discount <span class="text-accent"> ({{order.coupon.code}}) </span></span>
-          <span class="fw-bold text-red"> - {{ order.price*(order.coupon.percent/100)| currency : "INR" :
-            "symbol"}}</span>
-        </div>
-      </section>
-      <ng-template pTemplate="footer">
-        <div class="d-flex justify-content-between px-md-5 fs-5">
-          <span>Total</span>
-          <span class="fw-bold text-green">{{ order.effectivePrice | currency : "INR" : "symbol"}}</span>
-        </div>
-      </ng-template>
-    </p-panel>
+        </ng-template>
+        <section>
+          <div class="d-flex justify-content-between px-md-5 my-3" *ngFor="let item of order.orderItems">
+            <span>
+              <div>{{item.businessService.name}} <i *ngIf="!item.review" class="bi bi-chat-square-text cursor-pointer"
+                  pTooltip="Add Review" (click)="openRatingForm(item)"></i></div>
+              <div class="text-muted mb-1" [style.font-size]="'0.8rem'"> {{item.completionDate | date}}</div>
+            </span>
+            <span> <span class="me-2" [style.text-decoration]="'line-through'"
+                *ngIf="item.effectivePrice !== item.businessService.price"> {{item.businessService.price | currency :
+                "INR" : "symbol"}} </span> {{item.effectivePrice | currency : "INR" : "symbol"}}</span>
+          </div>
+          <div *ngIf="order.coupon?.id" class="d-flex justify-content-between px-md-5">
+            <span>Discount <span class="text-accent"> ({{order.coupon.code}}) </span></span>
+            <span class="fw-bold text-red"> - {{ order.price*(order.coupon.percent/100)| currency : "INR" :
+              "symbol"}}</span>
+          </div>
+        </section>
+        <ng-template pTemplate="footer">
+          <div class="d-flex justify-content-between px-md-5 fs-5">
+            <span>Total</span>
+            <span class="fw-bold text-green">{{ order.effectivePrice | currency : "INR" : "symbol"}}</span>
+          </div>
+        </ng-template>
+      </p-panel>
+      <p-panel [toggleable]="true" [collapsed]="true">
+        <ng-template pTemplate="header">
+          <div class=" align-items-center gap-2 px-md-5"> Reviews </div>
+        </ng-template>
+        <section class="px-md-5">
+          <div class="row row-cols-1 row-cols-md-2">
+            <ng-container *ngFor="let orderItem of order.orderItems" class="px-md-5 my-3">
+              <div class="mt-2" *ngIf="orderItem.review">
+                <div class="mb-2">{{orderItem.businessService.name}}</div>
+                <p-rating [(ngModel)]="orderItem.review.rating" [readonly]="true" [cancel]="false"></p-rating>
+                <div class="p-4" style="background-color: rgb(248, 248, 248); border-radius: 20px;">
+                  {{orderItem.review.description}}</div>
+              </div>
+            </ng-container>
+          </div>
+        </section>
+      </p-panel>
+    </div>
   </div>
 </div>
+<p-dialog [breakpoints]="{ '768px': '90vw' }" [style]="{ width: '50vw' }"
+  [header]="reviewFormConfig.orderItem?.businessService?.name ?? 'Add Review'" [(visible)]="reviewFormConfig.visible"
+  [closable]="true" [modal]="true" [draggable]="false" [closeOnEscape]="true"
+  (onHide)="reviewFormConfig.visible = false" [dismissableMask]="true">
+  <app-rating-form [dialogConfig]="reviewFormConfig" [orderItem]="reviewFormConfig.orderItem"> </app-rating-form>
+</p-dialog>
 <!-- <div class="col-1"></div> -->

@@ -81,12 +81,21 @@ textarea:active .p-inputtext:active {
   outline: none !important;
 }
 
+.p-dialog-mask{
+  backdrop-filter: blur(2px);
+}
+
 .shadows{
   box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
 textarea {
   border-radius: 8px;
+  outline: none !important;
+  box-shadow: none !important;
+  &:active, &:focus{
+    border-bottom: solid 2px var(--accent) !important;
+  }
 }
 
 .actions{

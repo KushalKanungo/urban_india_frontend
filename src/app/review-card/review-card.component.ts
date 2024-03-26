@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Reviews } from '../_models/reviews';
+import { Review } from '../_models/reviews';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
@@ -8,7 +8,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
   styleUrls: ['./review-card.component.scss'],
 })
 export class ReviewCardComponent {
-  @Input() review!: Reviews;
+  @Input() review!: Review;
 
   constructor() {}
 }

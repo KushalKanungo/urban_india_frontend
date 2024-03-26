@@ -41,6 +41,7 @@ export class OrdersService {
                 completionDate: item.completionDate,
                 status: toStatus(item.status),
                 effectivePrice: item.effectivePrice,
+                review: item.review,
                 businessService: {
                   id: item.businessServiceId,
                   name: item.businessServiceName,

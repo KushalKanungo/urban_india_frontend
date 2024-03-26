@@ -58,6 +58,7 @@ import { CouponCardComponent } from './coupon-card/coupon-card.component';
 import { PanelModule } from 'primeng/panel';
 import { TagModule } from 'primeng/tag';
 import { AddressComponent } from './_pages/address/address.component';
+import { RatingFormComponent } from './rating-form/rating-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +85,7 @@ import { AddressComponent } from './_pages/address/address.component';
     OrdersComponent,
     CouponCardComponent,
     AddressComponent,
+    RatingFormComponent,
   ],
   imports: [
     BrowserModule,

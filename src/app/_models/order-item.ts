@@ -1,3 +1,5 @@
+import { Review } from "./reviews";
+
 export interface OrderItem {
   id: number;
   completionDate: string;
@@ -6,6 +8,7 @@ export interface OrderItem {
     name: string;
     price: number;
   };
+  review: Review;
   status: string;
   effectivePrice: number;
 }

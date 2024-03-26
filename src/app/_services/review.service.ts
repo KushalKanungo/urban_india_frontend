@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { environment } from 'src/environment/environment';
-import { Reviews } from '../_models/reviews';
+import { Review } from '../_models/reviews';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ReviewService {
   constructor(private readonly http: HttpClient) { }
 
   postReview(orderItemId: number, review: { rating: number, description: string }){
-    return this.http.post(`${this.baseUrl}/orderItem/${orderItemId}reviews`, review)
+    return this.http.post(`${this.baseUrl}/orderItem/${orderItemId}/reviews`, review)
   }
 
   getBusinessServiceReviews(businessServiceId: number){
@@ -43,7 +43,7 @@ export class ReviewService {
             id: review.businessServiceId,
             name: review.businessServiceName
           }
-        } as Reviews
+        } as Review
     })
   }
 }

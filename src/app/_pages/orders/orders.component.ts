@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Address } from 'src/app/_models/address';
 import { Order } from 'src/app/_models/order';
+import { OrderItem } from 'src/app/_models/order-item';
 import { AddressService } from 'src/app/_services/address.service';
 import { OrdersService } from 'src/app/_services/orders.service';
 
@@ -22,10 +23,17 @@ export class OrdersComponent implements OnInit {
   editAddressModel: Address | null = null;
   selectedAddress: Address | null = null;
   orders!: Order[];
+  reviewFormConfig: { orderItem: OrderItem | null, action: 'update' |'create', visible: boolean } = {action: 'create', visible: false, orderItem: null}
   ngOnInit() {
     this.fetchAllAddresses();
     this.fetchAllOrderes();
   }
+
+  openRatingForm(orderItem: OrderItem){
+      this.reviewFormConfig.orderItem = orderItem;
+      this.reviewFormConfig.visible = true;
+  }
+
   fetchAllOrderes() {
     this.ordersService.getMyOrders().subscribe({
       next: res => {
