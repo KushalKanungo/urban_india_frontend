@@ -1,0 +1,8 @@
+<form (ngSubmit)="submitReviewForm()" class="d-flex flex-column">
+  <p-rating name="rating" [(ngModel)]="reviewFormModel.rating" [cancel]="false"></p-rating>
+  <textarea name="review" class="mt-2 p-2" rows="5" pInputTextarea [(ngModel)]="reviewFormModel.description" placeholder="Add Review"></textarea>
+
+  <div dir="rtl" class="mt-2">
+    <p-button type="submit">Submit</p-button>
+  </div>
+</form>
