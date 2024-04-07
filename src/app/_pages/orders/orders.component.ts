@@ -79,4 +79,9 @@ export class OrdersComponent implements OnInit {
     this.editMode = true;
     this.editAddressModel = address;
   }
+
+  onReviewFormClose(){
+    this.reviewFormConfig.visible = false
+    this.fetchAllOrderes()
+  }
 }

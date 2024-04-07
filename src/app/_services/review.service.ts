@@ -17,8 +17,9 @@ export class ReviewService {
   }
 
   getBusinessServiceReviews(businessServiceId: number){
-    return this.http.get<{ dto: { data: any }}>(`${this.baseUrl}/businessService/${businessServiceId}/reviews`).pipe(map(({ dto })=>{
-        dto.data = this.reviewMapper(dto.data)
+    return this.http.post<{ dto: { data: any }}>(`${this.baseUrl}/businessService/${businessServiceId}/reviews`, {}).pipe(map(( res: { dto: any })=>{
+        res.dto.data = this.reviewMapper(res.dto.data)
+        return res
     }))
   }
 
@@ -42,7 +43,8 @@ export class ReviewService {
           businessService: {
             id: review.businessServiceId,
             name: review.businessServiceName
-          }
+          },
+          description: review.description,
         } as Review
     })
   }

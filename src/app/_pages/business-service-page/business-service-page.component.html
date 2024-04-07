@@ -21,6 +21,7 @@
         </div>
       </div>
       <section>
+        <h4 (click)="openReviewsDialog()">Read More</h4>
         <p-carousel
           [value]="reviews"
           [numVisible]="3"
@@ -34,7 +35,7 @@
               class="review-card border-1 surface-border border-round m-2 py-4 px-3"
             >
               <h5 class="title text-truncate">{{ review.title }}</h5>
-              <strong>{{ review.customer }}</strong>
+              <strong>{{ review.user.name }}</strong>
 
               <p class="desc">{{ review.description }}</p>
               <div>{{ review.date | date }}</div>

@@ -52,7 +52,7 @@
   // height: 20px;
 }
 
-::ng-deep .p-dialog-content {
+:host ::ng-deep .p-dialog-content {
   display: flex;
   flex-direction: column;
   align-items: center;

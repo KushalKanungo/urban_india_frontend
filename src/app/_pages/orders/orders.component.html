@@ -59,7 +59,7 @@
 <p-dialog [breakpoints]="{ '768px': '90vw' }" [style]="{ width: '50vw' }"
   [header]="reviewFormConfig.orderItem?.businessService?.name ?? 'Add Review'" [(visible)]="reviewFormConfig.visible"
   [closable]="true" [modal]="true" [draggable]="false" [closeOnEscape]="true"
-  (onHide)="reviewFormConfig.visible = false" [dismissableMask]="true">
+  (onHide)="onReviewFormClose()" [dismissableMask]="true">
   <app-rating-form [dialogConfig]="reviewFormConfig" [orderItem]="reviewFormConfig.orderItem"> </app-rating-form>
 </p-dialog>
 <!-- <div class="col-1"></div> -->
